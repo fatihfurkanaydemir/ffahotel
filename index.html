@@ -4,33 +4,173 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="css/main.css">
 
     <title>Welcome to FFA Hotel</title>
 </head>
 <body>
-    <nav class="main-header">Main header</nav>
-    <section class="main-section">
-        <nav class="book-rooms-navigation">
-            <div class="book-rooms-navigation-room">
-                Room1
-            </div>
-            <div class="book-rooms-navigation-room">
-                Room2
-            </div>
-            <div class="book-rooms-navigation-room">
-                Room3
-            </div>
-            <div class="book-rooms-navigation-room">
-                Room4
-            </div>
-        </nav>
-        <article class="main-page">
-            Select date and room type
-        </article>
+    <header class="main-header">
+        <img src="img/headerHotel.png" alt="Hotel Image" class="img-fluid" style="width: 100%;">
+
+    </header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <a href="#" class="navbar-brand">
+            <img src="img/Logo.png" alt="Logo" width="60">
+            <span class="text-info">FFAHOTEL</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link"> Home </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"> Gallery </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"> Rooms </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"> Contact </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <img src="img/profileIcon.png" alt="Logo" width="30">
+                        Login/Signup
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="container-fluid">
+        <div class="row pt-5">
+            <nav class="col-md-5">
+                <div class="card card-room">
+                    <img src="img/vipRoom.jpg" alt="Vip Room" class="img-fluid" width="40%">
+                    <div class="card-body p-2">
+                        <a href="#" class="bg-primary text-white p-2" style="width: 100%; display: inline-block;">VIP Room</a>
+                        <div class="pt-1">
+                            <span><strong id="vipRoomPrice">150</strong> USD/Day</span>
+                            <div class="ratings text-center" style="float: right;">
+                                <div> <span style="font-size: 30px;">4.6</span><span>/5</span>
+                                    <div style="font-size: 18px; color: #28a745;"> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <a href="#" class="text-primary">15 reviews</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-room mt-2">
+                    <img src="img/familyRoom.jpg" alt="Family Room" class="img-fluid" width="40%">
+                    <div class="card-body p-2">
+                        <a href="#" class="bg-primary text-white p-2" style="width: 100%; display: inline-block;">Family Room</a>
+                        <div class="pt-1">
+                            <span><strong id="vipRoomPrice">100</strong> USD/Day</span>
+                            <div class="ratings text-center" style="float: right;">
+                                <div> <span style="font-size: 30px;">4.9</span><span>/5</span>
+                                    <div style="font-size: 18px; color: #28a745;"> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <a href="#" class="text-primary">12 reviews</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-room mt-2">
+                    <img src="img/doubleRoom.jpg" alt="Double Room" class="img-fluid" width="40%">
+                    <div class="card-body p-2">
+                        <a href="#" class="bg-primary text-white p-2" style="width: 100%; display: inline-block;">Double Room</a>
+                        <div class="pt-1">
+                            <span><strong id="vipRoomPrice">70</strong> USD/Day</span>
+                            <div class="ratings text-center" style="float: right;">
+                                <div> <span style="font-size: 30px;">4.1</span><span>/5</span>
+                                    <div style="font-size: 18px; color: #28a745;"> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <a href="#" class="text-primary">5 reviews</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-room mt-2">
+                    <img src="img/singleRoom.jpg" alt="Single Room" class="img-fluid" width="40%">
+                    <div class="card-body p-2">
+                        <a href="#" class="bg-primary text-white p-2" style="width: 100%; display: inline-block;">Single Room</a>
+                        <div class="pt-1">
+                            <span><strong id="vipRoomPrice">50</strong> USD/Day</span>
+                            <div class="ratings text-center" style="float: right;">
+                                <div> <span style="font-size: 30px;">4.3</span><span>/5</span>
+                                    <div style="font-size: 18px; color: #28a745;"> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i> 
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <a href="#" class="text-primary">25 reviews</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <article class="col-md-7 mt-3">
+                <form action="#">
+                    <label for="roomTypeSelect">Select room type: </label>
+                    <select class="form-control" id="roomTypeSelect" name="roomTypeSelect">
+                        <option>VIP Room</option>
+                        <option>Family Room</option>
+                        <option>Double Room</option>
+                        <option>Single Room</option>
+                    </select>
+
+                    <label for="personNumberSelect" class="mt-4">Select number of persons: </label>
+                    <select class="form-control" id="roomTypeSelect" name="personNumberSelect">
+                        <option>1 Person</option>
+                        <option>2 Person</option>
+                        <option>3 Person</option>
+                        <option>4 Person</option>
+                    </select>
+
+
+                    <label for="checkinDate" class="mt-4">Check-in Date: </label>
+                    <input type="date" id="checkinDate" name="checkinDate" class="form-control">
+                    <label for="checkoutDate" class="mt-4">Check-out Date: </label>
+                    <input type="date" id="checkoutDate" name="checkoutDate" class="form-control">
+
+                    <input type="submit" value="Book Now" class="btn btn-primary mt-4" style="width: 100%;">
+                </form>
+            </article>
+        </div>
     </section>  
-    <footer class="footer">
-        Footer
+    <footer class="modal-footer bg-dark p-4 text-white mt-5" style="margin-bottom: 0;">
+        Fatih Furkan Aydemir
     </footer> 
 </body>
 </html>

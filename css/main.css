@@ -1,70 +1,8 @@
-* {
-    box-sizing: border-box;
+.card-room {
+    flex-direction: row;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-}
 
-html {
-    height: 100%;
-}
-
-body {
-    height: 100%;
-    position: relative;
-}
-
-.main-header
-{
-    border: 2px solid tomato;
-    padding: 2%;
-    text-align: center;
-    position: sticky;
-}
-
-.main-section {
-    padding-top: 10%;
-    border: 2px solid green;
-    position: absolute;
-    width: 100%;
-}
-
-.footer 
-{
-    border: 2px solid tomato;
-    text-align: center;
-    padding: 2%;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-}
-
-.main-section::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.book-rooms-navigation {
-    border: 2px solid tomato;
-    float: left;
-    width: 20%;    
-}
-
-.book-rooms-navigation-room {
-    padding: 20% 0%;
-    border: 2px solid blue;
-}
-
-.main-page {
-    border: 2px solid tomato;
-    float: left;
-    width: 80%;
-    padding: 20% 0%;
-    margin: auto;
-}
 
 
 
