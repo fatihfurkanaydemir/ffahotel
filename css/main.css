@@ -1,8 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
+
+
 .card-room {
     flex-direction: row;
 }
 
+.mainpage-room-link {
+    width: 100%; 
+    display: inline-block;
+    text-decoration: none !important;
+}
 
+.main-section {
+    margin-top: 100px;
+    margin-bottom: 300px;
+}
 
+.navbar-logo-text {
+    font-family: 'Knewave', cursive; 
+    font-size: 30px; 
+}
 
+.gallery-carousel-title {
+    font-family: 'New Tegomin', serif;
+}
 
+.gallery-carousel {
+    width: 100% !important;
+}
+
+@media screen and (min-width: 576px) {
+    .gallery-carousel {
+        width: 75% !important;
+    }
+}

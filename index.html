@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         <a href="#" class="navbar-brand">
             <img src="img/Logo.png" alt="Logo" width="60">
-            <span class="text-info">FFAHOTEL</span>
+            <span class="text-info navbar-logo-text">FFAHOTEL</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -31,10 +31,10 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link"> Home </a>
+                    <a href="#" class="nav-link active"> Home </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"> Gallery </a>
+                    <a href="gallery.html" class="nav-link"> Gallery </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link"> Rooms </a>
@@ -52,13 +52,13 @@
         </div>
     </nav>
 
-    <section class="container-fluid">
-        <div class="row pt-5">
+    <section class="main-section container-fluid">
+        <div class="row">
             <nav class="col-md-5">
                 <div class="card card-room">
                     <img src="img/vipRoom.jpg" alt="Vip Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
-                        <a href="#" class="bg-primary text-white p-2" style="width: 100%; display: inline-block;">VIP Room</a>
+                        <a href="#" class="mainpage-room-link bg-primary text-white p-2">VIP Room</a>
                         <div class="pt-1">
                             <span><strong id="vipRoomPrice">150</strong> USD/Day</span>
                             <div class="ratings text-center" style="float: right;">
@@ -79,7 +79,7 @@
                 <div class="card card-room mt-2">
                     <img src="img/familyRoom.jpg" alt="Family Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
-                        <a href="#" class="bg-primary text-white p-2" style="width: 100%; display: inline-block;">Family Room</a>
+                        <a href="#" class="mainpage-room-link bg-primary text-white p-2">Family Room</a>
                         <div class="pt-1">
                             <span><strong id="vipRoomPrice">100</strong> USD/Day</span>
                             <div class="ratings text-center" style="float: right;">
@@ -100,7 +100,7 @@
                 <div class="card card-room mt-2">
                     <img src="img/doubleRoom.jpg" alt="Double Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
-                        <a href="#" class="bg-primary text-white p-2" style="width: 100%; display: inline-block;">Double Room</a>
+                        <a href="#" class="mainpage-room-link bg-primary text-white p-2">Double Room</a>
                         <div class="pt-1">
                             <span><strong id="vipRoomPrice">70</strong> USD/Day</span>
                             <div class="ratings text-center" style="float: right;">
@@ -121,7 +121,7 @@
                 <div class="card card-room mt-2">
                     <img src="img/singleRoom.jpg" alt="Single Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
-                        <a href="#" class="bg-primary text-white p-2" style="width: 100%; display: inline-block;">Single Room</a>
+                        <a href="#" class="mainpage-room-link bg-primary text-white p-2">Single Room</a>
                         <div class="pt-1">
                             <span><strong id="vipRoomPrice">50</strong> USD/Day</span>
                             <div class="ratings text-center" style="float: right;">
@@ -171,8 +171,8 @@
             </article>
         </div>
     </section>  
-    <footer class="modal-footer bg-dark p-4 text-white mt-5" style="margin-bottom: 0;">
-        Fatih Furkan Aydemir
+    <footer class="modal-footer bg-dark p-4 text-white sticky-bottom container-fluid">
+        <p>Fatih Furkan Aydemir</p>
     </footer> 
 </body>
 </html>
