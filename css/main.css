@@ -24,14 +24,44 @@
 
 .gallery-carousel-title {
     font-family: 'New Tegomin', serif;
+    border-radius: 10px; 
+    font-size: 3em;
 }
 
 .gallery-carousel {
     width: 100% !important;
 }
 
+.login-card {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 90%;
+}
+
+.main-article {
+    margin: 3%;
+}
+
 @media screen and (min-width: 576px) {
     .gallery-carousel {
         width: 75% !important;
+    }
+
+    .login-card {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .gallery-carousel {
+        width: 75% !important;
+    }
+
+    .login-card {
+        width: 500px;
+    }
+
+    .main-article {
+        margin: 0%;
     }
 }

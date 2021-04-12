@@ -21,7 +21,7 @@
 
     </header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-        <a href="#" class="navbar-brand">
+        <a href="index.html" class="navbar-brand">
             <img src="img/Logo.png" alt="Logo" width="60">
             <span class="text-info navbar-logo-text">FFAHOTEL</span>
         </a>
@@ -43,7 +43,7 @@
                     <a href="#" class="nav-link"> Contact </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="login.html" class="nav-link">
                         <img src="img/profileIcon.png" alt="Logo" width="30">
                         Login/Signup
                     </a>
@@ -55,7 +55,7 @@
     <section class="main-section container-fluid">
         <div class="row">
             <nav class="col-md-5">
-                <div class="card card-room">
+                <div class="card card-room shadow">
                     <img src="img/vipRoom.jpg" alt="Vip Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
                         <a href="#" class="mainpage-room-link bg-primary text-white p-2">VIP Room</a>
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-room mt-2">
+                <div class="card card-room mt-2 shadow">
                     <img src="img/familyRoom.jpg" alt="Family Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
                         <a href="#" class="mainpage-room-link bg-primary text-white p-2">Family Room</a>
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-room mt-2">
+                <div class="card card-room mt-2 shadow">
                     <img src="img/doubleRoom.jpg" alt="Double Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
                         <a href="#" class="mainpage-room-link bg-primary text-white p-2">Double Room</a>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-room mt-2">
+                <div class="card card-room mt-2 shadow">
                     <img src="img/singleRoom.jpg" alt="Single Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
                         <a href="#" class="mainpage-room-link bg-primary text-white p-2">Single Room</a>
@@ -140,32 +140,38 @@
                     </div>
                 </div>
             </nav>
-            <article class="col-md-7 card">
+            <article class="main-article col-md-7 card shadow">
                 <div class="card-body">
                     <form action="#" class="mt-3">
-                        <label for="roomTypeSelect" class="text-primary font-weight-bold">Select room type: </label>
-                        <select class="form-control" id="roomTypeSelect" name="roomTypeSelect">
-                            <option>VIP Room</option>
-                            <option>Family Room</option>
-                            <option>Double Room</option>
-                            <option>Single Room</option>
-                        </select>
-                
+                        <div class="form-group">
+                            <label for="roomTypeSelect" class="text-primary font-weight-bold">Select room type: </label>
+                            <select class="custom-control custom-select shadow" id="roomTypeSelect" name="roomTypeSelect">
+                                <option>VIP Room</option>
+                                <option>Family Room</option>
+                                <option>Double Room</option>
+                                <option>Single Room</option>
+                            </select>
+                        </div>
+                    
+                        <div class="form-group"></div>
                         <label for="personNumberSelect" class="mt-4 text-primary font-weight-bold">Select number of persons: </label>
-                        <select class="form-control" id="roomTypeSelect" name="personNumberSelect">
+                        <select class="custom-control custom-select shadow" id="roomTypeSelect" name="personNumberSelect">
                             <option>1 Person</option>
                             <option>2 Person</option>
                             <option>3 Person</option>
                             <option>4 Person</option>
                         </select>
-                
-                
-                        <label for="checkinDate" class="mt-4 text-primary font-weight-bold">Check-in Date: </label>
-                        <input type="date" id="checkinDate" name="checkinDate" class="form-control">
-                        <label for="checkoutDate" class="mt-4 text-primary font-weight-bold">Check-out Date: </label>
-                        <input type="date" id="checkoutDate" name="checkoutDate" class="form-control">
-                
-                        <input type="submit" value="Book Now" class="btn btn-primary mt-4" style="width: 100%;">
+                    
+                    
+                        <div class="form-group">
+                            <label for="checkinDate" class="mt-4 text-primary font-weight-bold">Check-in Date: </label>
+                            <input type="date" id="checkinDate" name="checkinDate" class="form-control shadow" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkoutDate" class="mt-4 text-primary font-weight-bold">Check-out Date: </label>
+                            <input type="date" id="checkoutDate" name="checkoutDate" class="form-control shadow" required>
+                        </div>
+                        <input type="submit" value="Book Now" class="btn btn-primary mt-4 shadow" style="width: 100%;">
                     </form>
                 </div>
             </article>
