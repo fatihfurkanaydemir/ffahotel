@@ -42,7 +42,7 @@
                     <a href="contact.html" class="nav-link"> Contact </a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link active">
+                    <a href="login.html" class="nav-link">
                         <img src="img/profileIcon.png" alt="Logo" width="30">
                         Login/Signup
                     </a>
@@ -53,53 +53,10 @@
 
     <section class="main-section container-fluid">
         <div class="row align-items-center flex-column">
-            <div class="card login-card shadow-lg">
-                <div class="card-body align-items-center flex-column">
-                    <img src="img/loginUserIcon.png" alt="Login Icon" class="card-img-top img-fluid w-25 mx-auto d-block">
-                    <form id="loginform" action="userdashboard/userdashboard.html" method="POST" class="needs-validation" novalidate>
-                        <div class="form-group mt-5">
-                            <input type="email" name="email" id="email" placeholder="Enter your email" class="form-control" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" name="password" id="password" placeholder="Enter your password" class="form-control" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <input type="submit" value="Login" class="btn btn-primary mt-3 shadow" style="width: 100%;">
-                    </form>
-                </div>
-                <div class="card-footer text-center">
-                    <span>Don't have an account?</span>
-                    <a href="register.html" class="btn btn-info form-control mt-3 shadow"> Sign Up Now</a>
-                </div>
-            </div>
         </div>
     </section>  
     <footer class="modal-footer bg-dark p-4 text-white sticky-bottom container-fluid">
         <p>Fatih Furkan Aydemir</p>
     </footer> 
-
-    <script>
-        // Disable form submissions if there are invalid fields
-        (function() {
-          'use strict';
-          window.addEventListener('load', function() {
-            // Get the forms we want to add validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-              }, false);
-            });
-          }, false);
-        })();
-    </script>
 </body>
 </html>

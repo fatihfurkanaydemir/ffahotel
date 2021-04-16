@@ -2,8 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
 
 
-.card-room {
-    flex-direction: row;
+.room-card {
+    width: 90%;
+}
+
+.room-reviews-row {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.room-reviews-user-icon {
+    width: 15%;
 }
 
 .mainpage-room-link {
@@ -24,8 +33,7 @@
 
 .gallery-carousel-title {
     font-family: 'New Tegomin', serif;
-    border-radius: 10px; 
-    font-size: 3em;
+    font-size: 2em;
 }
 
 .gallery-carousel {
@@ -42,6 +50,23 @@
     margin: 3%;
 }
 
+.contact-card {
+    width: 95%;
+}
+
+.rating-stars {
+    font-size: 18px; 
+    color: #28a745;
+}
+
+.review {
+    margin-top: 20px;
+}
+
+.reservation-card-img {
+    width: 60%;
+}
+
 @media screen and (min-width: 576px) {
     .gallery-carousel {
         width: 75% !important;
@@ -49,6 +74,10 @@
 
     .login-card {
         width: 70%;
+    }
+
+    .reservation-card-img {
+        width: 100%;
     }
 }
 
@@ -63,5 +92,17 @@
 
     .main-article {
         margin: 0%;
+    }
+
+    .contact-card {
+        width: 50%;
+    }
+
+    .room-reviews-user-icon {
+        width: 5%;
+    }
+
+    .reservation-card-img {
+        width: 80%;
     }
 }

@@ -37,10 +37,10 @@
                     <a href="gallery.html" class="nav-link"> Gallery </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"> Rooms </a>
+                    <a href="rooms.html" class="nav-link"> Rooms </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"> Contact </a>
+                    <a href="contact.html" class="nav-link"> Contact </a>
                 </li>
                 <li class="nav-item">
                     <a href="login.html" class="nav-link">
@@ -55,10 +55,10 @@
     <section class="main-section container-fluid">
         <div class="row">
             <nav class="col-md-5">
-                <div class="card card-room shadow">
+                <div class="card flex-row shadow">
                     <img src="img/vipRoom.jpg" alt="Vip Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
-                        <a href="#" class="mainpage-room-link bg-primary text-white p-2">VIP Room</a>
+                        <a href="rooms.html#vipRoomCard" class="mainpage-room-link bg-primary text-white p-2">VIP Room</a>
                         <div class="pt-1">
                             <span><strong id="vipRoomPrice">150</strong> USD/Day</span>
                             <div class="ratings text-center" style="float: right;">
@@ -76,10 +76,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-room mt-2 shadow">
+                <div class="card flex-row mt-2 shadow">
                     <img src="img/familyRoom.jpg" alt="Family Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
-                        <a href="#" class="mainpage-room-link bg-primary text-white p-2">Family Room</a>
+                        <a href="rooms.html#familyRoomCard" class="mainpage-room-link bg-primary text-white p-2">Family Room</a>
                         <div class="pt-1">
                             <span><strong id="vipRoomPrice">100</strong> USD/Day</span>
                             <div class="ratings text-center" style="float: right;">
@@ -97,10 +97,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-room mt-2 shadow">
+                <div class="card flex-row mt-2 shadow">
                     <img src="img/doubleRoom.jpg" alt="Double Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
-                        <a href="#" class="mainpage-room-link bg-primary text-white p-2">Double Room</a>
+                        <a href="rooms.html#doubleRoomCard" class="mainpage-room-link bg-primary text-white p-2">Double Room</a>
                         <div class="pt-1">
                             <span><strong id="vipRoomPrice">70</strong> USD/Day</span>
                             <div class="ratings text-center" style="float: right;">
@@ -118,10 +118,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-room mt-2 shadow">
+                <div class="card flex-row mt-2 shadow">
                     <img src="img/singleRoom.jpg" alt="Single Room" class="img-fluid" width="40%">
                     <div class="card-body p-2">
-                        <a href="#" class="mainpage-room-link bg-primary text-white p-2">Single Room</a>
+                        <a href="rooms.html#singleRoomCard" class="mainpage-room-link bg-primary text-white p-2">Single Room</a>
                         <div class="pt-1">
                             <span><strong id="vipRoomPrice">50</strong> USD/Day</span>
                             <div class="ratings text-center" style="float: right;">
@@ -142,10 +142,10 @@
             </nav>
             <article class="main-article col-md-7 card shadow">
                 <div class="card-body">
-                    <form action="#" class="mt-3">
+                    <form action="book.html" class="mt-3">
                         <div class="form-group">
                             <label for="roomTypeSelect" class="text-primary font-weight-bold">Select room type: </label>
-                            <select class="custom-control custom-select shadow" id="roomTypeSelect" name="roomTypeSelect">
+                            <select class="custom-control custom-select shadow" id="roomTypeSelect" name="roomType">
                                 <option>VIP Room</option>
                                 <option>Family Room</option>
                                 <option>Double Room</option>
@@ -155,7 +155,7 @@
                     
                         <div class="form-group"></div>
                         <label for="personNumberSelect" class="mt-4 text-primary font-weight-bold">Select number of persons: </label>
-                        <select class="custom-control custom-select shadow" id="roomTypeSelect" name="personNumberSelect">
+                        <select class="custom-control custom-select shadow" id="personNumberSelect" name="personNumber">
                             <option>1 Person</option>
                             <option>2 Person</option>
                             <option>3 Person</option>
@@ -163,13 +163,15 @@
                         </select>
                     
                     
-                        <div class="form-group">
-                            <label for="checkinDate" class="mt-4 text-primary font-weight-bold">Check-in Date: </label>
-                            <input type="date" id="checkinDate" name="checkinDate" class="form-control shadow" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="checkoutDate" class="mt-4 text-primary font-weight-bold">Check-out Date: </label>
-                            <input type="date" id="checkoutDate" name="checkoutDate" class="form-control shadow" required>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
+                                <label for="checkinDate" class="mt-4 text-primary font-weight-bold">Check-in Date: </label>
+                                <input type="date" id="checkinDate" name="checkinDate" class="form-control shadow w-100" required>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="checkoutDate" class="mt-4 text-primary font-weight-bold">Check-out Date: </label>
+                                <input type="date" id="checkoutDate" name="checkoutDate" class="form-control shadow w-100" required>
+                            </div>
                         </div>
                         <input type="submit" value="Book Now" class="btn btn-primary mt-4 shadow" style="width: 100%;">
                     </form>
