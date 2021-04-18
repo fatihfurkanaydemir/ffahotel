@@ -67,6 +67,10 @@
     width: 60%;
 }
 
+.manager-nav .active {
+    text-decoration: underline;
+}
+
 @media screen and (min-width: 576px) {
     .gallery-carousel {
         width: 75% !important;
