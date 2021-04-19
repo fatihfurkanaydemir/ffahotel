@@ -42,7 +42,7 @@
                     <a href="contact.html" class="nav-link"> Contact </a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link active">
+                    <a href="login.php" class="nav-link active">
                         <img src="img/profileIcon.png" alt="Logo" width="30">
                         Login/Signup
                     </a>
@@ -51,12 +51,44 @@
         </div>
     </nav>
 
+    
+
     <section class="main-section container-fluid">
         <div class="row align-items-center flex-column">
             <div class="card login-card shadow-lg">
                 <div class="card-body align-items-center flex-column">
                     <img src="img/loginUserIcon.png" alt="Login Icon" class="card-img-top img-fluid w-25 mx-auto d-block">
-                    <form id="loginform" action="userdashboard/userdashboard.html" method="POST" class="needs-validation" novalidate>
+                    <!-- Form Control -->
+                    <?php
+                        if($_SERVER["REQUEST_METHOD"] == "POST") {
+                            $email = test_input($_POST["email"]);
+                            $password = test_input($_POST["password"]);
+                        
+                            $wrongCredentialsError = "<div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                            <i class='fa fa-exclamation-triangle'></i>
+                            Your email or password is wrong
+                            </div>";
+                        
+                        
+                            if($email == "furkanaydemir6@gmail.com" && $password == "12345") {
+                                header("Location: userdashboard/userdashboard.html");
+                            }
+                            else {
+                                echo $wrongCredentialsError;
+                            }
+                        }
+                    
+                        function test_input($data) {
+                           $data = trim($data);
+                           $data = stripslashes($data);
+                           $data = htmlspecialchars($data);
+                           return $data;
+                         }
+                    ?>
+                    <!-- Form Control -->
+
+
+                    <form id="loginform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="needs-validation" novalidate>
                         <div class="form-group mt-5">
                             <input type="email" name="email" id="email" placeholder="Enter your email" class="form-control" required>
                             <div class="valid-feedback">Valid.</div>
