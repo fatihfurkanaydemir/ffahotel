@@ -49,7 +49,7 @@
                         </li>
                         <li class="nav-item">
                             <i class="fa fa-home d-inline" style="font-size: 24px;"></i>
-                            <a class="nav-link d-inline-block active" href="rooms.html">Rooms</a>
+                            <a class="nav-link d-inline-block" href="rooms.html">Rooms</a>
                         </li>
                         <li class="nav-item">
                             <i class="fa fa-user d-inline" style="font-size: 24px;"></i>
@@ -57,7 +57,7 @@
                         </li>
                         <li class="nav-item">
                             <i class="fa fa-calendar-check-o d-inline" style="font-size: 24px;"></i>
-                            <a class="nav-link d-inline-block" href="reservations.html">Reservations</a>
+                            <a class="nav-link d-inline-block active" href="reservations.html">Reservations</a>
                         </li>
                         <li class="nav-item">
                             <i class="fa fa-line-chart d-inline" style="font-size: 24px;"></i>
@@ -73,39 +73,39 @@
                     <div class="row ml-1 shadow">  
                         <div class="card w-100">
                             <div class="card-title text-center">
-                                <span style="font-size: 1.5em;">Add Room</span>
+                                <span style="font-size: 1.5em;">Add Reservation</span>
                             </div>
                             <div class="card-body">
                                 <form id="addroomform" action="#" method="POST" class="needs-validation" novalidate>
                                     <div class="form-row">
                                         <div class="form-group col-6">
-                                            <label for="roomtypeselect" class="text-primary">Select the room type: </label>
-                                            <select id="roomtypeselect" class="custom-select">
-                                                <option name="viproom">VIP Room</option>
-                                                <option name="familyroom">Family Room</option>
-                                                <option name="doublerooom">doubleroom</option>
-                                                <option name="singleroom">singleroom</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label for="floorselect" class="text-primary">Select the floor: </label>
-                                            <select id="floorselect" class="custom-select">
-                                                <option name="1">1</option>
-                                                <option name="2">2</option>
-                                                <option name="3">3</option>
-                                                <option name="4">4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-row">
-                                        <div class="form-group col-6">
-                                            <label for="doornumber" class="text-primary">Room number: </label>
-                                            <input type="number" name="doornumber" id="doornumber" placeholder="Enter room number" class="form-control" min="0" required>
+                                            <label for="customerid" class="text-primary">Customer Id: </label>
+                                            <input type="number" name="customerid" id="customerid" placeholder="Enter customer id" class="form-control" min="0" required>
                                             <div class="valid-feedback">Valid.</div>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
-                                    </div>                                
+                                        <div class="form-group col-6">
+                                            <label for="roomnumber" class="text-primary">Room Number: </label>
+                                            <input type="number" name="roomnumber" id="roomnumber" placeholder="Enter room number" class="form-control" min="0" required>
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label for="checkindate" class="text-primary">Check-in Date: </label>
+                                            <input type="date" name="checkindate" id="checkindate" placeholder="Check-in Date" class="form-control" required>
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="checkoutdate" class="text-primary">Check-out Date: </label>
+                                            <input type="date" name="checkoutdate" id="checkoutdate" placeholder="Check-out Date" class="form-control" required>
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                    </div>                              
                                     <input type="submit" value="Save" class="btn btn-primary mt-3 shadow" style="width: 100%;">
                                 </form>
                             </div>
