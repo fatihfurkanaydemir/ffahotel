@@ -16,47 +16,83 @@
     <title>Welcome to FFA Hotel</title>
 </head>
 <body>
-    <header class="main-header">
-        <img src="img/headerHotel.png" alt="Hotel Image" class="img-fluid" style="width: 100%;">
-    </header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-        <a href="index.html" class="navbar-brand">
-            <img src="img/Logo.png" alt="Logo" width="60">
-            <span class="text-info navbar-logo-text">FFAHOTEL</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link"> Home </a>
-                </li>
-                <li class="nav-item">
-                    <a href="gallery.html" class="nav-link"> Gallery </a>
-                </li>
-                <li class="nav-item">
-                    <a href="rooms.html" class="nav-link"> Rooms </a>
-                </li>
-                <li class="nav-item">
-                    <a href="contact.html" class="nav-link"> Contact </a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link active">
-                        <img src="img/profileIcon.png" alt="Logo" width="30">
-                        Login/Signup
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php require 'headers/header.php'?>
+
+    <!-- Form Control -->
+    <?php
+        $notValidError = "";
+        $bootstrapValidation = "";
+        $success = true;
+
+        $successMsg = "";
+
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $fname = test_input($_POST["fname"]);
+            $lname = test_input($_POST["lname"]);
+            $phoneNumber = test_input($_POST["phonenumber"]);
+            $email = filter_var(test_input($_POST["email"]), FILTER_SANITIZE_EMAIL);
+            $password = test_input($_POST["password"]);
+        
+            if(empty($fname) || empty($lname) || empty($phoneNumber) || empty($email) || empty($password)) {
+                $bootstrapValidation = "was-validated"; 
+                $success = false;     
+            }  
+            else {
+                if(filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+                    $bootstrapValidation = "";
+                    $success = false; 
+                    $notValidError = "<div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                        <i class='fa fa-exclamation-triangle'></i>
+                        Please enter a valid email
+                        </div>";
+                }
+                if(!validatePhoneNumber($phoneNumber)) {
+                    $bootstrapValidation = "";
+    
+                    $notValidError .= "<div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                        <i class='fa fa-exclamation-triangle'></i>
+                        Please enter a valid phone number
+                        </div>";
+                        $success = false; 
+                }  
+                            
+            }
+
+            if($success) {
+                $successMsg = "<div class='text-center text-success mt-2 font-weight-bold' style='font-size: 1.5em;'>
+                    <i class='fa fa-tick'></i>
+                    You are successfully registered
+                    </div>";
+            }
+        }
+    
+        function test_input($data) {
+           $data = trim($data);
+           $data = stripslashes($data);
+           $data = htmlspecialchars($data);
+           return $data;
+        }
+
+        function validatePhoneNumber($phonenumber)
+        {
+            $phonenumber = filter_var($phonenumber, FILTER_SANITIZE_NUMBER_INT);
+
+            if (strlen($phonenumber) < 10 || strlen($phonenumber) > 13) {
+                return false;
+            } else {
+               return true;
+            }
+        }
+    ?>
 
     <section class="main-section container-fluid">
         <div class="row align-items-center flex-column">
             <div class="card login-card shadow-lg">
                 <div class="card-body align-items-center flex-column">
                     <img src="img/loginUserIcon.png" alt="Login Icon" class="card-img-top img-fluid w-25 mx-auto d-block">
-                    <form id="registerform" action="#" method="POST" class="needs-validation" novalidate>
+                    <?php echo $notValidError; ?>
+                    <?php echo $successMsg; ?>
+                    <form id="registerform" action="#" method="POST" class="needs-validation <?php echo $bootstrapValidation ?> " novalidate>
                         <div class="form-group mt-5">
                             <input type="text" name="fname" id="fname" placeholder="Enter your first name" class="form-control" required>
                             <div class="valid-feedback">Valid.</div>
@@ -88,29 +124,7 @@
             </div>
         </div>
     </section>  
-    <footer class="modal-footer bg-dark p-4 text-white sticky-bottom container-fluid">
-        <p>Fatih Furkan Aydemir</p>
-    </footer> 
 
-    <script>
-        // Disable form submissions if there are invalid fields
-        (function() {
-          'use strict';
-          window.addEventListener('load', function() {
-            // Get the forms we want to add validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-              }, false);
-            });
-          }, false);
-        })();
-    </script>
+    <?php require 'footers/footer.php'?>
 </body>
 </html>

@@ -16,79 +16,61 @@
     <title>Welcome to FFA Hotel</title>
 </head>
 <body>
-    <header class="main-header">
-        <img src="img/headerHotel.png" alt="Hotel Image" class="img-fluid" style="width: 100%;">
-    </header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-        <a href="index.html" class="navbar-brand">
-            <img src="img/Logo.png" alt="Logo" width="60">
-            <span class="text-info navbar-logo-text">FFAHOTEL</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link"> Home </a>
-                </li>
-                <li class="nav-item">
-                    <a href="gallery.html" class="nav-link"> Gallery </a>
-                </li>
-                <li class="nav-item">
-                    <a href="rooms.html" class="nav-link"> Rooms </a>
-                </li>
-                <li class="nav-item">
-                    <a href="contact.html" class="nav-link"> Contact </a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link active">
-                        <img src="img/profileIcon.png" alt="Logo" width="30">
-                        Login/Signup
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php require 'headers/header.php'?>
 
+
+    <!-- Form Control -->
+    <?php
+        $wrongCredentialsOrNotValidError = "";
+        $bootstrapValidation = "";
+
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = filter_var(test_input($_POST["email"]), FILTER_SANITIZE_EMAIL);
+            $password = test_input($_POST["password"]);
+        
+            if(empty($email) || empty($password)) {
+                $bootstrapValidation = "was-validated";      
+            }  
+            else {
+                if(filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+                    $bootstrapValidation = "";
     
+                    $wrongCredentialsOrNotValidError = "<div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                        <i class='fa fa-exclamation-triangle'></i>
+                        Please enter a valid email
+                        </div>";
+                }
+                else {
+                    if($email == "furkanaydemir6@gmail.com" && $password == "12345") {
+                        header("Location: userdashboard.php");
+                    }
+                    else {
+                        $wrongCredentialsOrNotValidError = "<div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                        <i class='fa fa-exclamation-triangle'></i>
+                        Your email or password is wrong
+                        </div>";
+                    }
+                }
+                
+            }
+        }
+    
+        function test_input($data) {
+           $data = trim($data);
+           $data = stripslashes($data);
+           $data = htmlspecialchars($data);
+           return $data;
+         }
+    ?>
+                    <!-- Form Control -->
 
     <section class="main-section container-fluid">
         <div class="row align-items-center flex-column">
             <div class="card login-card shadow-lg">
                 <div class="card-body align-items-center flex-column">
                     <img src="img/loginUserIcon.png" alt="Login Icon" class="card-img-top img-fluid w-25 mx-auto d-block">
-                    <!-- Form Control -->
-                    <?php
-                        if($_SERVER["REQUEST_METHOD"] == "POST") {
-                            $email = test_input($_POST["email"]);
-                            $password = test_input($_POST["password"]);
-                        
-                            $wrongCredentialsError = "<div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
-                            <i class='fa fa-exclamation-triangle'></i>
-                            Your email or password is wrong
-                            </div>";
-                        
-                        
-                            if($email == "furkanaydemir6@gmail.com" && $password == "12345") {
-                                header("Location: userdashboard/userdashboard.html");
-                            }
-                            else {
-                                echo $wrongCredentialsError;
-                            }
-                        }
-                    
-                        function test_input($data) {
-                           $data = trim($data);
-                           $data = stripslashes($data);
-                           $data = htmlspecialchars($data);
-                           return $data;
-                         }
-                    ?>
-                    <!-- Form Control -->
-
-
-                    <form id="loginform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="needs-validation" novalidate>
+                    <?php echo $wrongCredentialsOrNotValidError; ?>
+                    <form id="loginform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" class="needs-validation <?php echo $bootstrapValidation ?> " novalidate>
                         <div class="form-group mt-5">
                             <input type="email" name="email" id="email" placeholder="Enter your email" class="form-control" required>
                             <div class="valid-feedback">Valid.</div>
@@ -104,34 +86,11 @@
                 </div>
                 <div class="card-footer text-center">
                     <span>Don't have an account?</span>
-                    <a href="register.html" class="btn btn-info form-control mt-3 shadow"> Sign Up Now</a>
+                    <a href="register.php" class="btn btn-info form-control mt-3 shadow"> Sign Up Now</a>
                 </div>
             </div>
         </div>
     </section>  
-    <footer class="modal-footer bg-dark p-4 text-white sticky-bottom container-fluid">
-        <p>Fatih Furkan Aydemir</p>
-    </footer> 
-
-    <script>
-        // Disable form submissions if there are invalid fields
-        (function() {
-          'use strict';
-          window.addEventListener('load', function() {
-            // Get the forms we want to add validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-              }, false);
-            });
-          }, false);
-        })();
-    </script>
+    <?php require 'footers/footer.php'?> 
 </body>
 </html>

@@ -16,40 +16,7 @@
     <title>Welcome to FFA Hotel</title>
 </head>
 <body>
-    <header class="main-header">
-        <img src="img/headerHotel.png" alt="Hotel Image" class="img-fluid" style="width: 100%;">
-    </header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-        <a href="index.html" class="navbar-brand">
-            <img src="img/Logo.png" alt="Logo" width="60">
-            <span class="text-info navbar-logo-text">FFAHOTEL</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link"> Home </a>
-                </li>
-                <li class="nav-item">
-                    <a href="gallery.html" class="nav-link"> Gallery </a>
-                </li>
-                <li class="nav-item">
-                    <a href="rooms.html" class="nav-link"> Rooms </a>
-                </li>
-                <li class="nav-item">
-                    <a href="contact.html" class="nav-link active"> Contact </a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.php" class="nav-link">
-                        <img src="img/profileIcon.png" alt="Logo" width="30">
-                        Login/Signup
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php require 'headers/header.php'?>
 
     <section class="main-section container-fluid">
         <div class="row align-items-center flex-column">
@@ -71,8 +38,6 @@
             </div>
         </div>
     </section>  
-    <footer class="modal-footer bg-dark p-4 text-white sticky-bottom container-fluid">
-        <p>Fatih Furkan Aydemir</p>
-    </footer> 
+    <?php require 'footers/footer.php'?>
 </body>
 </html>
