@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="css/main.css">
-
-    <title>Welcome to FFA Hotel</title>
-</head>
-<body>
     <?php require 'headers/header.php'?>
-
 
     <!-- Form Control -->
     <?php
@@ -32,20 +13,25 @@
                 $bootstrapValidation = "was-validated";      
             }  
             else {
-                if(filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+                if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $bootstrapValidation = "";
     
-                    $wrongCredentialsOrNotValidError = "<div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                    $wrongCredentialsOrNotValidError = "
+                        <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
                         <i class='fa fa-exclamation-triangle'></i>
                         Please enter a valid email
                         </div>";
                 }
                 else {
                     if($email == "furkanaydemir6@gmail.com" && $password == "12345") {
+                        session_start();
+                        $_SESSION["logged_in"] = 1;
+                        
                         header("Location: userdashboard.php");
                     }
                     else {
-                        $wrongCredentialsOrNotValidError = "<div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                        $wrongCredentialsOrNotValidError = "
+                        <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
                         <i class='fa fa-exclamation-triangle'></i>
                         Your email or password is wrong
                         </div>";
@@ -62,7 +48,7 @@
            return $data;
          }
     ?>
-                    <!-- Form Control -->
+    <!-- Form Control -->
 
     <section class="main-section container-fluid">
         <div class="row align-items-center flex-column">
@@ -91,6 +77,5 @@
             </div>
         </div>
     </section>  
+
     <?php require 'footers/footer.php'?> 
-</body>
-</html>

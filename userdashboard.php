@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="css/main.css">
-
-    <title>Welcome to FFA Hotel</title>
-</head>
-
-<body>
     <?php require 'headers/header.php'?>
+
+    <?php 
+        if(!isset($_SESSION["logged_in"])) {
+            header("Location: login.php");
+            die();
+        }
+    
+        if(isset($_REQUEST["logout"])) {
+            $logout = $_REQUEST["logout"];
+            
+            if($logout == "1") {
+                session_unset();
+                session_destroy();
+
+                header("Location: index.php");
+            }
+        }
+    ?>
 
     <section class="main-section container-fluid">
         <div class="row">
-            <nav class="col-md-2 card p-0 shadow" role="tablist" aria-orientation="vertical">
+            <nav class="col-2 col-md-2 shadow" role="tablist" aria-orientation="vertical">
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link" role="tab" aria-controls="account-details" aria-selected="true"
@@ -37,15 +35,20 @@
                         <a class="nav-link" id="reservations-tab" role="tab" data-toggle="tab"
                             aria-controls="reservations" aria-selected="false" href="#reservations">Reservations</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="logout" 
+                            aria-controls="reservations" aria-selected="false" 
+                            href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?logout=1") ?>">Logout</a>
+                    </li>
                 </ul>
             </nav>
-            <div class="mt-3 mt-md-0 col-md-10 card shadow">
-                <div class="tab-content">
+            <div class="col-10 mt-3 mt-md-0 col-md-10">
+                <div class="tab-content card shadow p-3">
                     <div class="tab-pane fade show active" id="account-details" role="tabpanel"
                         aria-labelledby="account-details-tab">
                         <span class="font-weight-bold d-block text-center" style="font-size: 2em;">Account
                             Details</span>
-                        <div class="card-body align-items-center flex-column">
+                        <div class="align-items-center flex-column">
                             <form id="accountdetailsform" action="#" method="POST" class="needs-validation" novalidate>
                                 <div class="form-group">
                                     <input type="text" name="fname" id="fname" placeholder="Enter your first name"
@@ -81,7 +84,7 @@
                         aria-labelledby="change-password-tab">
                         <span class="font-weight-bold d-block text-center" style="font-size: 2em;">Change
                             Password</span>
-                        <div class="card-body align-items-center flex-column">
+                        <div class="align-items-center flex-column">
                             <form id="changepasswordform" action="#" method="POST" class="needs-validation" novalidate>
                                 <div class="form-group">
                                     <input type="password" name="oldpassword" id="oldpassword"
@@ -353,8 +356,7 @@
             </div>
         </div>
     </section>
-    <?php require 'footers/footer.php'?>
-
+    
     <script>
         // Disable form submissions if there are invalid fields
         (function () {
@@ -375,6 +377,5 @@
             }, false);
         })();
     </script>
-</body>
 
-</html>
+    <?php require 'footers/footer.php'?>

@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="css/main.css">
-
-    <title>Welcome to FFA Hotel</title>
-</head>
-<body>
     <?php require 'headers/header.php'?>
 
     <!-- Form Control -->
@@ -32,37 +14,56 @@
             $phoneNumber = test_input($_POST["phonenumber"]);
             $email = filter_var(test_input($_POST["email"]), FILTER_SANITIZE_EMAIL);
             $password = test_input($_POST["password"]);
+            $passwordAgain = test_input($_POST["passwordagain"]);
         
-            if(empty($fname) || empty($lname) || empty($phoneNumber) || empty($email) || empty($password)) {
+            if(empty($fname) || empty($lname) || empty($phoneNumber) || empty($email) || empty($password) || empty($passwordAgain)) {
                 $bootstrapValidation = "was-validated"; 
                 $success = false;     
             }  
             else {
-                if(filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+                if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $bootstrapValidation = "";
+
                     $success = false; 
-                    $notValidError = "<div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
-                        <i class='fa fa-exclamation-triangle'></i>
-                        Please enter a valid email
-                        </div>";
+
+                    $notValidError = "
+                    <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                    <i class='fa fa-exclamation-triangle'></i>
+                    Please enter a valid email
+                    </div>";
                 }
                 if(!validatePhoneNumber($phoneNumber)) {
                     $bootstrapValidation = "";
     
-                    $notValidError .= "<div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
-                        <i class='fa fa-exclamation-triangle'></i>
-                        Please enter a valid phone number
-                        </div>";
-                        $success = false; 
+                    $success = false; 
+
+                    $notValidError .= "
+                    <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                    <i class='fa fa-exclamation-triangle'></i>
+                    Please enter a valid phone number
+                    </div>";
+                }  
+
+                if(strcmp($password, $passwordAgain) != 0) {
+                    $bootstrapValidation = "";
+    
+                    $success = false; 
+
+                    $notValidError .= "
+                    <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                    <i class='fa fa-exclamation-triangle'></i>
+                    Your passwords does not match
+                    </div>";
                 }  
                             
             }
 
             if($success) {
-                $successMsg = "<div class='text-center text-success mt-2 font-weight-bold' style='font-size: 1.5em;'>
-                    <i class='fa fa-tick'></i>
-                    You are successfully registered
-                    </div>";
+                $successMsg = "
+                <div class='text-center text-success mt-2 font-weight-bold' style='font-size: 1.5em;'>
+                <i class='fa fa-tick'></i>
+                You are successfully registered
+                </div>";
             }
         }
     
@@ -118,6 +119,11 @@
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
+                        <div class="form-group">
+                            <input type="password" name="passwordagain" id="passwordagain" placeholder="Enter your password again" class="form-control" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
                         <input type="submit" value="Sign Up" class="btn btn-primary mt-3 shadow" style="width: 100%;">
                     </form>
                 </div>
@@ -126,5 +132,3 @@
     </section>  
 
     <?php require 'footers/footer.php'?>
-</body>
-</html>

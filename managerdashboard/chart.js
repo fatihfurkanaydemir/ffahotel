@@ -48,4 +48,4 @@ function randomize() {
     myBar.update();
 }
 
-setInterval(randomize, 5000);
+setInterval(randomize, 3000);

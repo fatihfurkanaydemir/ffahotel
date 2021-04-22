@@ -19,7 +19,7 @@
     <header class="main-header">
     </header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-        <a href="../index.html" class="navbar-brand">
+        <a href="../index.php" class="navbar-brand">
             <img src="../img/Logo.png" alt="Logo" width="60">
             <span class="text-info navbar-logo-text">FFAHOTEL</span>
         </a>
@@ -37,7 +37,7 @@
             <div class="card login-card shadow-lg">
                 <div class="card-body align-items-center flex-column">
                     <img src="../img/loginUserIcon.png" alt="Login Icon" class="card-img-top img-fluid w-25 mx-auto d-block">
-                    <form id="loginform" action="dashboard.html" method="POST" class="needs-validation" novalidate>
+                    <form id="loginform" action="dashboard.php" method="POST" class="needs-validation" novalidate>
                         <div class="form-group mt-5">
                             <input type="text" name="username" id="username" placeholder="Username" class="form-control" required>
                             <div class="valid-feedback">Valid.</div>
@@ -53,30 +53,27 @@
                 </div>
             </div>
         </div>
-    </section>  
-    <footer class="modal-footer bg-dark p-4 text-white sticky-bottom container-fluid">
-        <p>Fatih Furkan Aydemir</p>
-    </footer> 
-
-    <script>
-        // Disable form submissions if there are invalid fields
-        (function() {
-          'use strict';
-          window.addEventListener('load', function() {
-            // Get the forms we want to add validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-                form.classList.add('was-validated');
+    
+        <script>
+            // Disable form submissions if there are invalid fields
+            (function() {
+              'use strict';
+              window.addEventListener('load', function() {
+                // Get the forms we want to add validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                  form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                  }, false);
+                });
               }, false);
-            });
-          }, false);
-        })();
-    </script>
-</body>
-</html>
+            })();
+        </script>
+
+
+<?php require "../footers/managerfooter.php"; ?>

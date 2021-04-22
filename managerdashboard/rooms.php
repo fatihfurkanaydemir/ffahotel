@@ -1,100 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php require "../headers/managerheader.php"; ?>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="../css/main.css">
-
-    <title>Welcome to FFA Hotel</title>
-</head>
-<body>
-    <header class="main-header">
-    </header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-        <a href="../index.html" class="navbar-brand">
-            <img src="../img/Logo.png" alt="Logo" width="60">
-            <span class="text-info navbar-logo-text">FFAHOTEL</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="changepassword.html">Change Password</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="main-section container-fluid">
-        <aside>
-            <div class="row">
-                <div class="col-2 shadow">
-                    <ul class="nav flex-column manager-nav">
-                        <li class="nav-item">
-                          <i class="fa fa-bar-chart d-inline" style="font-size: 24px;"></i>
-                          <a class="nav-link d-inline-block" href="dashboard.html">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="fa fa-home d-inline" style="font-size: 24px;"></i>
-                            <a class="nav-link d-inline-block active" href="rooms.html">Rooms</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="fa fa-user d-inline" style="font-size: 24px;"></i>
-                            <a class="nav-link d-inline-block" href="customers.html">Customers</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="fa fa-calendar-check-o d-inline" style="font-size: 24px;"></i>
-                            <a class="nav-link d-inline-block" href="reservations.html">Reservations</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="fa fa-line-chart d-inline" style="font-size: 24px;"></i>
-                            <a class="nav-link d-inline-block" href="reports.html">Reports</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="fa fa-star d-inline" style="font-size: 24px;"></i>
-                            <a class="nav-link d-inline-block" href="reviews.html">Reviews</a>
-                        </li>
-                      </ul>
-                </div>
                 <div class="col-10">
                     <div class="row ml-1 shadow">
                         <div class="row w-100 d-flex flex-row justify-content-around align-items-center p-3">
                             <div class="col-3">
-                                <a href="rooms.html" class="btn btn-secondary w-100 py-4 active">
+                                <a href="rooms.php" class="btn btn-secondary w-100 py-4 active">
                                     <i class="fa fa-home d-inline" style="font-size: 24px;"></i>
                                     <span style="font-size: 1.2em;">Total Rooms</span>
                                     <span class="d-block" style="font-size: 2em;"> 250 </span>
                                 </a>
                             </div>
                             <div class="col-3">
-                                <a href="bookingrooms.html" class="btn btn-secondary w-100 py-4">
+                                <a href="bookingrooms.php" class="btn btn-secondary w-100 py-4">
                                     <i class="fa fa-calendar d-inline" style="font-size: 24px;"></i>
                                     <span style="font-size: 1.2em;">Booking Rooms</span>
                                     <span class="d-block" style="font-size: 2em;"> 50 </span>
                                 </a>
                             </div>
                             <div class="col-3">
-                                <a href="bookedrooms.html" class="btn btn-secondary w-100 py-4">
+                                <a href="bookedrooms.php" class="btn btn-secondary w-100 py-4">
                                     <i class="fa fa-bed d-inline" style="font-size: 24px;"></i>
                                     <span style="font-size: 1.2em;">Booked Rooms</span>
                                     <span class="d-block" style="font-size: 2em;"> 150 </span>
                                 </a>
                             </div>
                             <div class="col-3">
-                                <a href="emptyrooms.html" class="btn btn-secondary w-100 py-4">
+                                <a href="emptyrooms.php" class="btn btn-secondary w-100 py-4">
                                     <i class="fa fa-home d-inline" style="font-size: 24px;"></i>
                                     <span style="font-size: 1.2em;">Empty Rooms</span>
                                     <span class="d-block" style="font-size: 2em;"> 50 </span>
@@ -125,7 +56,7 @@
                         </div>
                         <!-- Delete Room Modal -->
                         <div class="row w-100 mx-2 mt-4">
-                            <a href="addroom.html" class="btn btn-primary float-right mb-1" style="width: 30%;">
+                            <a href="addroom.php" class="btn btn-primary float-right mb-1" style="width: 30%;">
                                 <i class="fa fa-plus"></i>
                                 Add Room
                             </a>
@@ -153,7 +84,7 @@
                                     <td>50</td>
                                     <td>Empty</td>
                                     <td>
-                                        <a href="editroom.html" type="button" class="btn btn-primary">
+                                        <a href="editroom.php" type="button" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
@@ -169,7 +100,7 @@
                                     <td>50</td>
                                     <td>Empty</td>
                                     <td>
-                                        <a href="editroom.html" type="button" class="btn btn-primary">
+                                        <a href="editroom.php" type="button" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
@@ -185,7 +116,7 @@
                                     <td>50</td>
                                     <td>Empty</td>
                                     <td>
-                                        <a href="editroom.html" type="button" class="btn btn-primary">
+                                        <a href="editroom.php" type="button" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
@@ -201,7 +132,7 @@
                                     <td>50</td>
                                     <td>Empty</td>
                                     <td>
-                                        <a href="editroom.html" type="button" class="btn btn-primary">
+                                        <a href="editroom.php" type="button" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
@@ -217,7 +148,7 @@
                                     <td>50</td>
                                     <td>Empty</td>
                                     <td>
-                                        <a href="editroom.html" type="button" class="btn btn-primary">
+                                        <a href="editroom.php" type="button" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
@@ -233,7 +164,7 @@
                                     <td>50</td>
                                     <td>Empty</td>
                                     <td>
-                                        <a href="editroom.html" type="button" class="btn btn-primary">
+                                        <a href="editroom.php" type="button" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
@@ -249,7 +180,7 @@
                                     <td>50</td>
                                     <td>Empty</td>
                                     <td>
-                                        <a href="editroom.html" type="button" class="btn btn-primary">
+                                        <a href="editroom.php" type="button" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
@@ -265,7 +196,7 @@
                                     <td>50</td>
                                     <td>Empty</td>
                                     <td>
-                                        <a href="editroom.html" type="button" class="btn btn-primary">
+                                        <a href="editroom.php" type="button" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
@@ -279,13 +210,5 @@
                     </div>
                 </div>
             </div>
-            
-        </aside>
-        <div class="row align-items-center flex-column">
-        </div>
-    </section>  
-    <footer class="modal-footer bg-dark p-4 text-white sticky-bottom container-fluid">
-        <p>Fatih Furkan Aydemir</p>
-    </footer> 
-</body>
-</html>
+
+<?php require "../footers/managerfooter.php"; ?>
