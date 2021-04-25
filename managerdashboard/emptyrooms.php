@@ -2,36 +2,8 @@
 
                 <div class="col-10">
                     <div class="row ml-1 shadow">
-                        <div class="row w-100 d-flex flex-row justify-content-around align-items-center p-3">
-                            <div class="col-3">
-                                <a href="rooms.php" class="btn btn-secondary w-100 py-4">
-                                    <i class="fa fa-home d-inline" style="font-size: 24px;"></i>
-                                    <span style="font-size: 1.2em;">Total Rooms</span>
-                                    <span class="d-block" style="font-size: 2em;"> 250 </span>
-                                </a>
-                            </div>
-                            <div class="col-3">
-                                <a href="bookingrooms.php" class="btn btn-secondary w-100 py-4">
-                                    <i class="fa fa-calendar d-inline" style="font-size: 24px;"></i>
-                                    <span style="font-size: 1.2em;">Booking Rooms</span>
-                                    <span class="d-block" style="font-size: 2em;"> 50 </span>
-                                </a>
-                            </div>
-                            <div class="col-3">
-                                <a href="bookedrooms.php" class="btn btn-secondary w-100 py-4">
-                                    <i class="fa fa-bed d-inline" style="font-size: 24px;"></i>
-                                    <span style="font-size: 1.2em;">Booked Rooms</span>
-                                    <span class="d-block" style="font-size: 2em;"> 150 </span>
-                                </a>
-                            </div>
-                            <div class="col-3">
-                                <a href="emptyrooms.php" class="btn btn-secondary w-100 py-4 active">
-                                    <i class="fa fa-home d-inline" style="font-size: 24px;"></i>
-                                    <span style="font-size: 1.2em;">Empty Rooms</span>
-                                    <span class="d-block" style="font-size: 2em;"> 50 </span>
-                                </a>
-                            </div>
-                        </div>
+                    
+                    <?php require "roomsheadbuttons.php" ?>
                         
                         <div class="row w-100 mt-2">
                             <div class="row mx-3 mb-1">

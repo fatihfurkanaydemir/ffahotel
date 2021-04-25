@@ -20,23 +20,23 @@
 
     <section class="main-section container-fluid">
         <div class="row">
-            <nav class="col-2 col-md-2 shadow" role="tablist" aria-orientation="vertical">
-                <ul class="nav flex-column">
+            <nav class="col-2 col-md-2 shadow p-0" role="tablist" aria-orientation="vertical">
+                <ul class="nav flex-column list-group">
                     <li class="nav-item">
-                        <a class="nav-link" role="tab" aria-controls="account-details" aria-selected="true"
+                        <a class="nav-link list-group-item list-group-item-action active border-0" role="tab" aria-controls="account-details" aria-selected="true"
                             id="account-details-tab" data-toggle="tab" href="#account-details">Account Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="change-password-tab" role="tab" data-toggle="tab"
+                        <a class="nav-link list-group-item list-group-item-action border-0" id="change-password-tab" role="tab" data-toggle="tab"
                             aria-controls="change-password" aria-selected="false" href="#change-password">Change
                             Password</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="reservations-tab" role="tab" data-toggle="tab"
+                        <a class="nav-link list-group-item list-group-item-action border-0" id="reservations-tab" role="tab" data-toggle="tab"
                             aria-controls="reservations" aria-selected="false" href="#reservations">Reservations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="logout" 
+                        <a class="nav-link list-group-item list-group-item-action border-0" id="logout" 
                             aria-controls="reservations" aria-selected="false" 
                             href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?logout=1") ?>">Logout</a>
                     </li>

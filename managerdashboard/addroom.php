@@ -31,8 +31,8 @@
                                     
                                     <div class="form-row">
                                         <div class="form-group col-6">
-                                            <label for="doornumber" class="text-primary">Room number: </label>
-                                            <input type="number" name="doornumber" id="doornumber" placeholder="Enter room number" class="form-control" min="0" required>
+                                            <label for="doornumber" class="text-primary">Door number: </label>
+                                            <input type="number" name="doornumber" id="doornumber" placeholder="Enter door number" class="form-control" min="0" required>
                                             <div class="valid-feedback">Valid.</div>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>

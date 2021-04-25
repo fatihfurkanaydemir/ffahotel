@@ -49,31 +49,43 @@
 
     <section class="main-section container-fluid">
         <div class="row">
-            <div class="col-2 shadow">
-                <ul class="nav flex-column manager-nav">
-                    <li class="nav-item d-flex flex-row align-items-center">
-                      <i class="fa fa-bar-chart d-inline" style="font-size: 24px; width: 20%;"></i>
-                      <a class="nav-link d-inline-block <?php echo $dashboardActive; ?>" href="dashboard.php">Dashboard</a>
+            <div class="col-2 shadow p-0">
+                <ul class="nav list-group">
+                    <li class="nav-item">
+                        <a class="nav-link d-inline-block list-group-item list-group-item-action border-0 <?php echo $dashboardActive; ?>" href="dashboard.php">
+                            <i class="fa fa-bar-chart d-inline float-left" style="font-size: 24px; width: 15%;"></i>
+                            <span class="ml-3">Dashboard</span>
+                        </a>
                     </li>
-                    <li class="nav-item d-flex flex-row align-items-center">
-                        <i class="fa fa-home d-inline" style="font-size: 24px; width: 20%;"></i>
-                        <a class="nav-link d-inline-block <?php echo $roomsActive; ?>" href="rooms.php">Rooms</a>
+                    <li class="nav-item">
+                        <a class="nav-link d-inline-block list-group-item list-group-item-action border-0 <?php echo $roomsActive; ?>" href="rooms.php">
+                            <i class="fa fa-home d-inline float-left" style="font-size: 24px; width: 15%;"></i>
+                            <span class="ml-3">Rooms</span>
+                        </a>
                     </li>
-                    <li class="nav-item d-flex flex-row align-items-center">
-                        <i class="fa fa-user d-inline" style="font-size: 24px; width: 20%;"></i>
-                        <a class="nav-link d-inline-block <?php echo $customersActive; ?>" href="customers.php">Customers</a>
+                    <li class="nav-item">
+                        <a class="nav-link d-inline-block list-group-item list-group-item-action border-0 <?php echo $customersActive; ?>" href="customers.php">
+                            <i class="fa fa-user d-inline float-left" style="font-size: 24px; width: 15%;"></i>
+                            <span class="ml-3">Customers</span>
+                        </a>
                     </li>
-                    <li class="nav-item d-flex flex-row align-items-center">
-                        <i class="fa fa-calendar-check-o d-inline" style="font-size: 24px; width: 20%;"></i>
-                        <a class="nav-link d-inline-block <?php echo $reservationsActive; ?>" href="reservations.php">Reservations</a>
+                    <li class="nav-item">
+                        <a class="nav-link d-inline-block list-group-item list-group-item-action border-0 <?php echo $reservationsActive; ?>" href="reservations.php">
+                            <i class="fa fa-calendar-check-o d-inline float-left" style="font-size: 24px; width: 15%;"></i>
+                            <span class="ml-3">Reservations</span>
+                        </a>
                     </li>
-                    <li class="nav-item d-flex flex-row align-items-center">
-                        <i class="fa fa-line-chart d-inline" style="font-size: 24px; width: 20%;"></i>
-                        <a class="nav-link d-inline-block <?php echo $reportsActive; ?>" href="reports.php">Reports</a>
+                    <li class="nav-item">
+                        <a class="nav-link d-inline-block list-group-item list-group-item-action border-0 <?php echo $reportsActive; ?>" href="reports.php">
+                            <i class="fa fa-line-chart d-inline float-left" style="font-size: 24px; width: 15%;"></i>
+                            <span class="ml-3">Reports</span>
+                        </a>
                     </li>
-                    <li class="nav-item d-flex flex-row align-items-center">
-                        <i class="fa fa-star d-inline" style="font-size: 24px; width: 20%;"></i>
-                        <a class="nav-link d-inline-block <?php echo $reviewsActive; ?>" href="reviews.php">Reviews</a>
+                    <li class="nav-item">
+                        <a class="nav-link d-inline-block list-group-item list-group-item-action border-0 <?php echo $reviewsActive; ?>" href="reviews.php">
+                            <i class="fa fa-star d-inline float-left" style="font-size: 24px; width: 15%;"></i>
+                            <span class="ml-3">Reviews</span>
+                        </a>
                     </li>
                 </ul>
             </div>
