@@ -42,9 +42,15 @@
                                         <div class="form-group col-6">
                                             <label for="statusselect" class="text-primary">Select status: </label>
                                             <select id="statusselect" class="custom-select">
-                                                <option name="1" selected>In</option>
-                                                <option name="2">Out</option>
+                                                <option name="in" selected>In</option>
+                                                <option name="out">Out</option>
                                             </select>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="idnumber" class="text-primary">ID Number: </label>
+                                            <input type="number" name="idnumber" id="idnumber" placeholder="Enter id number" class="form-control" value="1111111111" required>
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                     </div>                                
                                     <input type="submit" value="Save" class="btn btn-primary mt-3 shadow" style="width: 100%;">

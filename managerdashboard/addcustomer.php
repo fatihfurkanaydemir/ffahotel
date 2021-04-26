@@ -46,6 +46,12 @@
                                                 <option name="2">Out</option>
                                             </select>
                                         </div>
+                                        <div class="form-group col-6">
+                                            <label for="idnumber" class="text-primary">ID Number: </label>
+                                            <input type="number" name="idnumber" id="idnumber" placeholder="Enter id number" class="form-control" required>
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
                                     </div>                                
                                     <input type="submit" value="Save" class="btn btn-primary mt-3 shadow" style="width: 100%;">
                                 </form>

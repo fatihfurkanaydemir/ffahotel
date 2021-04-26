@@ -70,6 +70,13 @@
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
+                                    <input type="number" name="idnumber" id="idnumber"
+                                        placeholder="Enter your id number" class="form-control" value="1111111111" min="0"
+                                        required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
                                     <input type="email" name="email" id="email" placeholder="Enter your email"
                                         class="form-control" value="furkanaydemir6@gmail.com" required>
                                     <div class="valid-feedback">Valid.</div>

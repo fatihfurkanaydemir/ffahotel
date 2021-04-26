@@ -12,11 +12,12 @@
             $fname = test_input($_POST["fname"]);
             $lname = test_input($_POST["lname"]);
             $phoneNumber = test_input($_POST["phonenumber"]);
+            $idnumber = test_input($_POST["idnumber"]);
             $email = filter_var(test_input($_POST["email"]), FILTER_SANITIZE_EMAIL);
             $password = test_input($_POST["password"]);
             $passwordAgain = test_input($_POST["passwordagain"]);
         
-            if(empty($fname) || empty($lname) || empty($phoneNumber) || empty($email) || empty($password) || empty($passwordAgain)) {
+            if(empty($fname) || empty($lname) || empty($phoneNumber) || empty($email) || empty($password) || empty($passwordAgain) || empty($idnumber)) {
                 $bootstrapValidation = "was-validated"; 
                 $success = false;     
             }  
@@ -106,6 +107,11 @@
                         </div>
                         <div class="form-group">
                             <input type="tel" name="phonenumber" id="phonenumber" placeholder="Enter your phone number" class="form-control" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="idnumber" id="idnumber" placeholder="Enter your id number" class="form-control" min="0" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
