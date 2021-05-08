@@ -2,9 +2,11 @@
 
     <!-- Form Control -->
     <?php
+        include "dbconnect.php";
+
         $notValidError = "";
         $bootstrapValidation = "";
-        $success = true;
+        $formValidated = true;
 
         $successMsg = "";
 
@@ -12,20 +14,20 @@
             $fname = test_input($_POST["fname"]);
             $lname = test_input($_POST["lname"]);
             $phoneNumber = test_input($_POST["phonenumber"]);
-            $idnumber = test_input($_POST["idnumber"]);
+            $idNumber = test_input($_POST["idnumber"]);
             $email = filter_var(test_input($_POST["email"]), FILTER_SANITIZE_EMAIL);
             $password = test_input($_POST["password"]);
             $passwordAgain = test_input($_POST["passwordagain"]);
         
-            if(empty($fname) || empty($lname) || empty($phoneNumber) || empty($email) || empty($password) || empty($passwordAgain) || empty($idnumber)) {
+            if(empty($fname) || empty($lname) || empty($phoneNumber) || empty($email) || empty($password) || empty($passwordAgain) || empty($idNumber)) {
                 $bootstrapValidation = "was-validated"; 
-                $success = false;     
+                $formValidated = false;     
             }  
             else {
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $bootstrapValidation = "";
 
-                    $success = false; 
+                    $formValidated = false; 
 
                     $notValidError = "
                     <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
@@ -36,7 +38,7 @@
                 if(!validatePhoneNumber($phoneNumber)) {
                     $bootstrapValidation = "";
     
-                    $success = false; 
+                    $formValidated = false; 
 
                     $notValidError .= "
                     <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
@@ -48,7 +50,7 @@
                 if(strcmp($password, $passwordAgain) != 0) {
                     $bootstrapValidation = "";
     
-                    $success = false; 
+                    $formValidated = false; 
 
                     $notValidError .= "
                     <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
@@ -59,13 +61,86 @@
                             
             }
 
-            if($success) {
-                $successMsg = "
-                <div class='text-center text-success mt-2 font-weight-bold' style='font-size: 1.5em;'>
-                <i class='fa fa-tick'></i>
-                You are successfully registered
-                </div>";
+            if($formValidated) {
+
+                $checkMsg = checkRegistration($idNumber, $email);
+
+                if($checkMsg !== true) {
+                    $successMsg = "
+                    <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.5em;'>
+                    <i class='fa fa-tick'></i>
+                    $checkMsg
+                    </div>";
+
+                    header("refresh: 2; url = register.php");
+                } else {
+                    if(registerUser($fname, $lname, $phoneNumber, $idNumber, $email, $password))
+                    {
+                        $successMsg = "
+                        <div class='text-center text-success mt-2 font-weight-bold' style='font-size: 1.5em;'>
+                        <i class='fa fa-tick'></i>
+                        You are successfully registered
+                        </div>";
+
+                        header("refresh: 2; url = login.php");
+                    }
+                    else {
+                        $successMsg = "
+                        <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.5em;'>
+                        <i class='fa fa-tick'></i>
+                        Registration failed
+                        </div>";
+
+                        header("refresh: 2; url = register.php");
+                    }
+                }
+
+                
+                
             }
+
+            
+        }
+
+        function checkRegistration($id, $email) {
+            $conn = connectdb();
+
+            $sql = "SELECT id FROM customer WHERE id = $id";
+            $result = $conn->query($sql);
+
+            if($result->num_rows != 0) {
+                closedb($conn);
+                return "This id is already registered";
+            }
+
+            $sql = "SELECT email FROM customer WHERE email = '$email'";
+            $result = $conn->query($sql);
+
+            if($result->num_rows != 0) {
+                closedb($conn);
+                return "This email is already used";
+            }
+
+            closedb($conn);
+
+            return true;
+        }
+
+        function registerUser($fname, $lname, $phoneNumber, $id, $email, $password) {
+            
+            $conn = connectdb();
+
+            $encPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO customer VALUES($id, '$fname', '$lname', '$phoneNumber', '$email', '$encPassword', 'out')";
+        
+            if ($conn->query($sql) !== TRUE) {
+                return false;
+            }
+              
+            closedb($conn);
+            
+            return true;
         }
     
         function test_input($data) {

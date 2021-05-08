@@ -1,6 +1,5 @@
     <?php require 'headers/header.php'?>
 
-
     <section class="main-section container-fluid">
         <div class="row">
             <nav class="col-md-5">
