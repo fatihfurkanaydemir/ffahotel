@@ -6,46 +6,6 @@
     $doornumber = 0;
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $doornumber = $_POST["doornumber"];
-
-        if(isset($_POST["ed"])) {
-            $newdoornumber = $_POST["newdoornumber"];
-            $roomtype = $_POST["roomtype"];
-            $floor = $_POST["floor"];
-
-            $conn = connectdb();
-            
-            $sql = "UPDATE room SET doornumber=$newdoornumber, roomtype='$roomtype', floor=$floor WHERE doornumber=$doornumber";
-            $result = $conn->query($sql);
-
-            $toastMsg = "";
-
-            if($result === true) {
-                $toastMsg = "<i class='fa fa-check text-success rounded mr-2'></i> Room updated successfully";
-                $doornumber = $newdoornumber;
-            } else {
-                $toastMsg = "<i class='fa fa-times text-danger rounded mr-2'></i> Update failed";
-            }
-
-            closedb($conn);
-
-
-            $toast = "<div class='position-fixed p-3' style='z-index: 5; right: 0; bottom: 0;'>
-                      <div id='liveToast' class='toast hide' role='alert' aria-live='assertive' aria-atomic='true' data-delay='3000'>
-                        <div class='toast-header' style='font-size: 1.3em;'>
-                          <strong class='mr-auto'>System</strong>
-                          <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                          </button>
-                        </div>
-
-                        <div class='toast-body m-2' style='font-size: 1.3em;'>
-                          $toastMsg
-                        </div>
-                      </div>
-                    </div>";
-
-            echo $toast;
-        }
     } 
     else { header("Location: rooms.php"); }
 
@@ -57,9 +17,8 @@
                                 <span style="font-size: 1.5em;">Edit Room</span>
                             </div>
                             <div class="card-body">
-                                <form id="editroomform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="needs-validation" novalidate>
-                                    <input type="hidden" name="ed" value="1"></input>
-                                    <input type="hidden" name="doornumber" value="<?php echo $doornumber; ?>"></input>
+                                <form id="editroomform" action="#" method="POST" class="needs-validation" novalidate>
+                                    <input type="hidden" name="doornumber" id="doornumber" value="<?php echo $doornumber; ?>"></input>
 
                                     <div class="form-row">
                                         <div class="form-group col-6">
@@ -91,7 +50,7 @@
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                     </div>                                
-                                    <input type="submit" value="Save" onClick="getRoom()" class="btn btn-primary mt-3 shadow" style="width: 100%;">
+                                    <button type="button" onClick="editRoom()" class="btn btn-primary mt-3 shadow" style="width: 100%;">Save</button>
                                 </form>
                             </div>
                         </div>
@@ -120,16 +79,12 @@
                 })();
 
 
-                $(".toast").toast("show");
-
                 getRoom();
                 
                 function getRoom() {
                     var xhttp = new XMLHttpRequest();
-                    var params = "doornumber=" + "<?php echo $doornumber; ?>";
-
-                    console.log(params);
-
+                    var params = "doornumber=" + $("#doornumber").prop("value");
+                    
                     xhttp.open("POST", "../php/get_room.php?" + params, true);
 
                     xhttp.onreadystatechange = function() {
@@ -142,7 +97,7 @@
                         else if(room.roomtype == "double") typeIndex = 2;
                         else if(room.roomtype == "single") typeIndex = 3;
 
-                        $("#newdoornumber").attr("value", room.doornumber);
+                        $("#newdoornumber").prop("value", room.doornumber);
                         $("#floor").prop('selectedIndex',room.floor - 1);
                         $("#roomtype").prop('selectedIndex', typeIndex);
                       }
@@ -151,5 +106,6 @@
                     xhttp.send(params);
                 }
             </script>
+            <script src="../js/edit_room.js"></script>
 
 <?php require "../footers/managerfooter.php"; ?>

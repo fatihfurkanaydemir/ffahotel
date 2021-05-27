@@ -2,5 +2,6 @@
         <p>Fatih Furkan Aydemir</p>
     </footer>
 
+    <script src="js/vanilla-toast.js"></script>
 </body>
 </html>

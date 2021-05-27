@@ -1,49 +1,5 @@
 <?php require "../headers/managerheader.php"; ?>
 
-<?php 
-    include "../dbconnect.php";
-
-    
-
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $roomtype = $_POST["roomtype"];
-        $floor = $_POST["floor"];
-        $doornumber = $_POST["doornumber"];
-
-        $toastmsg = "";
-
-        $conn = connectdb();
-
-        $sql = "INSERT INTO room VALUES($doornumber, '$roomtype', $floor, 'empty')";
-        $result = $conn->query($sql);
-
-        if($result == true) {
-            $toastmsg = "<i class='fa fa-check text-success rounded mr-2'></i> Room added successfully";
-        } else {
-            $toastmsg = "<i class='fa fa-times text-danger rounded mr-2'></i> Room already exists";
-        }
-
-        closedb($conn);
-        
-        $toast = "<div class='position-fixed p-3' style='z-index: 5; right: 0; bottom: 0;'>
-                      <div id='liveToast' class='toast hide' role='alert' aria-live='assertive' aria-atomic='true' data-delay='3000'>
-                        <div class='toast-header' style='font-size: 1.3em;'>
-                          <strong class='mr-auto'>System</strong>
-                          <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                          </button>
-                        </div>
-
-                        <div class='toast-body m-2' style='font-size: 1.3em;'>
-                          $toastmsg
-                        </div>
-                      </div>
-                    </div>";
-
-        echo $toast;
-    }
-?>
-
                 <div class="col-10">
                     <div class="row ml-1 shadow">  
                         <div class="card w-100">
@@ -51,7 +7,7 @@
                                 <span style="font-size: 1.5em;">Add Room</span>
                             </div>
                             <div class="card-body">
-                                <form id="addroomform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="needs-validation" novalidate>
+                                <form id="addroomform" action="#" method="POST" class="needs-validation" novalidate>
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label for="roomtype" class="text-primary">Select the room type: </label>
@@ -82,7 +38,7 @@
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                     </div>                                
-                                    <input type="submit" value="Save" class="btn btn-primary mt-3 shadow" style="width: 100%;">
+                                    <button type="button" onClick="addRoom()" class="btn btn-primary mt-3 shadow" style="width: 100%;">Save</button>
                                 </form>
                             </div>
                         </div>
@@ -108,11 +64,9 @@
                       }, false);
                     });
                   }, false);
-                })();
-
-                $('.toast').toast('show');
-                
+                })();                
             </script>
+            <script src="../js/add_room.js"></script>
 
 
 <?php require "../footers/managerfooter.php"; ?>
