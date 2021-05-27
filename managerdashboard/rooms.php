@@ -21,7 +21,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                        <button type="button" class="btn btn-primary">Yes</button>
+                                        <button type="button" class="btn btn-primary" onClick='deleteRoom();' data-dismiss="modal">Yes</button>
                                     </div>
                                 </div>
                             </div>
@@ -38,144 +38,16 @@
                             <table class="table table-hover">
                                 <thead class="thead-light">
                                   <tr>
-                                    <th scope="col">Room Id</th>
+                                    <th scope="col">Door Number</th>
                                     <th scope="col">Room Type</th>
                                     <th scope="col">Floor</th>
-                                    <th scope="col">Door Number</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Edit/Delete</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>Single Room</td>
-                                    <td>2</td>
-                                    <td>201</td>
-                                    <td>50</td>
-                                    <td>Empty</td>
-                                    <td>
-                                        <a href="editroom.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>2</td>
-                                    <td>Single Room</td>
-                                    <td>2</td>
-                                    <td>202</td>
-                                    <td>50</td>
-                                    <td>Empty</td>
-                                    <td>
-                                        <a href="editroom.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>Single Room</td>
-                                    <td>2</td>
-                                    <td>201</td>
-                                    <td>50</td>
-                                    <td>Empty</td>
-                                    <td>
-                                        <a href="editroom.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>Single Room</td>
-                                    <td>2</td>
-                                    <td>201</td>
-                                    <td>50</td>
-                                    <td>Empty</td>
-                                    <td>
-                                        <a href="editroom.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>Single Room</td>
-                                    <td>2</td>
-                                    <td>201</td>
-                                    <td>50</td>
-                                    <td>Empty</td>
-                                    <td>
-                                        <a href="editroom.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>Single Room</td>
-                                    <td>2</td>
-                                    <td>201</td>
-                                    <td>50</td>
-                                    <td>Empty</td>
-                                    <td>
-                                        <a href="editroom.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>Single Room</td>
-                                    <td>2</td>
-                                    <td>201</td>
-                                    <td>50</td>
-                                    <td>Empty</td>
-                                    <td>
-                                        <a href="editroom.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>Single Room</td>
-                                    <td>2</td>
-                                    <td>201</td>
-                                    <td>50</td>
-                                    <td>Empty</td>
-                                    <td>
-                                        <a href="editroom.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteRoomModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
+                                <tbody id="tableContent">
+                                    <?php include "../php/get_rooms.php"; ?>
                                 </tbody>
                               </table>
                         </div>
@@ -183,4 +55,79 @@
                 </div>
             </div>
 
+            <!-- Success Toast -->
+            <div class='position-fixed p-3' style='z-index: 5; right: 0; bottom: 0;'>
+                <div id='successToast' class='toast hide' role='alert' aria-live='assertive' aria-atomic='true' data-delay='3000'>
+                    <div class='toast-header' style='font-size: 1.3em;'>
+                        <strong class='mr-auto'>System</strong>
+                        <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>
+                    <div class='toast-body m-2' style='font-size: 1.3em;'>
+                        <i class='fa fa-check text-success rounded mr-2'></i>
+                          Room deleted successfully
+                    </div>
+                </div>
+            </div>
+            <!-- Failure Toast -->
+            <div class='position-fixed p-3' style='z-index: 5; right: 0; bottom: 0;'>
+                <div id='failureToast' class='toast hide' role='alert' aria-live='assertive' aria-atomic='true' data-delay='3000'>
+                    <div class='toast-header' style='font-size: 1.3em;'>
+                        <strong class='mr-auto'>System</strong>
+                        <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>
+                    <div class='toast-body m-2' style='font-size: 1.3em;'>
+                        <i class='fa fa-times text-danger rounded mr-2'></i>
+                          Room could not be deleted
+                    </div>
+                </div>
+            </div>
+
+            <script>
+            var roomToDelete = 0;
+
+            function selectRoomToDelete(doornumber) {
+                roomToDelete = doornumber;
+            }
+
+            function deleteRoom() {
+                var xhttp = new XMLHttpRequest();
+                var params = "doornumber=" + roomToDelete;
+
+                xhttp.open("POST", "../php/delete_room.php?" + params, true);
+                xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                xhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                    if(xhttp.responseText == "true") {
+                        $("#successToast").toast("show");
+                        getRooms();
+                        console.log("Updated");
+                    }
+                    else {
+                        $("#failureToast").toast("show");
+                    }
+                  }
+                };
+            
+                xhttp.send(params);
+            }
+
+            function getRooms() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", "../php/get_rooms.php", true);
+
+                xhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                    $("#tableContent").html(xhttp.responseText);
+                  }
+                };
+
+                xhttp.send();
+            }
+
+            </script>
 <?php require "../footers/managerfooter.php"; ?>

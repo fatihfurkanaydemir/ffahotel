@@ -2,6 +2,8 @@
 
     <!-- Form Control -->
     <?php
+        include "dbconnect.php";
+
         $wrongCredentialsOrNotValidError = "";
         $bootstrapValidation = "";
 
@@ -23,19 +25,46 @@
                         </div>";
                 }
                 else {
-                    if($email == "furkanaydemir6@gmail.com" && $password == "12345") {
-                        session_start();
-                        $_SESSION["logged_in"] = 1;
-                        
-                        header("Location: userdashboard.php");
-                    }
-                    else {
+                    $conn = connectdb();
+
+                    $sql = "SELECT id, password, fname FROM customer WHERE email = '$email'";
+                    $result = $conn->query($sql);
+
+                    if($result->num_rows == 0) {                        
                         $wrongCredentialsOrNotValidError = "
                         <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
                         <i class='fa fa-exclamation-triangle'></i>
-                        Your email or password is wrong
+                        You are not registered
                         </div>";
+
+                        closedb($conn);
                     }
+                    else {
+                        $row = $result->fetch_assoc();
+                        $uid = $row["id"];
+                        $upass = $row["password"];
+                        $ufname = $row["fname"];
+
+                        closedb($conn);
+
+                        if(password_verify($password, $upass)) {
+                            session_start();
+                            $_SESSION["logged_in"] = 1;
+                            $_SESSION["uid"] = $uid;
+                            $_SESSION["ufname"] = $ufname;
+                            
+                            header("Location: userdashboard.php");
+                        }
+                        else {
+                            $wrongCredentialsOrNotValidError = "
+                            <div class='text-center text-danger mt-2 font-weight-bold' style='font-size: 1.3em;'>
+                            <i class='fa fa-exclamation-triangle'></i>
+                            Your email or password is wrong
+                            </div>";
+                        }
+                    }
+
+                    
                 }
                 
             }

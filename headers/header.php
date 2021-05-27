@@ -6,7 +6,8 @@
 
     if(isset($_SESSION["logged_in"])) {
         $logged_in = $_SESSION["logged_in"];
-        $loginText = "Welcome Fatih";
+        $ufname = $_SESSION["ufname"];
+        $loginText = "Welcome $ufname";
         $loginLink = "userdashboard.php";
     }
 ?>

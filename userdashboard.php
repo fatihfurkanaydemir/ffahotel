@@ -5,6 +5,227 @@
             header("Location: login.php");
             die();
         }
+
+        include "dbconnect.php";
+        include "validations.php";
+
+        $acdactive = "active";
+        $psdactive = "";
+
+        $bootstrapValidation = ""; 
+        $formValidated = true;
+        $notValidError = "";
+        $notValidErrorPsd = "";
+
+        $conn = connectdb();
+
+        $uid = $_SESSION["uid"];
+        $sql = "SELECT fname, lname, phonenumber, birthdate, email FROM customer WHERE id = $uid";
+
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+
+        $fname = $row["fname"];
+        $lname = $row["lname"];
+        $phoneNumber = $row["phonenumber"];
+        $birthdate = $row["birthdate"];
+        $email = $row["email"];
+
+        closedb($conn);
+
+        if(isset($_REQUEST["acds"])) {
+            $notValidError = "
+                    <div class='text-center text-success mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                    <i class='fa fa-check'></i>
+                    Account details successfully updated
+                    </div>";
+        }
+
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            //Update account details
+            if(isset($_REQUEST["acd"])) {
+                $acdactive = "active";
+                $psdactive = "";
+
+                $newfname = test_input($_POST["fname"]);
+                $newlname = test_input($_POST["lname"]);
+                $newphoneNumber = test_input($_POST["phonenumber"]);
+                $newidNumber = test_input($_POST["idnumber"]);
+                $newemail = filter_var(test_input($_POST["email"]), FILTER_SANITIZE_EMAIL);
+                $newbirthdate = test_input($_POST["birthdate"]);
+
+                if(empty($newfname) || empty($newlname) || empty($newphoneNumber) || empty($newemail) || empty($newidNumber) || empty($newbirthdate)) {
+                    $bootstrapValidation = "was-validated"; 
+                    $formValidated = false;     
+                }  
+
+                if(!filter_var($newemail, FILTER_VALIDATE_EMAIL)) {
+                    $bootstrapValidation = "";
+
+                    $formValidated = false; 
+
+                    $notValidError = "
+                    <div class='text-center text-danger mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                    <i class='fa fa-exclamation-triangle'></i>
+                    Please enter a valid email
+                    </div>";
+                }
+                if(!validatePhoneNumber($newphoneNumber)) {
+                    $bootstrapValidation = "";
+    
+                    $formValidated = false; 
+
+                    $notValidError .= "
+                    <div class='text-center text-danger mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                    <i class='fa fa-exclamation-triangle'></i>
+                    Please enter a valid phone number
+                    </div>";
+                }  
+
+                if(!validateIDNumber($newidNumber)) {
+                    $bootstrapValidation = "";
+    
+                    $formValidated = false; 
+
+                    $notValidError .= "
+                    <div class='text-center text-danger mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                    <i class='fa fa-exclamation-triangle'></i>
+                    Please enter a valid id number
+                    </div>";
+                }
+
+                if($uid != $newidNumber) {
+                    $conn = connectdb();
+
+                    $sql = "SELECT id FROM customer WHERE id=$newidNumber";
+                    $result = $conn->query($sql);
+
+                    if($result->num_rows != 0) {
+                        $notValidError = "
+                        <div class='text-center text-danger mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                        <i class='fa fa-exclamation-triangle'></i>
+                        This id number is already used
+                        </div>";
+                        $formValidated = false;
+                    }
+
+                    closedb($conn);
+                }
+
+                if($email != $newemail) {
+                    $conn = connectdb();
+
+                    $sql = "SELECT email FROM customer WHERE email='$newemail'";
+                    $result = $conn->query($sql);
+                    
+                    if($result->num_rows != 0) {
+                        $notValidError = "
+                        <div class='text-center text-danger mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                        <i class='fa fa-exclamation-triangle'></i>
+                        This email is already used
+                        </div>";
+                        $formValidated = false;
+                    }
+
+                    closedb($conn);
+                }
+
+                if($formValidated) {
+                    $conn = connectdb();
+
+                    $sql = "UPDATE customer SET
+                            fname = '$newfname',
+                            lname = '$newlname',
+                            email = '$newemail',
+                            phonenumber = '$newphoneNumber',
+                            id = $newidNumber,
+                            birthdate = '$newbirthdate' WHERE id = $uid";
+
+                    $result = $conn->query($sql);
+
+                    if($result == true) {
+                        $notValidError = "
+                        <div class='text-center text-success mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                        <i class='fa fa-check'></i>
+                        Account details successfully updated
+                        </div>";
+
+                        header("Location: userdashboard.php?acds");
+                    } else {
+                        $notValidError = "
+                        <div class='text-center text-danger mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                        <i class='fa fa-exclamation-triangle'></i>
+                        An error occured
+                        </div>";
+                    }
+                    
+                    closedb($conn);
+                }
+            }
+            //Update password
+            if(isset($_REQUEST["psd"])) {
+                $acdactive = "";
+                $psdactive = "active";
+
+                $oldpassword = test_input($_POST["oldpassword"]);
+                $newpassword = test_input($_POST["newpassword"]);
+                $newpasswordagain = test_input($_POST["newpasswordagain"]);
+
+                $conn = connectdb();
+
+                $sql = "SELECT password FROM customer WHERE id = $uid";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+
+                $oldpass = $row["password"];
+
+                closedb($conn);
+
+                if(!password_verify($oldpassword, $oldpass)) {
+                    $formValidated = false;
+                    $notValidErrorPsd = "
+                        <div class='text-center text-danger mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                        <i class='fa fa-exclamation-triangle'></i>
+                        Your old password is wrong
+                        </div>";
+                }
+
+                if(strcmp($newpassword, $newpasswordagain) != 0) {
+                    $formValidated = false;
+                    $notValidErrorPsd = "
+                        <div class='text-center text-danger mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                        <i class='fa fa-exclamation-triangle'></i>
+                        Your passwords do not match
+                        </div>";
+                }
+
+                if($formValidated) {
+                    $conn = connectdb();
+                    $newEncPassword = password_hash($newpassword, PASSWORD_DEFAULT);
+
+                    $sql = "UPDATE customer SET password = '$newEncPassword' WHERE id = $uid";
+                    $result = $conn->query($sql);
+
+                    if($result == true) {
+                        $notValidErrorPsd = "
+                        <div class='text-center text-success mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                        <i class='fa fa-check'></i>
+                        Your password successfully updated
+                        </div>";
+                    } else {
+                        $notValidErrorPsd = "
+                        <div class='text-center text-success mt-2 font-weight-bold' id='nve' style='font-size: 1.3em;'>
+                        <i class='fa fa-exclamation-triangle'></i>
+                        An error occured
+                        </div>";
+                    }
+
+                    closedb($conn);
+                }
+
+                
+            }
+        }
     
         if(isset($_REQUEST["logout"])) {
             $logout = $_REQUEST["logout"];
@@ -23,12 +244,13 @@
             <nav class="col-2 col-md-2 shadow p-0" role="tablist" aria-orientation="vertical">
                 <ul class="nav flex-column list-group">
                     <li class="nav-item">
-                        <a class="nav-link list-group-item list-group-item-action active border-0" role="tab" aria-controls="account-details" aria-selected="true"
+                        <a class="nav-link list-group-item list-group-item-action <?php echo $acdactive; ?> border-0" role="tab" aria-controls="account-details" 
+                        aria-selected="<?php echo isset($_REQUEST["acd"]) ? true : false; ?>"
                             id="account-details-tab" data-toggle="tab" href="#account-details">Account Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link list-group-item list-group-item-action border-0" id="change-password-tab" role="tab" data-toggle="tab"
-                            aria-controls="change-password" aria-selected="false" href="#change-password">Change
+                        <a class="nav-link list-group-item list-group-item-action <?php echo $psdactive ?> border-0" id="change-password-tab" role="tab" data-toggle="tab"
+                            aria-controls="change-password" aria-selected="<?php echo isset($_REQUEST["psd"]) ? true : false; ?>" href="#change-password">Change
                             Password</a>
                     </li>
                     <li class="nav-item">
@@ -44,41 +266,47 @@
             </nav>
             <div class="col-10 mt-3 mt-md-0 col-md-10">
                 <div class="tab-content card shadow p-3">
-                    <div class="tab-pane fade show active" id="account-details" role="tabpanel"
+                    <div class="tab-pane fade <?php echo "show " . $acdactive; ?>" id="account-details" role="tabpanel"
                         aria-labelledby="account-details-tab">
                         <span class="font-weight-bold d-block text-center" style="font-size: 2em;">Account
-                            Details</span>
+                            Details</i></span>
+                            <?php echo $notValidError; ?>
                         <div class="align-items-center flex-column">
-                            <form id="accountdetailsform" action="#" method="POST" class="needs-validation" novalidate>
+                            <form id="accountdetailsform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?acd"); ?>" method="POST" class="needs-validation <?php echo $bootstrapValidation; ?>" novalidate>
                                 <div class="form-group">
                                     <input type="text" name="fname" id="fname" placeholder="Enter your first name"
-                                        class="form-control" value="Fatih Furkan" required>
+                                        class="form-control" value="<?php echo $fname; ?>" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="lname" id="lname" placeholder="Enter your last name"
-                                        class="form-control" value="Aydemir" required>
+                                        class="form-control" value="<?php echo $lname; ?>" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <input type="tel" name="phonenumber" id="phonenumber"
-                                        placeholder="Enter your phone number" class="form-control" value="+905555555555"
+                                        placeholder="Enter your phone number" class="form-control" value="<?php echo $phoneNumber; ?>"
                                         required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <input type="number" name="idnumber" id="idnumber"
-                                        placeholder="Enter your id number" class="form-control" value="1111111111" min="0"
+                                        placeholder="Enter your id number" class="form-control" value="<?php echo $uid; ?>" min="0"
                                         required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
+                                    <input type="date" name="birthdate" id="birthdate" class="form-control" data-relmax="-18" value="<?php echo $birthdate; ?>" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
                                     <input type="email" name="email" id="email" placeholder="Enter your email"
-                                        class="form-control" value="furkanaydemir6@gmail.com" required>
+                                        class="form-control" value="<?php echo $email; ?>" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
@@ -87,12 +315,13 @@
                             </form>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="change-password" role="tabpanel"
+                    <div class="tab-pane fade <?php echo "show " . $psdactive; ?>" id="change-password" role="tabpanel"
                         aria-labelledby="change-password-tab">
                         <span class="font-weight-bold d-block text-center" style="font-size: 2em;">Change
                             Password</span>
+                            <?php echo $notValidErrorPsd; ?>
                         <div class="align-items-center flex-column">
-                            <form id="changepasswordform" action="#" method="POST" class="needs-validation" novalidate>
+                            <form id="changepasswordform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?psd"); ?>" method="POST" class="needs-validation" novalidate>
                                 <div class="form-group">
                                     <input type="password" name="oldpassword" id="oldpassword"
                                         placeholder="Enter your old password" class="form-control" required>
@@ -365,24 +594,21 @@
     </section>
     
     <script>
-        // Disable form submissions if there are invalid fields
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                // Get the forms we want to add validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
+        $(function () {
+            $('input[data-relmax]').each(function () {
+                var oldVal = $(this).prop('value');
+                var relmax = $(this).data('relmax');
+                var max = new Date();
+                max.setFullYear(max.getFullYear() + relmax);
+                $.prop(this, 'max', $(this).prop('valueAsDate', max).val());
+                $.prop(this, 'value', oldVal);
+            });
+        });
+
+        setTimeout(() => {
+            document.getElementById("nve").innerHTML = "";
+        }, 4000);
+        
     </script>
 
     <?php require 'footers/footer.php'?>
