@@ -27,7 +27,7 @@
                 else {
                     $conn = connectdb();
 
-                    $sql = "SELECT id, password, fname FROM customer WHERE email = '$email'";
+                    $sql = "SELECT id, password, fname, lname, phonenumber, birthdate FROM customer WHERE email = '$email'";
                     $result = $conn->query($sql);
 
                     if($result->num_rows == 0) {                        
@@ -43,7 +43,6 @@
                         $row = $result->fetch_assoc();
                         $uid = $row["id"];
                         $upass = $row["password"];
-                        $ufname = $row["fname"];
 
                         closedb($conn);
 
@@ -51,7 +50,11 @@
                             session_start();
                             $_SESSION["logged_in"] = 1;
                             $_SESSION["uid"] = $uid;
-                            $_SESSION["ufname"] = $ufname;
+                            $_SESSION["ufname"] = $row["fname"];
+                            $_SESSION["ulname"] = $row["lname"];
+                            $_SESSION["ubirthdate"] = $row["birthdate"];
+                            $_SESSION["uphonenumber"] = $row["phonenumber"];
+                            $_SESSION["uemail"] = $email;
                             
                             header("Location: userdashboard.php");
                         }

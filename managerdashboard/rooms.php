@@ -103,12 +103,11 @@
                 xhttp.onreadystatechange = function() {
                   if (this.readyState == 4 && this.status == 200) {
                     if(xhttp.responseText == "true") {
-                        $("#successToast").toast("show");
+                        vt.success("Room deleted successfully", {position: "top-center", duration: 2000});
                         getRooms();
-                        console.log("Updated");
                     }
                     else {
-                        $("#failureToast").toast("show");
+                        vt.error("Room could not be deleted", {position: "top-center", duration: 2000});
                     }
                   }
                 };

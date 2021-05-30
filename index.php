@@ -112,40 +112,42 @@
             </nav>
             <article class="main-article col-md-7 card shadow">
                 <div class="card-body">
-                    <form action="book.php" class="mt-3">
+                    <form id="booknowform" action="selectroom.php" method="POST" class="mt-3" autocomplete="off">
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="checkinDate" class="mt-4 text-primary font-weight-bold">Check-in Date: </label>
-                                <input type="date" id="checkinDate" name="checkinDate" class="form-control shadow w-100" data-relmax="0" required>
+                                <input type="date" id="checkinDate" name="checkindate" class="form-control shadow w-100" data-relmax="0" required>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="checkoutDate" class="mt-4 text-primary font-weight-bold">Check-out Date: </label>
-                                <input type="date" id="checkoutDate" name="checkoutDate" class="form-control shadow w-100" data-relmax="0" required>
+                                <input type="date" id="checkoutDate" name="checkoutdate" class="form-control shadow w-100" data-relmax="0" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="roomTypeSelect" class="text-primary font-weight-bold">Select room type: </label>
-                            <select class="custom-control custom-select shadow" id="roomTypeSelect" name="roomType" disabled>
-                                <option>VIP Room</option>
-                                <option>Family Room</option>
-                                <option>Double Room</option>
-                                <option>Single Room</option>
+                            <select class="custom-control custom-select shadow" id="roomTypeSelect" name="roomtype" disabled>
+                                <option value="default" selected>Please select a room type</option>
+                                <option value="vip">VIP Room</option>
+                                <option value="family">Family Room</option>
+                                <option value="double">Double Room</option>
+                                <option value="single">Single Room</option>
                             </select>
                         </div>
                     
                         <div class="form-group"></div>
                         <label for="personNumberSelect" class="text-primary font-weight-bold">Select number of persons: </label>
-                        <select class="custom-control custom-select shadow" id="personNumberSelect" name="personNumber" disabled>
-                            <option>1 Person</option>
-                            <option>2 Person</option>
-                            <option>3 Person</option>
-                            <option>4 Person</option>
+                        <select class="custom-control custom-select shadow" id="personNumberSelect" name="numberofpersons" disabled>
+                            <option value="default" selected>Please select number of persons</option>
+                            <option value="1">1 Persons</option>
+                            <option value="2">2 Persons</option>
+                            <option value="3">3 Persons</option>
+                            <option value="4">4 Persons</option>
                         </select>
                     
                     
                         
-                        <input type="submit" value="Book Now" class="btn btn-primary mt-4 shadow" style="width: 100%;" disabled>
+                        <input type="submit" id="submit" value="Book Now" class="btn btn-primary mt-4 shadow" style="width: 100%;" disabled>
                     </form>
                 </div>
             </article>
