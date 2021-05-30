@@ -143,6 +143,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         closedb($conn);
     }
+} else {
+    header("Location: ../index.php");
 }
 
 function checkRegistration($id, $email) {

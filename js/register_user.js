@@ -1,27 +1,16 @@
-function bookNow() {
-    var form = $("#bookform");
+function registerUser() {
+    var form = $("#registerform");
     var formData = form.serialize();
 
     $.ajax({
         type: "post",
-        url: "php/booknow.php",
+        url: "php/register_user.php",
         data: formData,
         success: function(data, status) {    
+            console.log(data);
             switch(data) {
                 case "err-notvalid": 
                     form.prop("class", "needs-validation was-validated"); 
-                    break;
-                case "err-cardnumber": 
-                    form.prop("class", "needs-validation was-validated"); 
-                    vt.error("Please control your card number", {position: "top-center", duration: 2000});
-                    break;
-                case "err-cvc": 
-                    form.prop("class", "needs-validation was-validated"); 
-                    vt.error("Please control your cvc", {position: "top-center", duration: 2000});
-                    break;
-                case "err-expirationdate": 
-                    form.prop("class", "needs-validation was-validated"); 
-                    vt.error("Please control your expiration date", {position: "top-center", duration: 2000});
                     break;
                 case "err-emailused":
                     vt.error("This email is used by another customer", {position: "top-center", duration: 2000});
@@ -35,6 +24,9 @@ function bookNow() {
                 case "err-phonenumber":
                     vt.error("Please check your phonenumber", {position: "top-center", duration: 2000});
                     break;
+                case "err-password":
+                    vt.error("Your passwords do not match", {position: "top-center", duration: 2000});
+                    break;
                 case "err-idused": 
                     vt.error("This id number is used by another customer", {position: "top-center", duration: 2000});
                     break;
@@ -46,11 +38,11 @@ function bookNow() {
                     break;
                 case "true":
                     form.prop("disabled", true);
-                    $("#bookNowBtn").prop("disabled", true);
+                    $("#signUpBtn").prop("disabled", true);
                     form.prop("class", "needs-validation");
-                    vt.success("Reservation successfully added", {position: "top-center", duration: 2000});
+                    vt.success("You have signed up successfully", {position: "top-center", duration: 2000});
                     setTimeout(function() {
-                        $('<form action="index.php"></form>').appendTo($(document.body)).submit();
+                        $('<form action="login.php"></form>').appendTo($(document.body)).submit();
                     }, 2200);
                     break;
                 case "err":
