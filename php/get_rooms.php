@@ -2,8 +2,9 @@
     include "../dbconnect.php";
 
     $conn = connectdb();
-    $sql = "SELECT r.doornumber, r.roomtype, r.floor, rp.price, r.status
-              FROM room r JOIN roomprice rp ON r.roomtype = rp.roomtype";
+    $sql = "SELECT r.doornumber, r.roomtype, r.floor, rp.price
+              FROM room r JOIN roomprice rp ON r.roomtype = rp.roomtype
+              ORDER BY r.doornumber";
 
     $result = $conn->query($sql);
 
@@ -15,7 +16,6 @@
             $roomtype = $row["roomtype"];
             $floor = $row["floor"];
             $price = $row["price"];
-            $status = $row["status"];
 
 
             $tableRow = "<tr>
@@ -23,7 +23,6 @@
             <td>$roomtype</td>
             <td>$floor</td>
             <td>$price</td>
-            <td>$status</td>
             <td>
                 <form id='editRoom-$doornumber' action='editroom.php' method='POST'>
                 <input type='hidden' name='doornumber' value='$doornumber'></input>

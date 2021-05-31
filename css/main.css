@@ -55,7 +55,11 @@
 
 .rating-stars {
     font-size: 18px; 
-    color: #28a745;
+    color: #9fa080;
+}
+
+.checked {
+    color: #e0e413;
 }
 
 .review {

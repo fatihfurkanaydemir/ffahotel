@@ -5,7 +5,6 @@
             header("Location: login.php");
             die();
         }
-
     
         if(isset($_REQUEST["logout"])) {
             $logout = $_REQUEST["logout"];
@@ -123,242 +122,12 @@
                     <div class="tab-pane fade mb-5" id="reservations" role="tabpanel"
                         aria-labelledby="reservations-tab">
                         <span class="font-weight-bold d-block text-center" style="font-size: 2em;">Reservations</span>
-                        <!-- Reservation Continues -->
-                        <div class="card mt-4 shadow">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <img src="img/vipRoom.jpg" alt="Vip Room"
-                                            class="reservation-card-img card-img mx-auto d-block">
-                                    </div>
-                                    <div class="col-sm-4 pl-5 pl-sm-0">
-                                        <span class="d-block font-weight-bold mt-4 mt-sm-0"
-                                            style="font-size: 1.2em;">Reservation Continues</span>
-                                        <span class="d-block mt-1">VIP Room</span>
-                                        <span class="d-block mt-1">01.03.2021 - 05.03.2021</span>
-                                        <span class="d-block mt-1">2 days left</span>
-                                        <span class="d-block mt-1">150 USD/day</span>
-                                    </div>
-                                    <div class="m-auto">
-                                        <button class="btn btn-primary mt-4 mt-sm-0 mb-4" data-toggle="modal"
-                                            data-target="#extendReservationModal">Extend</button>
-                                        <button class="btn btn-primary mt-4 mt-sm-0 mb-4" data-toggle="modal"
-                                            data-target="#cancelReservationModal">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mt-4 shadow">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <img src="img/familyRoom.jpg" alt="Family Room"
-                                            class="reservation-card-img card-img mx-auto d-block">
-                                    </div>
-                                    <div class="col-sm-4 pl-5 pl-sm-0">
-                                        <span class="d-block font-weight-bold mt-4 mt-sm-0"
-                                            style="font-size: 1.2em;">Reservation Ended</span>
-                                        <span class="d-block mt-1">Family Room</span>
-                                        <span class="d-block mt-1">05.02.2021 - 10.02.2021</span>
-                                        <span class="d-block mt-1">100 USD/day</span>
-                                    </div>
-                                    <div class="m-auto">
-                                        <button class="btn btn-primary mt-4 mt-sm-0 mb-4" data-toggle="modal"
-                                            data-target="#makeReviewModal">Make a review</button>
-                                    </div>
-                                </div>    
-                            </div>
-                        </div>
-                        <div class="card mt-4 shadow">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <img src="img/singleRoom.jpg" alt="Single Room"
-                                            class="reservation-card-img card-img mx-auto d-block">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <span class="d-block font-weight-bold mt-4 mt-sm-0"
-                                            style="font-size: 1.2em;">Reservation Ended</span>
-                                        <span class="d-block mt-1">Single Room</span>
-                                        <span class="d-block mt-1">10.01.2021 - 17.01.2021</span>
-                                        <span class="d-block mt-1">50 USD/day</span>
-                                    </div>
-                                    <div class="m-auto">
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="media review">
-                                        <img src="img/loginUserIcon.png" class="mr-3 room-reviews-user-icon"
-                                            alt="User icon">
-                                        <div class="media-body">
-                                            <h5 class="mt-0">Fatih Furkan Aydemir</h5>
-                                            <div class="rating-stars d-inline-block">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="d-inline-block ml-5">
-                                                <button class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#editReviewModal"><i class="fa fa-pencil"></i></button>
-                                                <button class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#deleteReviewModal"><i
-                                                        class="fa fa-trash"></i></button>
-                                            </div>
-
-                                            <span class="review-content d-block">
-                                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                                                ante sollicitudin. Cras purus odio,
-                                                vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum
-                                                nunc ac nisi vulputate fringilla. Donec
-                                                lacinia congue felis in faucibus.
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!------------------- MODALS ------------------->
-        <div class="modal fade" id="extendReservationModal" tabindex="-1" role="dialog"
-            aria-labelledby="extendReservationModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="extendReservationModalLabel">Extend
-                            Reservation</h5>
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="newCheckOutDate">Select new checkout date</label>
-                            <input type="date" class="form-control" name="newCheckOutDate">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="cancelReservationModal" tabindex="-1" role="dialog"
-            aria-labelledby="cancelReservationModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="cancelReservationModalLabel">Cancel
-                            Reservation</h5>
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to cancel this reservation ?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Yes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="deleteReviewModal" tabindex="-1" role="dialog"
-            aria-labelledby="deleteReviewModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteReviewModalLabel">Delete Review</h5>
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to delete your review ?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Yes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="editReviewModal" tabindex="-1" role="dialog"
-            aria-labelledby="editReviewModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editReviewModalLabel">Edit Review</h5>
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="rating-stars d-inline-block">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <textarea class="form-control" rows="10">
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
-                        vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-                        lacinia congue felis in faucibus.
-                    </textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="makeReviewModal" tabindex="-1" role="dialog"
-            aria-labelledby="makeReviewModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="makeReviewModalLabel">Make Review</h5>
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="rating-stars d-inline-block">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <textarea class="form-control" rows="10">
-                        </textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php include "reservation_modals.php"; ?>
         <!------------------- MODALS ------------------->
     </section>
     
@@ -398,9 +167,48 @@
             }
             });
         }
+
+        var selectedReservation = undefined;
+
+        $(document).on("click", ".btn-modal", function() {
+            var data_checkindate = $(this).data("checkindate");
+            var data_doornumber = $(this).data("doornumber");
+
+            selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber};
+        });
+        $(document).on("click", ".btn-modalReview", function() {
+            var data_checkindate = $(this).data("checkindate");
+            var data_doornumber = $(this).data("doornumber");
+            var data_commentid = $(this).data("commentid");
+            var data_commenttext = $(this).data("commenttext");
+            var data_commentrate = $(this).data("commentrate");
+
+            selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber, commentid: data_commentid};
+            
+            switch(data_commentrate) {
+                case 1:
+                    $("#editrate1").prop("checked", true);
+                    break;
+                case 2:
+                    $("#editrate2").prop("checked", true);
+                    break;
+                case 3:
+                    $("#editrate3").prop("checked", true);
+                    break;
+                case 4:
+                    $("#editrate4").prop("checked", true);
+                    break;
+                case 5:
+                    $("#editrate5").prop("checked", true);
+                    break;
+            }
+
+            $("#editreview-commenttext").val(data_commenttext);
+        });
         
     </script>
     <script src="js/update_accountdetails.js"></script>
     <script src="js/update_password.js"></script>
+    <script src="js/reservation_operations.js"></script>
 
     <?php require 'footers/footer.php'?>

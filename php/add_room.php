@@ -13,7 +13,7 @@
 
         $conn = connectdb();
 
-        $sql = "INSERT INTO room VALUES($doornumber, '$roomtype', $floor, 'empty')";
+        $sql = "INSERT INTO room VALUES($doornumber, '$roomtype', $floor)";
         $result = $conn->query($sql);
 
         closedb($conn);

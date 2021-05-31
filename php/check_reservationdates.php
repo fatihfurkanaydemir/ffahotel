@@ -17,10 +17,10 @@
               WHERE doornumber NOT IN
             (SELECT ro.doornumber 
             FROM reservation res JOIN room ro ON res.doornumber = ro.doornumber
-            WHERE 
-             (res.checkindate <= '$checkinDate' AND res.checkoutdate >= '$checkoutDate') OR
+            WHERE res.status = 'active' AND
+             ((res.checkindate <= '$checkinDate' AND res.checkoutdate >= '$checkoutDate') OR
              (res.checkindate < '$checkoutDate' AND res.checkoutdate >= '$checkoutDate') OR
-             (res.checkindate >= '$checkinDate' AND res.checkindate < '$checkoutDate'))";
+             (res.checkindate >= '$checkinDate' AND res.checkindate < '$checkoutDate')))";
 
              $conn = connectdb();
 
@@ -52,10 +52,10 @@
               WHERE roomtype = '$roomType' AND doornumber NOT IN
             (SELECT ro.doornumber 
             FROM reservation res JOIN room ro ON res.doornumber = ro.doornumber
-            WHERE 
-             (res.checkindate <= '$checkinDate' AND res.checkoutdate >= '$checkoutDate') OR
+            WHERE res.status = 'active' AND 
+             ((res.checkindate <= '$checkinDate' AND res.checkoutdate >= '$checkoutDate') OR
              (res.checkindate < '$checkoutDate' AND res.checkoutdate >= '$checkoutDate') OR
-             (res.checkindate >= '$checkinDate' AND res.checkindate < '$checkoutDate'))";
+             (res.checkindate >= '$checkinDate' AND res.checkindate < '$checkoutDate')))";
 
              $conn = connectdb();
 
