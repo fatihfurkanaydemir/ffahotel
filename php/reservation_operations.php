@@ -27,7 +27,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         die();
     }
     else if(isset($_POST["extend"])) {
+        $checkoutdate = $_POST["checkoutdate"];
+        $oldcheckindate = $_POST["oldcheckindate"];
 
+        $conn = connectdb();
+
+        $sql = "SELECT DATEDIFF('$checkoutdate', '$checkindate') * 
+            (SELECT rp.price FROM room ro JOIN roomprice rp ON ro.roomtype = rp.roomtype
+             WHERE ro.doornumber = '$doornumber') AS totalprice";
+
+        $result = $conn->query($sql);
+        $totalprice = $result->fetch_assoc()["totalprice"];
+
+        $sql = "UPDATE reservation SET checkindate='$checkindate', checkoutdate='$checkoutdate', totalprice='$totalprice'
+                WHERE checkindate='$oldcheckindate' AND doornumber='$doornumber'";
+
+        $result = $conn->query($sql);
+
+        if($result == true) {
+            echo "true";
+        }
+        else {
+            echo "err";
+        }
+
+        closedb($conn);
+        die();
     }
     else if(isset($_POST["makereview"])) {
         $commenttext = test_input($_POST["commenttext"]);

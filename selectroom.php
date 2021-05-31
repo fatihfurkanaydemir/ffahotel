@@ -24,9 +24,9 @@
             (SELECT ro.doornumber 
             FROM reservation res JOIN room ro ON res.doornumber = ro.doornumber
             WHERE res.status = 'active' AND 
-             ((res.checkindate <= '$checkindate' AND res.checkoutdate >= '$checkoutdate') OR
-             (res.checkindate < '$checkoutdate' AND res.checkoutdate >= '$checkoutdate') OR
-             (res.checkindate >= '$checkindate' AND res.checkindate < '$checkoutdate')))";
+            ((res.checkindate BETWEEN '$checkindate' AND '$checkoutdate') OR
+             (res.checkoutdate BETWEEN '$checkindate' AND '$checkoutdate') OR
+             (res.checkindate < '$checkindate' AND res.checkoutdate > '$checkoutdate')))";
 
         $conn = connectdb();
 

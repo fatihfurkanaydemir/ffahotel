@@ -18,9 +18,9 @@
             (SELECT ro.doornumber 
             FROM reservation res JOIN room ro ON res.doornumber = ro.doornumber
             WHERE res.status = 'active' AND
-             ((res.checkindate <= '$checkinDate' AND res.checkoutdate >= '$checkoutDate') OR
-             (res.checkindate < '$checkoutDate' AND res.checkoutdate >= '$checkoutDate') OR
-             (res.checkindate >= '$checkinDate' AND res.checkindate < '$checkoutDate')))";
+            ((res.checkindate BETWEEN '$checkinDate' AND '$checkoutDate') OR
+             (res.checkoutdate BETWEEN '$checkinDate' AND '$checkoutDate') OR
+             (res.checkindate < '$checkinDate' AND res.checkoutdate > '$checkoutDate')))";
 
              $conn = connectdb();
 
@@ -53,9 +53,10 @@
             (SELECT ro.doornumber 
             FROM reservation res JOIN room ro ON res.doornumber = ro.doornumber
             WHERE res.status = 'active' AND 
-             ((res.checkindate <= '$checkinDate' AND res.checkoutdate >= '$checkoutDate') OR
-             (res.checkindate < '$checkoutDate' AND res.checkoutdate >= '$checkoutDate') OR
-             (res.checkindate >= '$checkinDate' AND res.checkindate < '$checkoutDate')))";
+             ((res.checkindate BETWEEN '$checkinDate' AND '$checkoutDate') OR
+             (res.checkoutdate BETWEEN '$checkinDate' AND '$checkoutDate') OR
+             (res.checkindate < '$checkinDate' AND res.checkoutdate > '$checkoutDate')))";
+
 
              $conn = connectdb();
 
@@ -69,6 +70,41 @@
              }
 
 
+            echo "true";
+        }
+        else if(isset($_POST["checkdoornumber"])) {
+            $checkinDate = $_POST["checkindate"];
+            $checkoutDate = $_POST["checkoutdate"];
+            $oldcheckindate = $_POST["oldcheckindate"];
+            $oldcheckoutdate = $_POST["oldcheckoutdate"];
+            $doornumber = $_POST["doornumber"];
+
+            if($checkoutDate < $checkinDate) 
+            {
+                echo "err-date"; 
+                die();
+            }
+
+            $sql = 
+            "
+            (SELECT res.checkindate
+            FROM reservation res JOIN room ro ON res.doornumber = ro.doornumber
+            WHERE res.status = 'active' AND res.checkindate != '$oldcheckindate' AND res.doornumber = $doornumber AND
+            ((res.checkindate BETWEEN '$checkinDate' AND '$checkoutDate') OR
+            (res.checkoutdate BETWEEN '$checkinDate' AND '$checkoutDate') OR
+            (res.checkindate < '$checkinDate' AND res.checkoutdate > '$checkoutDate')))";
+
+            $conn = connectdb();
+
+            $result = $conn->query($sql);
+            
+            if($result->num_rows != 0) {
+                echo "err-norooms";
+                die();
+            }
+            
+            closedb($conn);
+            
             echo "true";
         }
         

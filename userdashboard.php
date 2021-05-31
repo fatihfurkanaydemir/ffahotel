@@ -205,10 +205,40 @@
 
             $("#editreview-commenttext").val(data_commenttext);
         });
+
+        $(document).on("click", ".btn-modalExtend", function() {
+            var data_checkindate = $(this).data("checkindate");
+            var data_checkoutdate = $(this).data("checkoutdate");
+            var data_doornumber = $(this).data("doornumber");
+
+            selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber, checkoutdate: data_checkoutdate};
+
+            $("#newcheckindate").prop("value", data_checkindate);
+            $("#newcheckoutdate").prop("value", data_checkoutdate);
+
+            if((new Date()) > (new Date(data_checkindate))) {
+                $("#newcheckindate").prop("disabled", true);
+            }
+
+        });
+
+
+
+        $(function () {
+            $('input[data-relmin]').each(function () {
+                var oldVal = $(this).prop('value');
+                var relmin = $(this).data('relmin');
+                var min = new Date();
+                min.setFullYear(min.getFullYear() + relmin);
+                $.prop(this, 'min', $(this).prop('valueAsDate', min).val());
+                $.prop(this, 'value', oldVal);
+            });
+        });
         
     </script>
     <script src="js/update_accountdetails.js"></script>
     <script src="js/update_password.js"></script>
     <script src="js/reservation_operations.js"></script>
+    <script src="js/extend_reservation.js"></script>
 
     <?php require 'footers/footer.php'?>

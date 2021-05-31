@@ -12,18 +12,18 @@
             </div>
             <div class="modal-body">
             <div class="form-group">
-                    <label for="newCheckOutDate">Select new checkin date</label>
-                    <input type="date" class="form-control" name="newcheckindate" id="newcheckindate">
+                    <label for="newCheckOutDate" class="text-primary">Select new checkin date:</label>
+                    <input type="date" class="form-control" name="newcheckindate" data-relmin="0" id="newcheckindate">
                 </div>
                 <div class="form-group">
-                    <label for="newCheckOutDate">Select new checkout date</label>
-                    <input type="date" class="form-control" name="newcheckoutdate" id="newcheckoutdate">
+                    <label for="newCheckOutDate" class="text-primary">Select new checkout date:</label>
+                    <input type="date" class="form-control" name="newcheckoutdate" data-relmin="0" id="newcheckoutdate">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"
                     data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-extendReservation" disabled>Save</button>
             </div>
         </div>
     </div>

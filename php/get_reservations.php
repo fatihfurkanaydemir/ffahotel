@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     cus.fname, cus.lname FROM reservation res JOIN room ro ON ro.doornumber = res.doornumber
             JOIN customer cus ON res.customerid = cus.id
             LEFT JOIN comment com ON com.id = res.commentid
-            WHERE customerid=$id ORDER BY res.reservationdate";
+            WHERE customerid=$id ORDER BY res.reservationdate DESC";
 
     $result = $conn->query($sql);
 
@@ -59,9 +59,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <span class='d-block mt-1'><strong>Total Price:</strong> $totalprice USD</span> 
                             </div> 
                             <div class='m-auto'> 
-                                <button class='btn-modal btn btn-primary mt-4 mt-sm-0 mb-4' data-toggle='modal' 
+                                <button class='btn-modalExtend btn btn-primary mt-4 mt-sm-0 mb-4' data-toggle='modal' 
                                     data-target='#extendReservationModal'
-                                    data-checkindate='$checkindate' data-doornumber='$doornumber'>Extend</button> 
+                                    data-checkindate='$checkindate' data-doornumber='$doornumber'
+                                    data-checkoutdate='$checkoutdate'>Extend</button> 
                                 <button class='btn-modal btn btn-primary mt-4 mt-sm-0 mb-4' data-toggle='modal' 
                                     data-target='#cancelReservationModal' 
                                     data-checkindate='$checkindate' data-doornumber='$doornumber'>Cancel</button> 

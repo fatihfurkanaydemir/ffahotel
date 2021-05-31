@@ -25,6 +25,35 @@ $(document).on("click", "#btn-cancelReservation", function(){
     });
 });
 
+$(document).on("click", "#btn-extendReservation", function(){
+    var params = "checkindate=" + $("#newcheckindate").val() +
+                  "&checkoutdate=" + $("#newcheckoutdate").val() +
+                  "&oldcheckindate=" + selectedReservation.checkindate +
+                  "&doornumber=" + selectedReservation.doornumber +
+                  "&extend";
+
+    $.ajax({
+        type: "post",
+        url: "php/reservation_operations.php",
+        data: params,
+        success: function(data, status) {  
+            switch(data) {
+                case "true":
+                    vt.success("Reservation successfully updated", {position: "top-center", duration: 2000});
+                    getReservations();
+                    break;
+                case "err":
+                    vt.error("An error occured", {position: "top-center", duration: 2000});
+                    getReservations();
+                    break;
+            }
+        },
+        error: function(xhr, desc, err) {
+            console.log(desc);
+        }
+    });
+});
+
 $(document).on("click", "#btn-makeReview", function(){
     if($("#makereview-commenttext").val().trim() != "")
     {
