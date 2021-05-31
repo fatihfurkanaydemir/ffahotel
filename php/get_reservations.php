@@ -17,26 +17,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $result = $conn->query($sql);
 
-    /*$returnval = array("customerid" => $id);
-    $reservations = array();*/
-
     $reservations = "";
 
     if($result->num_rows != 0){
         while($row = $result->fetch_assoc()) {
-            /*$checkindate = $row["checkindate"];
-            $doornumber = $row["doornumber"];
-
-            $reservation["reservationdate"] = $row["reservationdate"];
-            $reservation["checkindate"] = $checkindate;
-            $reservation["checkoutdate"] = $row["checkoutdate"];
-            $reservation["numberofpersons"] = $row["numberofpersons"];
-            $reservation["totalprice"] = $row["totalprice"];
-            $reservation["commentid"] = $row["commentid"];
-            $reservation["doornumber"] = $doornumber;
-            $reservation["status"] = $row["status"];
-            $reservation["roomtype"] = $row["roomtype"];*/
-
             $checkindate = $row["checkindate"];
             $doornumber = $row["doornumber"];
             $reservationdate = $row["reservationdate"];
@@ -52,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $fname = $row["fname"];
             $lname = $row["lname"];
 
-            //array_push($reservations, $reservation);
+            $roomImg = $roomtype . "Room";
 
             if($row["status"] == "active") {
                 $reservations .= 
@@ -61,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class='card-body'> 
                         <div class='row'> 
                             <div class='col-sm-4'> 
-                                <img src='img/vipRoom.jpg' alt='Vip Room' 
+                                <img src='img/$roomImg.jpg' alt='Vip Room' 
                                     class='reservation-card-img card-img mx-auto d-block'> 
                             </div> 
                             <div class='col-sm-4 pl-5 pl-sm-0'> 
@@ -94,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class='card-body'> 
                         <div class='row'> 
                             <div class='col-sm-4'> 
-                                <img src='img/vipRoom.jpg' alt='Vip Room' 
+                                <img src='img/$roomImg.jpg' alt='Vip Room' 
                                     class='reservation-card-img card-img mx-auto d-block'> 
                             </div> 
                             <div class='col-sm-4 pl-5 pl-sm-0'> 
@@ -132,7 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class='card-body'>
                             <div class='row'>
                                 <div class='col-sm-4'>
-                                    <img src='img/singleRoom.jpg' alt='Single Room'
+                                    <img src='img/$roomImg.jpg' alt='Single Room'
                                         class='reservation-card-img card-img mx-auto d-block'>
                                 </div>
                                 <div class='col-sm-4'>
@@ -190,7 +174,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class='card-body'>
                             <div class='row'>
                                 <div class='col-sm-4'>
-                                    <img src='img/familyRoom.jpg' alt='Family Room'
+                                    <img src='img/$roomImg.jpg' alt='Family Room'
                                         class='reservation-card-img card-img mx-auto d-block'>
                                 </div>
                                 <div class='col-sm-4 pl-5 pl-sm-0'>
@@ -219,13 +203,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $reservations = "<div class='text-center w-100 mt-5' style='font-size:1.5em;'>You don't have any reservations yet</div>";
     }
 
-    //$returnval["reservations"] = $reservations;
-
     closedb($conn);
-
     echo $reservations;
-
-    //echo json_encode($returnval);
 }
 else {
     header("Location: index.php");
