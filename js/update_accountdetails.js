@@ -37,7 +37,7 @@ function accountDetailsForm() {
                     break;
                  case "err":
                     form.prop("class", "needs-validation");
-                    vt.error("An error occured", {position: "top-center", duration: 2000});
+                    vt.error("Account details can not be updated, you may have reservations", {position: "top-center", duration: 2000});
                     break;
             }
 

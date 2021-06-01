@@ -1,4 +1,15 @@
 <?php require "../headers/managerheader.php"; ?>
+<?php 
+include "../dbconnect.php";
+
+$conn = connectdb();
+
+$totalcount = $conn->query("SELECT COUNT(*) AS totalcount FROM customer")->fetch_assoc()["totalcount"];
+$incount = $conn->query("SELECT COUNT(*) AS incount FROM customer WHERE status='in'")->fetch_assoc()["incount"];
+$outcount = $conn->query("SELECT COUNT(*) AS outcount FROM customer WHERE status='out'")->fetch_assoc()["outcount"];
+
+closedb($conn);
+?>
 
                 <div class="col-10">
                     <div class="row ml-1 shadow">
@@ -7,21 +18,21 @@
                                 <button class="btn btn-secondary w-100 py-4">
                                     <i class="fa fa-user d-inline" style="font-size: 24px;"></i>
                                     <span style="font-size: 1.2em;">Total Customers</span>
-                                    <span class="d-block" style="font-size: 2em;"> 250 </span>
+                                    <span class="d-block" style="font-size: 2em;"> <?php echo $totalcount; ?> </span>
                                 </button>
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-secondary w-100 py-4">
                                     <i class="fa fa-user d-inline" style="font-size: 24px;"></i>
-                                    <span style="font-size: 1.2em;">In the hotel</span>
-                                    <span class="d-block" style="font-size: 2em;"> 100 </span>
+                                    <span style="font-size: 1.2em;">In The Hotel</span>
+                                    <span class="d-block" style="font-size: 2em;"> <?php echo $incount; ?> </span>
                                 </button>
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-secondary w-100 py-4">
                                     <i class="fa fa-user d-inline" style="font-size: 24px;"></i>
-                                    <span style="font-size: 1.2em;">Out the hotel</span>
-                                    <span class="d-block" style="font-size: 2em;"> 150 </span>
+                                    <span style="font-size: 1.2em;">Out The Hotel</span>
+                                    <span class="d-block" style="font-size: 2em;"> <?php echo $outcount; ?> </span>
                                 </button>
                             </div>
                         </div>
@@ -59,200 +70,15 @@
                                 <thead class="thead-light">
                                   <tr>
                                     <th scope="col">Customer Id</th>
-                                    <th scope="col">Customer First Name</th>
-                                    <th scope="col">Customer Last Name</th>
+                                    <th scope="col">Customer Name</th>
+                                    <th scope="col">Birthdate</th>
                                     <th scope="col">Phone Number</th>
-                                    <th scope="col">ID Number</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Total Payments</th>
-                                    <th scope="col">Remaining Days</th>
-                                    <th scope="col">Edit/Delete</th>
+                                    <th scope="col">Edit</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>15</td>
-                                    <td>Fatih Furkan</td>
-                                    <td>Aydemir</td>
-                                    <td>+905555555555</td>
-                                    <td>11111111111</td>
-                                    <td>In</td>
-                                    <td>250</td>
-                                    <td>5</td>
-                                    <td>
-                                        <a href="editcustomer.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCustomerModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>15</td>
-                                    <td>Fatih Furkan</td>
-                                    <td>Aydemir</td>
-                                    <td>+905555555555</td>
-                                    <td>11111111111</td>
-                                    <td>In</td>
-                                    <td>250</td>
-                                    <td>5</td>
-                                    <td>
-                                        <a href="editcustomer.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCustomerModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>15</td>
-                                    <td>Fatih Furkan</td>
-                                    <td>Aydemir</td>
-                                    <td>+905555555555</td>
-                                    <td>11111111111</td>
-                                    <td>In</td>
-                                    <td>250</td>
-                                    <td>5</td>
-                                    <td>
-                                        <a href="editcustomer.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCustomerModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>15</td>
-                                    <td>Fatih Furkan</td>
-                                    <td>Aydemir</td>
-                                    <td>+905555555555</td>
-                                    <td>11111111111</td>
-                                    <td>In</td>
-                                    <td>250</td>
-                                    <td>5</td>
-                                    <td>
-                                        <a href="editcustomer.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCustomerModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>15</td>
-                                    <td>Fatih Furkan</td>
-                                    <td>Aydemir</td>
-                                    <td>+905555555555</td>
-                                    <td>11111111111</td>
-                                    <td>In</td>
-                                    <td>250</td>
-                                    <td>5</td>
-                                    <td>
-                                        <a href="editcustomer.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCustomerModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>15</td>
-                                    <td>Fatih Furkan</td>
-                                    <td>Aydemir</td>
-                                    <td>+905555555555</td>
-                                    <td>11111111111</td>
-                                    <td>In</td>
-                                    <td>250</td>
-                                    <td>5</td>
-                                    <td>
-                                        <a href="editcustomer.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCustomerModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>15</td>
-                                    <td>Fatih Furkan</td>
-                                    <td>Aydemir</td>
-                                    <td>+905555555555</td>
-                                    <td>11111111111</td>
-                                    <td>In</td>
-                                    <td>250</td>
-                                    <td>5</td>
-                                    <td>
-                                        <a href="editcustomer.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCustomerModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>15</td>
-                                    <td>Fatih Furkan</td>
-                                    <td>Aydemir</td>
-                                    <td>+905555555555</td>
-                                    <td>11111111111</td>
-                                    <td>In</td>
-                                    <td>250</td>
-                                    <td>5</td>
-                                    <td>
-                                        <a href="editcustomer.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCustomerModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>15</td>
-                                    <td>Fatih Furkan</td>
-                                    <td>Aydemir</td>
-                                    <td>+905555555555</td>
-                                    <td>11111111111</td>
-                                    <td>In</td>
-                                    <td>250</td>
-                                    <td>5</td>
-                                    <td>
-                                        <a href="editcustomer.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCustomerModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>15</td>
-                                    <td>Fatih Furkan</td>
-                                    <td>Aydemir</td>
-                                    <td>+905555555555</td>
-                                    <td>11111111111</td>
-                                    <td>In</td>
-                                    <td>250</td>
-                                    <td>5</td>
-                                    <td>
-                                        <a href="editcustomer.php" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteCustomerModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-
-                                  
-                                  
+                                <tbody id="tablecontent">
                                 </tbody>
                               </table>
                         </div>
@@ -260,4 +86,5 @@
                 </div>
             </div>
 
+<script src="js/customer_operations.js"></script>
 <?php require "../footers/managerfooter.php"; ?>

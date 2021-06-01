@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         closedb($conn);
     }
 
-    if(isset($_POST["delete"])) {
+    else if(isset($_POST["delete"])) {
         $id = test_input($_POST["id"]);
 
         if(empty($id)) {

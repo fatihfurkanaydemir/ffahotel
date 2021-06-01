@@ -83,7 +83,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             birthdate = '$newbirthdate' WHERE id = $uid";
 
     $result = $conn->query($sql);
-
+    
+    closedb($conn);
+    
     if($result == true) {
         echo "true";
         die();
@@ -93,7 +95,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         die();
     }
     
-    closedb($conn);
     
 }
 ?>
