@@ -16,7 +16,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT COUNT(*) AS bookedcount FROM reservation res 
     JOIN customer cus ON res.customerid = cus.id
     JOIN room ro ON ro.doornumber = res.doornumber
-    WHERE res.status = 'active' AND cus.status = 'in'";
+    WHERE res.status = 'active' AND cus.status = 'in' AND
+    NOW() BETWEEN res.checkindate AND res.checkoutdate";
 
     $bookedCount = $conn->query($sql)->fetch_assoc()["bookedcount"];
 

@@ -28,7 +28,7 @@
                         </div>
                         <!-- Delete Room Modal -->
                         <div class="row w-100 mx-2 mt-4">
-                            <a href="addroom.php" class="btn btn-primary float-right mb-1" style="width: 30%;">
+                            <a href="addroom.php" class="btn btn-primary float-right mb-3" style="width: 30%;">
                                 <i class="fa fa-plus"></i>
                                 Add Room
                             </a>

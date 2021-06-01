@@ -50,7 +50,7 @@
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                     </div>                                
-                                    <button type="button"  onClick="editRoom()" class="btn btn-primary mt-3 shadow" style="width: 100%;">Save</button>
+                                    <button type="button" id="btn-editroom" onClick="editRoom()" class="btn btn-primary mt-3 shadow" style="width: 100%;">Save</button>
                                 </form>
                             </div>
                         </div>
