@@ -46,7 +46,7 @@
                 </div>
             </div>
             
-            <script src="../js/add_room.js"></script>
+            <script src="js/add_room.js"></script>
 
 
 <?php require "../footers/managerfooter.php"; ?>

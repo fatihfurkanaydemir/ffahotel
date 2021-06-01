@@ -5,7 +5,7 @@ function addRoom() {
 
     $.ajax({
         type: "post",
-        url: "../php/add_room.php",
+        url: "php/add_room.php",
         data: formData,
         success: function(data, status) {            
             switch(data) {

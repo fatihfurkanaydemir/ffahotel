@@ -58,8 +58,8 @@
                 </div>
             </div>
             
-            <script src="../js/get_room.js"></script>
+            <script src="js/get_room.js"></script>
             <script>getRoom();</script>
-            <script src="../js/edit_room.js"></script>
+            <script src="js/edit_room.js"></script>
 
 <?php require "../footers/managerfooter.php"; ?>

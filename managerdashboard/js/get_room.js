@@ -3,9 +3,9 @@ function getRoom() {
     
     $.ajax({
         type: "get",
-        url: "../php/get_room.php",
+        url: "php/get_room.php",
         data: params,
-        success: function(data, status) {            
+        success: function(data, status) {     
             var room = JSON.parse(data);
             
             var typeIndex = null;

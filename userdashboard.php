@@ -5,17 +5,6 @@
             header("Location: login.php");
             die();
         }
-    
-        if(isset($_REQUEST["logout"])) {
-            $logout = $_REQUEST["logout"];
-            
-            if($logout == "1") {
-                session_unset();
-                session_destroy();
-
-                header("Location: index.php");
-            }
-        }
     ?>
 
     <section class="main-section container-fluid">
@@ -29,7 +18,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link list-group-item list-group-item-action border-0" id="change-password-tab" role="tab" data-toggle="tab"
-                            aria-controls="change-password" aria-selected="" href="#change-password">Change
+                            aria-controls="change-password" aria-selected="false" href="#change-password">Change
                             Password</a>
                     </li>
                     <li class="nav-item">
@@ -39,7 +28,7 @@
                     <li class="nav-item">
                         <a class="nav-link list-group-item list-group-item-action border-0" id="logout" 
                             aria-controls="reservations" aria-selected="false" 
-                            href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?logout=1") ?>">Logout</a>
+                            href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?logout=1"); ?>">Logout</a>
                     </li>
                 </ul>
             </nav>
@@ -235,6 +224,32 @@
             });
         });
         
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            openTabHash(); // for the initial page load
+            window.addEventListener("hashchange", openTabHash, false); // for later changes to url
+        });
+
+
+        function openTabHash()
+        {
+            // Javascript to enable link to tab
+            var url = document.location.toString();
+            console.log(url);
+            if (url.match('#')) {
+                $('.nav a[href="#'+url.split('#')[1]+'"]').tab('show') ;
+            } 
+
+            // With HTML5 history API, we can easily prevent scrolling!
+            $('.nav a').on('shown.bs.tab', function (e) {
+                if(history.pushState) {
+                    history.pushState(null, null, e.target.hash); 
+                } else {
+                    window.location.hash = e.target.hash; //Polyfill for old browsers
+                }
+            })
+        }
     </script>
     <script src="js/update_accountdetails.js"></script>
     <script src="js/update_password.js"></script>

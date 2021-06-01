@@ -6,7 +6,7 @@ function editRoom() {
 
     $.ajax({
         type: "post",
-        url: "../php/edit_room.php",
+        url: "php/edit_room.php",
         data: formData,
         success: function(data, status) {            
             switch(data) {

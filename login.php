@@ -3,6 +3,7 @@
     <!-- Form Control -->
     <?php
         include "dbconnect.php";
+        include "validations.php";
 
         $wrongCredentialsOrNotValidError = "";
         $bootstrapValidation = "";
@@ -66,19 +67,10 @@
                             </div>";
                         }
                     }
-
-                    
                 }
                 
             }
         }
-    
-        function test_input($data) {
-           $data = trim($data);
-           $data = stripslashes($data);
-           $data = htmlspecialchars($data);
-           return $data;
-         }
     ?>
     <!-- Form Control -->
 

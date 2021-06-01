@@ -63,11 +63,24 @@
                     <a href="gallery.php" class="nav-link <?php echo $galleryActive; ?>"> Gallery </a>
                 </li>
                 <li class="nav-item">
-                    <a href="rooms.php" class="nav-link <?php echo $roomsActive; ?>"> Rooms </a>
+                    <a href="rooms.php" class="nav-link <?php echo $roomsActive; ?>"> Rooms & Comments </a>
                 </li>
                 <li class="nav-item">
                     <a href="contact.php" class="nav-link <?php echo $contactActive; ?>"> Contact </a>
                 </li>
+                <?php 
+
+                    if(isset($_SESSION["logged_in"]))
+                    {
+                        echo 
+                        "
+                        <li class='nav-item'>
+                            <a href='userdashboard.php#reservations' class='nav-link'> My Reservations </a>
+                        </li>
+                        ";
+                    }
+                    
+                ?>
                 <li class="nav-item">
                     <a href="<?php echo $loginLink; ?>" class="nav-link <?php echo $loginActive; ?>">
                         <img src="img/profileIcon.png" alt="Logo" width="30">

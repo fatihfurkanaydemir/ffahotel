@@ -5,7 +5,7 @@
             <div class="card login-card shadow-lg">
                 <div class="card-body align-items-center flex-column">
                     <img src="img/loginUserIcon.png" alt="Login Icon" class="card-img-top img-fluid w-25 mx-auto d-block">
-                    <form id="registerform" action="#" method="POST" class="needs-validation <?php echo $bootstrapValidation ?> " novalidate>
+                    <form id="registerform" action="#" method="POST" class="needs-validation" novalidate>
                         <div class="form-group mt-5">
                             <label for="fname" class="text-primary">First Name:</label>
                             <input type="text" name="fname" id="fname" placeholder="Enter your first name" class="form-control" required>

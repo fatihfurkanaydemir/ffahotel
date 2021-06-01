@@ -1,3 +1,37 @@
+<?php 
+
+session_start();
+
+if(isset($_REQUEST["logout"])) {
+    $logout = $_REQUEST["logout"];
+    
+    if($logout == "1") {
+        session_unset();
+        session_destroy();
+
+        header("Location: index.php");
+        die();
+    }
+}
+
+if(!str_contains($_SERVER["PHP_SELF"], "createmanager.php")) {
+    if(!isset($_SESSION["logged_in"])) {
+        header("Location: index.php");
+        die();
+    }
+}
+
+
+
+$dashboardActive = (str_contains($_SERVER["PHP_SELF"], "dashboard.php") ? " active" : "");
+$roomsActive = (str_contains($_SERVER["PHP_SELF"], "room") ? " active" : "");
+$customersActive = (str_contains($_SERVER["PHP_SELF"], "customer") ? " active" : "");
+$reservationsActive = (str_contains($_SERVER["PHP_SELF"], "reservation") ? " active" : "");
+$reportsActive = (str_contains($_SERVER["PHP_SELF"], "reports") ? " active" : "");
+$reviewsActive = (str_contains($_SERVER["PHP_SELF"], "reviews") ? " active" : "");
+$expenseActive = (str_contains($_SERVER["PHP_SELF"], "expense") ? " active" : "");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +46,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="css/starability-basic.css">
 
     <title>Welcome to FFA Hotel</title>
 </head>
@@ -33,20 +66,14 @@
                     <a class="nav-link" href="changepassword.php">Change Password</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Logout</a>
+                    <a class="nav-link" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?logout=1"); ?>">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><?php echo "Welcome " . $_SESSION["mfname"]; ?></a>
                 </li>
             </ul>
         </div>
     </nav>
-
-    <?php 
-        $dashboardActive = (str_contains($_SERVER["PHP_SELF"], "dashboard.php") ? " active" : "");
-        $roomsActive = (str_contains($_SERVER["PHP_SELF"], "room") ? " active" : "");
-        $customersActive = (str_contains($_SERVER["PHP_SELF"], "customer") ? " active" : "");
-        $reservationsActive = (str_contains($_SERVER["PHP_SELF"], "reservation") ? " active" : "");
-        $reportsActive = (str_contains($_SERVER["PHP_SELF"], "reports") ? " active" : "");
-        $reviewsActive = (str_contains($_SERVER["PHP_SELF"], "reviews") ? " active" : "");
-    ?>
 
     <section class="main-section container-fluid">
         <div class="row">
@@ -86,6 +113,12 @@
                         <a class="nav-link d-inline-block list-group-item list-group-item-action border-0 <?php echo $reviewsActive; ?>" href="reviews.php">
                             <i class="fa fa-star d-inline float-left" style="font-size: 24px; width: 15%;"></i>
                             <span class="ml-3">Reviews</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-inline-block list-group-item list-group-item-action border-0 <?php echo $expenseActive; ?>" href="expenses.php">
+                            <i class="fa fa-dollar d-inline float-left" style="font-size: 24px; width: 15%;"></i>
+                            <span class="ml-3">Expenses</span>
                         </a>
                     </li>
                 </ul>

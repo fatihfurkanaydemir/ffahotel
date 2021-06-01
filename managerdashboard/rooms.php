@@ -46,7 +46,6 @@
                                   </tr>
                                 </thead>
                                 <tbody id="tableContent">
-                                    <?php include "../php/get_rooms.php"; ?>
                                 </tbody>
                               </table>
                         </div>
@@ -54,6 +53,7 @@
                 </div>
             </div>
 
+            <script src="js/update_headbuttons.js"></script>
             <script>
             var roomToDelete = 0;
 
@@ -65,7 +65,7 @@
                 var xhttp = new XMLHttpRequest();
                 var params = "doornumber=" + roomToDelete;
 
-                xhttp.open("POST", "../php/delete_room.php?" + params, true);
+                xhttp.open("POST", "php/delete_room.php?" + params, true);
                 xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
                 xhttp.onreadystatechange = function() {
@@ -73,6 +73,7 @@
                     if(xhttp.responseText == "true") {
                         vt.success("Room deleted successfully", {position: "top-center", duration: 2000});
                         getRooms();
+                        updateHeadButtons();
                     }
                     else {
                         vt.error("Room could not be deleted", {position: "top-center", duration: 2000});
@@ -85,7 +86,7 @@
 
             function getRooms() {
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", "../php/get_rooms.php", true);
+                xhttp.open("POST", "php/get_rooms.php", true);
 
                 xhttp.onreadystatechange = function() {
                   if (this.readyState == 4 && this.status == 200) {
@@ -96,5 +97,7 @@
                 xhttp.send();
             }
 
+            getRooms();
             </script>
+
 <?php require "../footers/managerfooter.php"; ?>

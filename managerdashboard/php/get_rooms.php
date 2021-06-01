@@ -1,5 +1,5 @@
 <?php 
-    include "../dbconnect.php";
+    include "../../dbconnect.php";
 
     $conn = connectdb();
     $sql = "SELECT r.doornumber, r.roomtype, r.floor, rp.price
