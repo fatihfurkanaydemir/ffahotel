@@ -1,5 +1,19 @@
 <?php require "../headers/managerheader.php"; ?>
 
+<?php 
+    include "../dbconnect.php";
+
+    $conn = connectdb();
+
+    $reviewcount = $conn->query("
+        SELECT COUNT(*) as reviewcount
+        FROM reservation res JOIN comment com ON com.id = res.commentid
+        JOIN customer cus ON res.customerid = cus.id
+        ")->fetch_assoc()["reviewcount"];
+
+    closedb($conn);
+?>
+
                 <div class="col-10">
                     <div class="row ml-1 shadow">
                         <div class="row w-100 p-3">
@@ -7,7 +21,7 @@
                                 <button class="btn btn-secondary w-100 py-4">
                                     <i class="fa fa-star d-inline" style="font-size: 24px;"></i>
                                     <span style="font-size: 1.2em;">Total Reviews</span>
-                                    <span class="d-block" style="font-size: 2em;"> 15 </span>
+                                    <span class="d-block" style="font-size: 2em;"> <?php echo $reviewcount; ?> </span>
                                 </button>
                             </div>
                         </div>
@@ -28,7 +42,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                        <button type="button" class="btn btn-primary">Yes</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" onClick="deleteReview()">Yes</button>
                                     </div>
                                 </div>
                             </div>
@@ -40,152 +54,20 @@
                                 <thead class="thead-light">
                                   <tr>
                                     <th scope="col">Rate</th>
-                                    <th scope="col">Review</th>
+                                    <th scope="col">Datetime</th>
+                                    <th scope="col">Text</th>
                                     <th scope="col">Customer</th>
                                     <th scope="col">Delete</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                    </td>
-                                    <td>Very nice hotel, good service and comfort.</td>
-                                    <td>
-                                        <i class="fa fa-user"></i>
-                                        Fatih Furkan Aydemir
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReviewModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                    </td>
-                                    <td>Very nice hotel, good service and comfort.</td>
-                                    <td>
-                                        <i class="fa fa-user"></i>
-                                        Fatih Furkan Aydemir
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReviewModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                    </td>
-                                    <td>Very nice hotel, good service and comfort.</td>
-                                    <td>
-                                        <i class="fa fa-user"></i>
-                                        Fatih Furkan Aydemir
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReviewModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                    </td>
-                                    <td>Very nice hotel, good service and comfort.</td>
-                                    <td>
-                                        <i class="fa fa-user"></i>
-                                        Fatih Furkan Aydemir
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReviewModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                    </td>
-                                    <td>Very nice hotel, good service and comfort.</td>
-                                    <td>
-                                        <i class="fa fa-user"></i>
-                                        Fatih Furkan Aydemir
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReviewModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                    </td>
-                                    <td>Very nice hotel, good service and comfort.</td>
-                                    <td>
-                                        <i class="fa fa-user"></i>
-                                        Fatih Furkan Aydemir
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReviewModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                        <i class="fa fa-star rating-stars"></i>
-                                    </td>
-                                    <td>Very nice hotel, good service and comfort.</td>
-                                    <td>
-                                        <i class="fa fa-user"></i>
-                                        Fatih Furkan Aydemir
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReviewModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  
-                                  
+                                <tbody id="tablecontent">
                                 </tbody>
                               </table>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <script src="js/review_operations.js"></script>
 
 <?php require "../footers/managerfooter.php"?>

@@ -2,6 +2,7 @@
     include "../dbconnect.php";
     include "../validations.php";
 
+    session_name("manager");
     session_start();
     
     if(isset($_SESSION["logged_in"])) {

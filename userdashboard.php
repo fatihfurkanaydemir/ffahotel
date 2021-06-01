@@ -5,6 +5,18 @@
             header("Location: login.php");
             die();
         }
+
+        if(isset($_REQUEST["logout"])) {
+            $logout = $_REQUEST["logout"];
+            
+            if($logout == "1") {
+                session_unset();
+                session_destroy();
+        
+                header("Location: index.php");
+                die();
+            }
+        }
     ?>
 
     <section class="main-section container-fluid">

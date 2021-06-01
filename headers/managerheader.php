@@ -1,5 +1,5 @@
 <?php 
-
+session_name("manager");
 session_start();
 
 if(isset($_REQUEST["logout"])) {
