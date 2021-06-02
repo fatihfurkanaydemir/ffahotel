@@ -10,7 +10,7 @@ res.reservationdate, res.checkindate, res.checkoutdate, res.totalprice FROM rese
 JOIN customer cus ON res.customerid = cus.id
 JOIN room ro ON ro.doornumber = res.doornumber
 WHERE res.status = 'active' AND cus.status = 'out' OR 
-(cus.status = 'in' AND DATE(NOW()) <= res.checkindate)";
+(cus.status = 'in' AND DATE(NOW()) < res.checkindate)";
 
 $result = $conn->query($sql);
 
@@ -32,16 +32,16 @@ if($result->num_rows != 0) {
 		$tableContent .= 
 		"
 		<tr>
-          <td>$doornumber</td>
-          <td>$roomtype</td>
-          <td>$customerid</td>
-          <td>$fname</td>
-          <td>$lname</td>
-          <td>$reservationdate</td>
-          <td>$checkindate</td>
-          <td>$checkoutdate</td>
-          <td>$totalprice</td>
-        </tr>
+      <td>$doornumber</td>
+      <td>$roomtype</td>
+      <td>$customerid</td>
+      <td>$fname</td>
+      <td>$lname</td>
+      <td>$reservationdate</td>
+      <td>$checkindate</td>
+      <td>$checkoutdate</td>
+      <td>$totalprice</td>
+    </tr>
 		";
 	}
 }

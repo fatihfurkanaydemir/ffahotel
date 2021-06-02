@@ -217,6 +217,7 @@
             $("#newcheckindate").prop("value", data_checkindate);
             $("#newcheckoutdate").prop("value", data_checkoutdate);
 
+            $("#newcheckindate").prop("disabled", false);
             if((new Date()) > (new Date(data_checkindate))) {
                 $("#newcheckindate").prop("disabled", true);
             }
@@ -248,7 +249,6 @@
         {
             // Javascript to enable link to tab
             var url = document.location.toString();
-            console.log(url);
             if (url.match('#')) {
                 $('.nav a[href="#'+url.split('#')[1]+'"]').tab('show') ;
             } 

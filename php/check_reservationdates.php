@@ -58,16 +58,16 @@
              (res.checkindate < '$checkinDate' AND res.checkoutdate > '$checkoutDate')))";
 
 
-             $conn = connectdb();
+            $conn = connectdb();
 
-             $result = $conn->query($sql);
+            $result = $conn->query($sql);
 
-             closedb($conn);
-
-             if($result->num_rows == 0) {
-                 echo "err-norooms";
-                 die();
-             }
+            closedb($conn);
+            
+            if($result->num_rows == 0) {
+                echo "err-norooms";
+                die();
+            }
 
 
             echo "true";

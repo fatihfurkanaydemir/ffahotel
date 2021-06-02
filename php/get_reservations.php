@@ -39,6 +39,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $roomImg = $roomtype . "Room";
 
             if($row["status"] == "active") {
+                $cancelButton = "";
+
+                if(!(date("Y-m-d") >= $checkindate &&  date("Y-m-d") <= $checkoutdate)) {
+                    $cancelButton = "
+                    <button class='btn-modal btn btn-primary mt-4 mt-sm-0 mb-4' data-toggle='modal' 
+                    data-target='#cancelReservationModal' 
+                    data-checkindate='$checkindate' data-doornumber='$doornumber'>Cancel</button> 
+                    ";
+                }
+
                 $reservations .= 
                 "
                 <div class='card mt-4 shadow'> 
@@ -63,9 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                     data-target='#extendReservationModal'
                                     data-checkindate='$checkindate' data-doornumber='$doornumber'
                                     data-checkoutdate='$checkoutdate'>Extend</button> 
-                                <button class='btn-modal btn btn-primary mt-4 mt-sm-0 mb-4' data-toggle='modal' 
-                                    data-target='#cancelReservationModal' 
-                                    data-checkindate='$checkindate' data-doornumber='$doornumber'>Cancel</button> 
+                                $cancelButton
                             </div> 
                         </div> 
                     </div>

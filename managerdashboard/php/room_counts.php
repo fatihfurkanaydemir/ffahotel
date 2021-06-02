@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     JOIN customer cus ON res.customerid = cus.id
     JOIN room ro ON ro.doornumber = res.doornumber
     WHERE res.status = 'active' AND cus.status = 'out' OR 
-    (cus.status = 'in' AND DATE(NOW()) <= res.checkindate)";
+    (cus.status = 'in' AND DATE(NOW()) < res.checkindate)";
 
     $bookingCount = $conn->query($sql)->fetch_assoc()["bookingcount"];
 

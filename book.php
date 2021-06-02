@@ -12,7 +12,7 @@
             $doornumber = $_POST["doornumber"];
             $_SESSION["reservationinfo"]["doornumber"] = $doornumber;
 
-            $sql = "SELECT DATEDIFF('$checkoutdate', '$checkindate') * 
+            $sql = "SELECT (DATEDIFF('$checkoutdate', '$checkindate') + 1) * 
             (SELECT rp.price FROM room ro JOIN roomprice rp ON ro.roomtype = rp.roomtype
              WHERE ro.doornumber = '$doornumber') AS totalprice";
 
