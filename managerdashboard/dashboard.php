@@ -14,9 +14,8 @@ if(isset($_REQUEST["logout"])) {
 ?>
 
     <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.0/chart.js" ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.0/chart.esm.js" ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.0/helpers.esm.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     </head>
                 <div class="col-10">
                     <div class="row ml-1 shadow py-5">

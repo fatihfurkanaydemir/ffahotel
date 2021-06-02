@@ -11,69 +11,6 @@
                                 </button>
                             </div>
                         </div>
-
-                        <!-- Delete Report Modal -->
-                        <div class="modal fade" id="deleteReportModal" tabindex="-1" role="dialog" aria-labelledby="deleteReportModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteReportModalLabel">Delete Report</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete the report ?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                        <button type="button" class="btn btn-primary">Yes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Delete Report Modal -->
-
-                        <!-- Get Report Modal -->
-                        <div class="modal fade" id="getReportModal" tabindex="-1" role="dialog" aria-labelledby="getReportModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="getReportModalLabel">Get Report</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="#" id="getreportform">
-                                            <div class="form-row">
-                                                <div class="form-group col-6">
-                                                    <label for="startdate" class="text-primary">Start Date: </label>
-                                                    <input type="date" name="startdate" id="startdate" class="form-control" required>
-                                                    <div class="valid-feedback">Valid.</div>
-                                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                                </div>
-                                                <div class="form-group col-6">
-                                                    <label for="enddate" class="text-primary">End Date: </label>
-                                                    <input type="date" name="enddate" id="enddate" class="form-control" required>
-                                                    <div class="valid-feedback">Valid.</div>
-                                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                                </div>
-                                            </div> 
-                                            <input type="submit" class="btn btn-primary w-100" value="Get Report">
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-primary">Ok</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Get Report Modal -->
-
                         <div class="row w-100 mx-2 mt-4">
                             <button type="button" class="btn btn-primary float-right mb-1" style="width: 30%;" data-toggle="modal" data-target="#getReportModal">
                                 <i class="fa fa-plus"></i>
@@ -85,111 +22,90 @@
                                 <thead class="thead-light">
                                   <tr>
                                     <th scope="col">Report Id</th>
+                                    <th scope="col">Report Date</th>
                                     <th scope="col">Start Date</th>
                                     <th scope="col">End Date</th>
                                     <th scope="col">Revenue</th>
                                     <th scope="col">Expense</th>
                                     <th scope="col">Total Customers</th>
-                                    <th scope="col">Delete</th>
+                                    <th scope="col">Download/Delete</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>01.03.2021</td>
-                                    <td>01.04.2021</td>
-                                    <td>40000</td>
-                                    <td>11000</td>
-                                    <td>250</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReportModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>01.03.2021</td>
-                                    <td>01.04.2021</td>
-                                    <td>40000</td>
-                                    <td>11000</td>
-                                    <td>250</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReportModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>01.03.2021</td>
-                                    <td>01.04.2021</td>
-                                    <td>40000</td>
-                                    <td>11000</td>
-                                    <td>250</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReportModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>01.03.2021</td>
-                                    <td>01.04.2021</td>
-                                    <td>40000</td>
-                                    <td>11000</td>
-                                    <td>250</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReportModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>01.03.2021</td>
-                                    <td>01.04.2021</td>
-                                    <td>40000</td>
-                                    <td>11000</td>
-                                    <td>250</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReportModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>01.03.2021</td>
-                                    <td>01.04.2021</td>
-                                    <td>40000</td>
-                                    <td>11000</td>
-                                    <td>250</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReportModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>1</td>
-                                    <td>01.03.2021</td>
-                                    <td>01.04.2021</td>
-                                    <td>40000</td>
-                                    <td>11000</td>
-                                    <td>250</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteReportModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                  </tr>
-                                  
+                                <tbody id="tablecontent"> 
                                 </tbody>
                               </table>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Delete Report Modal -->
+            <div class="modal fade" id="deleteReportModal" tabindex="-1" role="dialog" aria-labelledby="deleteReportModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteReportModalLabel">Delete Report</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete the report ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-primary" onClick="deleteReport()" data-dismiss="modal">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Delete Report Modal -->
+            <!-- Get Report Modal -->
+            <div class="modal fade" id="getReportModal" tabindex="-1" role="dialog" aria-labelledby="getReportModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="getReportModalLabel">Get Report</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="getreportform" class="needs-validation" novalidate>
+                                <div class="form-row">
+                                    <div class="form-group col-6">
+                                        <label for="startdate" class="text-primary">Start Date: </label>
+                                        <input type="date" name="startdate" id="startdate" value="2021-05-01" class="form-control" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="enddate" class="text-primary">End Date: </label>
+                                        <input type="date" name="enddate" id="enddate" value="2021-06-20" class="form-control" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                </div> 
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="btn-getreport" onClick="getReport()">Get Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Get Report Modal -->
+
+            <canvas id="customerChart" width="1200" height="600" style="display: hidden;"></canvas>
+            <canvas id="revenueExpenseChart" width="1200" height="600" style="display: hidden;"></canvas>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js" type="module"></script>
+            <script src="js/report_operations.js"></script>
+            <script>
+            </script>
+            
 <?php require "../footers/managerfooter.php"?>
