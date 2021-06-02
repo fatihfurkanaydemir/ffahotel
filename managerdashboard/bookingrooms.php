@@ -9,7 +9,8 @@ $sql = "SELECT res.doornumber, ro.roomtype, res.customerid, cus.fname, cus.lname
 res.reservationdate, res.checkindate, res.checkoutdate, res.totalprice FROM reservation res 
 JOIN customer cus ON res.customerid = cus.id
 JOIN room ro ON ro.doornumber = res.doornumber
-WHERE res.status = 'active' AND cus.status = 'out'";
+WHERE res.status = 'active' AND cus.status = 'out' OR 
+(cus.status = 'in' AND DATE(NOW()) <= res.checkindate)";
 
 $result = $conn->query($sql);
 

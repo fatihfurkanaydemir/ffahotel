@@ -9,7 +9,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT COUNT(*) AS bookingcount FROM reservation res 
     JOIN customer cus ON res.customerid = cus.id
     JOIN room ro ON ro.doornumber = res.doornumber
-    WHERE res.status = 'active' AND cus.status = 'out'";
+    WHERE res.status = 'active' AND cus.status = 'out' OR 
+    (cus.status = 'in' AND DATE(NOW()) <= res.checkindate)";
 
     $bookingCount = $conn->query($sql)->fetch_assoc()["bookingcount"];
 
@@ -17,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     JOIN customer cus ON res.customerid = cus.id
     JOIN room ro ON ro.doornumber = res.doornumber
     WHERE res.status = 'active' AND cus.status = 'in' AND
-    NOW() BETWEEN res.checkindate AND res.checkoutdate";
+    DATE(NOW()) BETWEEN res.checkindate AND res.checkoutdate";
 
     $bookedCount = $conn->query($sql)->fetch_assoc()["bookedcount"];
 
@@ -26,9 +27,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     (SELECT ro.doornumber 
     FROM reservation res JOIN room ro ON res.doornumber = ro.doornumber
     WHERE res.status = 'active' AND 
-    ((res.checkindate BETWEEN NOW() AND NOW()) OR
-    (res.checkoutdate BETWEEN NOW() AND NOW()) OR
-    (res.checkindate < NOW() AND res.checkoutdate > NOW())))";
+    ((res.checkindate BETWEEN DATE(NOW()) AND DATE(NOW())) OR
+    (res.checkoutdate BETWEEN DATE(NOW()) AND DATE(NOW())) OR
+    (res.checkindate < DATE(NOW()) AND res.checkoutdate > DATE(NOW()))))";
 
     $emptyCount = $conn->query($sql)->fetch_assoc()["emptycount"];
 

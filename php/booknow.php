@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $conn = connectdb();
         
         $sql = "INSERT INTO reservation VALUES
-                ('$id', NOW(), '$checkindate', '$checkoutdate', $numberofpersons, $totalprice, NULL, $doornumber, 'active')";
+                ('$id', DATE(NOW()), '$checkindate', '$checkoutdate', $numberofpersons, $totalprice, NULL, $doornumber, 'active')";
 
         $result = $conn->query($sql);
         
@@ -130,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $conn = connectdb();
         
         $sql = "INSERT INTO reservation VALUES
-                ('$id', NOW(), '$checkindate', '$checkoutdate', $numberofpersons, $totalprice, NULL, $doornumber, 'active')";
+                ('$id', DATE(NOW()), '$checkindate', '$checkoutdate', $numberofpersons, $totalprice, NULL, $doornumber, 'active')";
 
         $result = $conn->query($sql);
         

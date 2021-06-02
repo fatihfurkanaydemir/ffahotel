@@ -5,8 +5,8 @@ include "../dbconnect.php";
 
 $conn = connectdb();
 
-$startdate = "NOW()";
-$enddate = "NOW()";
+$startdate = "DATE(NOW())";
+$enddate = "DATE(NOW())";
 $err = "";
 $resultCount = 0;
 

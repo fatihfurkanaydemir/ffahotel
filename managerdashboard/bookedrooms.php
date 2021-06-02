@@ -10,7 +10,7 @@ res.reservationdate, res.checkindate, res.checkoutdate, res.totalprice FROM rese
 JOIN customer cus ON res.customerid = cus.id
 JOIN room ro ON ro.doornumber = res.doornumber
 WHERE res.status = 'active' AND cus.status = 'in' AND
-NOW() BETWEEN res.checkindate AND res.checkoutdate";
+DATE(NOW()) BETWEEN res.checkindate AND res.checkoutdate";
 
 $result = $conn->query($sql);
 
