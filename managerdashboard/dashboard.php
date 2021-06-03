@@ -14,7 +14,7 @@ if(isset($_REQUEST["logout"])) {
 ?>
 
     <head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
     
     </head>
                 <div class="col-10">
@@ -61,14 +61,13 @@ if(isset($_REQUEST["logout"])) {
                         </div>
 
                         <div class="row w-100 d-flex flex-row justify-content-center align-items-center mt-5">
-                            <canvas id="canvas" class="ml-5"></canvas>
+                            <canvas id="chart" class="ml-5"></canvas>
                         </div>
 
                     </div>
                 </div>
             </div>
 
-        <script src="js/chart.js"></script>
         <script src="js/dashboard_status.js"></script>
 
 <?php require "../footers/managerfooter.php"?>

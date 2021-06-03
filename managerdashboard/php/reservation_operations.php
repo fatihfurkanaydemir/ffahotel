@@ -325,10 +325,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["searchname"])) {
         $customername = test_input($_POST["customername"]);
 
-        if(empty($customername)) {
+        /*if(empty($customername)) {
             echo "err-notvalid";
             die();
-        }
+        }*/
 
         $conn = connectdb();
 

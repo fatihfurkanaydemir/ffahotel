@@ -3,8 +3,10 @@ function getReports(){
         type: "post",
         url: "php/report_operations.php",
         data: "getreports",
-        success: function(data, status) {            
-            $("#tablecontent").html(data);
+        success: function(data, status) {  
+            var data = JSON.parse(data);          
+            $("#tablecontent").html(data.tablecontent);
+            $("#reportcount").html(data.count);
         },
         error: function(xhr, desc, err) {
             console.log(desc);
@@ -50,7 +52,6 @@ function getReport() {
         url: "php/report_operations.php",
         data: formData,
         success: function(data, status) {    
-            console.log(data);   
             if(data == "err-notvalid"){
                 form.prop("class", "needs-validation was-validated");
             }
@@ -62,7 +63,13 @@ function getReport() {
                 vt.error("An error occured", {position: "top-center", duration: 2000});
                 form.prop("class", "needs-validation");
             }
-            else if(data != "[]"){
+            else if(data == "[]") {
+                vt.warn("No data between these dates", {position: "top-center", duration: 2000});
+                form.prop("class", "needs-validation");
+                form.trigger("reset");
+                $("#getReportModal").modal("hide");
+            }
+            else {
                 var data = JSON.parse(data);
 
                 var days = new Map();
@@ -119,9 +126,12 @@ function getReport() {
                     options: {
                         responsive: true,
                         scales: {
-                            y: {
-                                beginAtZero: true
-                            }
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
                         },
                         animation: {
                             onComplete: function () {
@@ -137,7 +147,9 @@ function getReport() {
                                         for(var key in dataset._meta)
                                         {
                                             var model = dataset._meta[key].data[i]._model;
-                                            if(dataset.data[i] != 0)
+                                            if(dataset.data[i] == 1)
+                                                ctx.fillText(dataset.data[i], model.x, model.y - 15);
+                                            else if(dataset.data[i] != 0)
                                                 ctx.fillText(dataset.data[i], model.x, model.y + 15);
                                         }
                                     }
@@ -171,9 +183,12 @@ function getReport() {
                     },
                     options: {
                         scales: {
-                            y: {
-                                beginAtZero: true
-                            }
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
                         },
                         animation: {
                             onComplete: function () {

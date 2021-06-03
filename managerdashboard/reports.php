@@ -7,7 +7,7 @@
                                 <button class="btn btn-secondary w-100 py-4">
                                     <i class="fa fa-line-chart d-inline" style="font-size: 24px;"></i>
                                     <span style="font-size: 1.2em;">Total Reports</span>
-                                    <span class="d-block" style="font-size: 2em;"> 15 </span>
+                                    <span class="d-block" id="reportcount" style="font-size: 2em;"> 15 </span>
                                 </button>
                             </div>
                         </div>
@@ -77,13 +77,13 @@
                                 <div class="form-row">
                                     <div class="form-group col-6">
                                         <label for="startdate" class="text-primary">Start Date: </label>
-                                        <input type="date" name="startdate" id="startdate" value="2021-05-01" class="form-control" required>
+                                        <input type="date" name="startdate" id="startdate" class="form-control" required>
                                         <div class="valid-feedback">Valid.</div>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="enddate" class="text-primary">End Date: </label>
-                                        <input type="date" name="enddate" id="enddate" value="2021-06-20" class="form-control" required>
+                                        <input type="date" name="enddate" id="enddate" class="form-control" required>
                                         <div class="valid-feedback">Valid.</div>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>

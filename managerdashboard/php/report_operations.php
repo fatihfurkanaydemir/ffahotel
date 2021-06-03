@@ -9,6 +9,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $result = $conn->query("SELECT * FROM report");
 
+        $data = array();
+
         $tableContent = "";
 
         if($result->num_rows != 0) {
@@ -46,7 +48,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         closedb($conn);
 
-        echo $tableContent;
+        $data["tablecontent"] = $tableContent;
+        $data["count"] = $result->num_rows;
+
+        echo json_encode($data);
     }
 
     else if(isset($_POST["get"])) {
@@ -149,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn = connectdb();
 
         $result = $conn->query("
-        SELECT COUNT(*) AS totalcustomers, SUM(totalprice) AS revenue
+        SELECT COUNT(*) AS totalcustomers, COALESCE(SUM(totalprice), 0) AS revenue
         FROM reservation 
         WHERE reservationdate BETWEEN '$startdate' AND '$enddate'
         "); 
@@ -159,7 +164,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $revenue = $row["revenue"];
 
         $expense = $conn->query("
-        SELECT SUM(amount) AS expense
+        SELECT COALESCE(SUM(amount), 0) AS expense
         FROM expense 
         WHERE date BETWEEN '$startdate' AND '$enddate'
         ")->fetch_assoc()["expense"]; 

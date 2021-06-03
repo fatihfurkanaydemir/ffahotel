@@ -12,17 +12,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $revenuethismonth = $conn->query("SELECT SUM(totalprice) AS revenuethismonth FROM reservation
                                     WHERE status != 'canceled' AND reservationdate BETWEEN
-                                    (SELECT DATE_SUB('2021-05-10',INTERVAL DAYOFMONTH('2021-05-10')-1 DAY)) AND
-                                    (SELECT LAST_DAY('2021-08-10'))")->fetch_assoc()["revenuethismonth"]; 
+                                    (SELECT DATE_SUB(DATE(NOW()),INTERVAL DAYOFMONTH(DATE(NOW()))-1 DAY)) AND
+                                    (SELECT LAST_DAY(DATE(NOW())))")->fetch_assoc()["revenuethismonth"]; 
 
     $expensethismonth = $conn->query("SELECT SUM(amount) AS expensethismonth FROM expense
                                     WHERE date BETWEEN
-                                    (SELECT DATE_SUB('2021-05-10',INTERVAL DAYOFMONTH('2021-05-10')-1 DAY)) AND
-                                    (SELECT LAST_DAY('2021-08-10'))")->fetch_assoc()["expensethismonth"]; 
+                                    (SELECT DATE_SUB(DATE(NOW()),INTERVAL DAYOFMONTH(DATE(NOW()))-1 DAY)) AND
+                                    (SELECT LAST_DAY(DATE(NOW())))")->fetch_assoc()["expensethismonth"]; 
                                     
 
-
-    closedb($conn);
 
     $counts = array();
 
@@ -31,6 +29,59 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $counts["avgrate"] = $avgrate;
     $counts["revenuethismonth"] = $revenuethismonth;
     $counts["expensethismonth"] = $expensethismonth;
+
+
+    // Chart data
+    $days = array();
+
+    $result = $conn->query("
+    SELECT reservationdate, totalprice
+    FROM reservation 
+    WHERE reservationdate BETWEEN 
+    (SELECT DATE_SUB(DATE(NOW()),INTERVAL DAYOFMONTH(DATE(NOW()))-1 DAY)) AND
+    (SELECT LAST_DAY(DATE(NOW())))
+    "); 
+
+    if($result->num_rows != 0) {
+        while($row = $result->fetch_assoc())
+        {
+            $reservationdate = $row["reservationdate"];
+            $totalprice = $row["totalprice"];
+            $day = array();
+            $day["date"] = $reservationdate;
+            //$day["revenue"] = (int)$totalprice;
+            //$day["expense"] = 0;
+            $day["customercount"] = 1;
+            array_push($days, $day);
+        }
+    }
+
+    //Expense data
+    /*$result = $conn->query("
+    SELECT amount, date
+    FROM expense 
+    WHERE date BETWEEN '$startdate' AND '$enddate'
+    "); 
+
+    if($result->num_rows != 0) {
+        while($row = $result->fetch_assoc())
+        {
+            $amount = $row["amount"];
+            $date = $row["date"];
+
+            $day = array();
+
+            $day["date"] = $date;
+            $day["revenue"] = 0;
+            $day["expense"] = (int)$amount;
+            $day["customercount"] = 0;
+            array_push($days, $day);
+        }
+    }*/
+
+    $counts["days"] = $days;
+
+    closedb($conn);
 
     echo json_encode($counts);
 }
