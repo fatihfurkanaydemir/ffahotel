@@ -30,6 +30,7 @@ $reservationsActive = (str_contains($_SERVER["PHP_SELF"], "reservation") ? " act
 $reportsActive = (str_contains($_SERVER["PHP_SELF"], "reports") ? " active" : "");
 $reviewsActive = (str_contains($_SERVER["PHP_SELF"], "reviews") ? " active" : "");
 $expenseActive = (str_contains($_SERVER["PHP_SELF"], "expense") ? " active" : "");
+$messagesActive = (str_contains($_SERVER["PHP_SELF"], "messages") ? " active" : "");
 ?>
 
 <!DOCTYPE html>
@@ -113,6 +114,12 @@ $expenseActive = (str_contains($_SERVER["PHP_SELF"], "expense") ? " active" : ""
                         <a class="nav-link d-inline-block list-group-item list-group-item-action border-0 <?php echo $reviewsActive; ?>" href="reviews.php">
                             <i class="fa fa-star d-inline float-left" style="font-size: 24px; width: 15%;"></i>
                             <span class="ml-3">Reviews</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-inline-block list-group-item list-group-item-action border-0 <?php echo $messagesActive; ?>" href="messages.php">
+                            <i class="fa fa-envelope d-inline float-left" style="font-size: 24px; width: 15%;"></i>
+                            <span class="ml-3">Messages</span>
                         </a>
                     </li>
                     <li class="nav-item">
