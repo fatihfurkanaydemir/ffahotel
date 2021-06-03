@@ -38,6 +38,10 @@
                             aria-controls="reservations" aria-selected="false" href="#reservations">Reservations</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link list-group-item list-group-item-action border-0" id="messages-tab" role="tab" data-toggle="tab"
+                            aria-controls="messages" aria-selected="false" href="#messages">Messages</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link list-group-item list-group-item-action border-0" id="logout" 
                             aria-controls="reservations" aria-selected="false" 
                             href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?logout=1"); ?>">Logout</a>
@@ -123,6 +127,37 @@
                     <div class="tab-pane fade mb-5" id="reservations" role="tabpanel"
                         aria-labelledby="reservations-tab">
                         <span class="font-weight-bold d-block text-center" style="font-size: 2em;">Reservations</span>
+                    </div>
+                    <div class="tab-pane fade mb-5" id="messages" role="tabpanel"
+                        aria-labelledby="reservations-tab">
+                        <span class="font-weight-bold d-block text-center" style="font-size: 2em;">Messages</span>
+                        <form id="sendmessageform" class="needs-validation" novalidate>
+                        <div class="form-row mt-3">
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <input type="text" name="message" id="message"
+                                        placeholder="Enter message here" class="form-control" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <button type="button" onClick="sendMessage()" class="btn btn-primary shadow" style="width: 100%;">Send</button>
+                            </div>
+                        </div> 
+                        </form>
+                        <table class="table table-hover mt-5">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">Datetime</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Status</th>
+                              </tr>
+                            </thead>
+                            <tbody id="tablecontent">
+                            </tbody>
+                        </table>
+
                     </div>
                 </div>
             </div>
@@ -266,6 +301,7 @@
     <script src="js/update_accountdetails.js"></script>
     <script src="js/update_password.js"></script>
     <script src="js/reservation_operations.js"></script>
+    <script src="js/message_operations.js"></script>
     <script src="js/extend_reservation.js"></script>
 
     <?php require 'footers/footer.php'?>
