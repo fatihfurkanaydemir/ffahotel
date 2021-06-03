@@ -7,7 +7,7 @@
                                 <span style="font-size: 1.5em;">Change Password</span>
                             </div>
                             <div class="card-body">
-                                <form id="addroomform" action="#" method="POST" class="needs-validation" novalidate>
+                                <form id="changepasswordform" class="needs-validation" novalidate>
                                     <div class="form-row">
                                         <div class="form-group col">
                                             <label for="oldpassword" class="text-primary">Old Password: </label>
@@ -33,7 +33,7 @@
                                         </div>
                                     </div>
                            
-                                    <input type="submit" value="Save" class="btn btn-primary mt-3 shadow" style="width: 100%;">
+                                    <button type="button" onClick="changePassword()" class="btn btn-primary mt-3 shadow" style="width: 100%;">Save</button>
                                 </form>
                             </div>
                         </div>
@@ -41,25 +41,6 @@
                 </div>
             </div>
 
-            <script>
-                // Disable form submissions if there are invalid fields
-                (function() {
-                  'use strict';
-                  window.addEventListener('load', function() {
-                    // Get the forms we want to add validation styles to
-                    var forms = document.getElementsByClassName('needs-validation');
-                    // Loop over them and prevent submission
-                    var validation = Array.prototype.filter.call(forms, function(form) {
-                      form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                          event.preventDefault();
-                          event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                      }, false);
-                    });
-                  }, false);
-                })();
-            </script>
+            <script src="js/change_password.js"></script>
 
 <?php require "../footers/managerfooter.php"; ?>
