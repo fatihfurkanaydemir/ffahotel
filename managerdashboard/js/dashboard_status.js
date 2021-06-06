@@ -8,9 +8,9 @@ function updateDashboard() {
         
             $("#rooms").html(counts.roomcount);
             $("#customers").html(counts.customercount);
-            $("#reviews").html(counts.avgrate + "/5");
-            $("#revenue").html(counts.revenuethismonth + " USD");
-            $("#expense").html(counts.expensethismonth + " USD");
+            $("#reviews").html((counts.avgrate == null ? 0 : counts.avgrate) + "/5");
+            $("#revenue").html((counts.revenuethismonth == null ? 0 : counts.revenuethismonth) + " USD");
+            $("#expense").html((counts.expensethismonth == null ? 0 : counts.expensethismonth) + " USD");
 
             var daysData = counts.days;
 

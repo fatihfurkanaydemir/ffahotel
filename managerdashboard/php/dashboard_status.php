@@ -10,12 +10,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $avgrate = $conn->query("SELECT cast(AVG(rate) as decimal(6,1)) AS avgrate FROM comment")->fetch_assoc()["avgrate"];
 
-    $revenuethismonth = $conn->query("SELECT SUM(totalprice) AS revenuethismonth FROM reservation
+    $revenuethismonth = $conn->query("SELECT cast(SUM(totalprice) as decimal(6,2)) AS revenuethismonth FROM reservation
                                     WHERE status != 'canceled' AND reservationdate BETWEEN
                                     (SELECT DATE_SUB(DATE(NOW()),INTERVAL DAYOFMONTH(DATE(NOW()))-1 DAY)) AND
                                     (SELECT LAST_DAY(DATE(NOW())))")->fetch_assoc()["revenuethismonth"]; 
 
-    $expensethismonth = $conn->query("SELECT SUM(amount) AS expensethismonth FROM expense
+    $expensethismonth = $conn->query("SELECT cast(SUM(amount) as decimal(6,2)) AS expensethismonth FROM expense
                                     WHERE date BETWEEN
                                     (SELECT DATE_SUB(DATE(NOW()),INTERVAL DAYOFMONTH(DATE(NOW()))-1 DAY)) AND
                                     (SELECT LAST_DAY(DATE(NOW())))")->fetch_assoc()["expensethismonth"]; 

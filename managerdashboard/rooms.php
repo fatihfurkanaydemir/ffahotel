@@ -53,7 +53,6 @@
                 </div>
             </div>
 
-            <script src="js/update_headbuttons.js"></script>
             <script>
             var roomToDelete = 0;
 

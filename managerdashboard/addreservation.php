@@ -16,7 +16,7 @@
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="doornumber" class="text-primary">Door Number: </label>
-                                            <input type="number" name="doornumber" id="doornumber" placeholder="Enter doorn umber" class="form-control" min="0" required>
+                                            <input type="number" name="doornumber" id="doornumber" placeholder="Enter door number" class="form-control" min="0" required>
                                             <div class="valid-feedback">Valid.</div>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
