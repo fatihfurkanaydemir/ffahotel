@@ -15,7 +15,7 @@
                         <div class="row w-100 p-3">
                             <div class="col-4">
                                 <button class="btn btn-secondary w-100 py-4">
-                                    <i class="fa fa-star d-inline" style="font-size: 24px;"></i>
+                                    <i class="fa fa-envelope d-inline" style="font-size: 24px;"></i>
                                     <span style="font-size: 1.2em;">Total Messages</span>
                                     <span class="d-block" style="font-size: 2em;"> <?php echo $messagecount; ?> </span>
                                 </button>
