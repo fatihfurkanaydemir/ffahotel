@@ -7,7 +7,6 @@ function registerUser() {
         url: "php/register_user.php",
         data: formData,
         success: function(data, status) {    
-            console.log(data);
             switch(data) {
                 case "err-notvalid": 
                     form.prop("class", "needs-validation was-validated"); 

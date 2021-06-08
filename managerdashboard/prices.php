@@ -26,7 +26,7 @@
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                               <div class="form-group col-4">
-                                  <button type="button" onClick="addRoomtype()" class="btn btn-primary w-100">Add/Update</button>
+                                  <button type="button" onClick="addRoomtype()" class="btn btn-primary w-100">Update</button>
                               </div>
                             </div>
                         </form>

@@ -48,7 +48,6 @@
                         closedb($conn);
 
                         if(password_verify($password, $upass)) {
-                            //session_start();
                             $_SESSION["logged_in"] = 1;
                             $_SESSION["uid"] = $uid;
                             $_SESSION["ufname"] = $row["fname"];
