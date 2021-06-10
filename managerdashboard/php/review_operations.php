@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn = connectdb();
 
         $result = $conn->query("
-        SELECT com.id, com.rate, com.text, com.datetime, cus.fname, cus.lname
+        SELECT com.id, com.rate, com.text, com.datetime, cus.fname, cus.lname, res.doornumber
         FROM reservation res JOIN comment com ON com.id = res.commentid
         JOIN customer cus ON res.customerid = cus.id
         ");
@@ -23,6 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $datetime = $row["datetime"];
                 $fname = $row["fname"];
                 $lname = $row["lname"];
+                $doornumber = $row["doornumber"];
 
                 $stars = "";
 
@@ -37,6 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 "
                 <tr>
                   <td>$stars</td>
+                  <td>$doornumber</td>
                   <td>$datetime</td>
                   <td>$text</td>
                   <td>$fname $lname</td>

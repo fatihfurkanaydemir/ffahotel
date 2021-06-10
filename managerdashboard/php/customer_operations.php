@@ -19,6 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $birthdate = $row["birthdate"];
                 $phonenumber = $row["phonenumber"];
                 $email = $row["email"];
+                $registered = $row["password"] != "" ? "registered" : "unregistered";
                 $status = $row["status"];
             
                 $tableContent .= 
@@ -29,6 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                   <td>$birthdate</td>
                   <td>$phonenumber</td>
                   <td>$email</td>
+                  <td>$registered</td>
                   <td>$status</td>
                   <td>
                     <form id='form-$id' action='editcustomer.php' method='POST'>

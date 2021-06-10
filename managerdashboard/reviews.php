@@ -54,6 +54,7 @@
                                 <thead class="thead-light">
                                   <tr>
                                     <th scope="col">Rate</th>
+                                    <th scope="col">Door Number</th>
                                     <th scope="col">Datetime</th>
                                     <th scope="col">Text</th>
                                     <th scope="col">Customer</th>

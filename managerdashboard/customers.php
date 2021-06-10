@@ -74,6 +74,7 @@ closedb($conn);
                                     <th scope="col">Birthdate</th>
                                     <th scope="col">Phone Number</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Register Status</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Edit</th>
                                   </tr>
