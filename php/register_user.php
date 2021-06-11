@@ -34,7 +34,6 @@
                 die(); 
             }  
 
-
             switch(checkRegistration($idNumber, $email)) {
                 case "newcus":
                     if(registerUser($fname, $lname, $phoneNumber, $idNumber, $email, $password, $birthdate)) { echo "true"; die(); }

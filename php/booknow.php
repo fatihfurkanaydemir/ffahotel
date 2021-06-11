@@ -95,6 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             case "err-idused": echo "err-idused"; die(); break;
             case "err-accountexistsid": echo "err-accountexistsid"; die(); break;
             case "err-accountexistsemail": echo "err-accountexistsemail"; die(); break;
+            default: echo "err"; die(); break;
         }
 
         $checkindate = $_SESSION["reservationinfo"]["checkindate"];
@@ -188,10 +189,10 @@ function checkRegistration($id, $email) {
     else if($q1email == $q2email && $q1id == $q2id) {
         return "cusexists";
     }
-    else if($q1email != $q2email) {
+    else if($q2email != "") {
         return "err-emailused";
     }
-    else if($q1id == $q2id) {
+    else if($q1id != "") {
         return "err-idused";
     }
 }
