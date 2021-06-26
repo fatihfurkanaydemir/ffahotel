@@ -209,8 +209,9 @@
         $(document).on("click", ".btn-modal", function() {
             var data_checkindate = $(this).data("checkindate");
             var data_doornumber = $(this).data("doornumber");
+            var data_id = $(this).data("id");
 
-            selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber};
+            selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber, id: data_id};
         });
         $(document).on("click", ".btn-modalReview", function() {
             var data_checkindate = $(this).data("checkindate");
@@ -218,8 +219,9 @@
             var data_commentid = $(this).data("commentid");
             var data_commenttext = $(this).data("commenttext");
             var data_commentrate = $(this).data("commentrate");
+            var data_id = $(this).data("id");
 
-            selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber, commentid: data_commentid};
+            selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber, commentid: data_commentid, id: data_id};
             
             switch(data_commentrate) {
                 case 1:
@@ -246,8 +248,9 @@
             var data_checkindate = $(this).data("checkindate");
             var data_checkoutdate = $(this).data("checkoutdate");
             var data_doornumber = $(this).data("doornumber");
+            var data_id = $(this).data("id");
 
-            selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber, checkoutdate: data_checkoutdate};
+            selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber, checkoutdate: data_checkoutdate, id: data_id};
 
             $("#newcheckindate").prop("value", data_checkindate);
             $("#newcheckoutdate").prop("value", data_checkoutdate);

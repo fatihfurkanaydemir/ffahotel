@@ -7,12 +7,13 @@ include "../validations.php";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $checkindate = $_POST["checkindate"];
     $doornumber = $_POST["doornumber"];
+    $id = $_POST["id"];
     
     if(isset($_POST["cancel"])) {
         $conn = connectdb();
 
         $sql = "UPDATE reservation SET status='canceled'
-                WHERE checkindate='$checkindate' AND doornumber='$doornumber'";
+                WHERE checkindate='$checkindate' AND doornumber='$doornumber' AND id = $id";
 
         $result = $conn->query($sql);
 
@@ -40,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $totalprice = $result->fetch_assoc()["totalprice"];
 
         $sql = "UPDATE reservation SET checkindate='$checkindate', checkoutdate='$checkoutdate', totalprice='$totalprice'
-                WHERE checkindate='$oldcheckindate' AND doornumber='$doornumber'";
+                WHERE checkindate='$oldcheckindate' AND doornumber='$doornumber' AND id = $id";
 
         $result = $conn->query($sql);
 
@@ -74,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $lastId = $conn->insert_id;
 
         $sql = "UPDATE reservation SET commentid='$lastId'
-        WHERE checkindate='$checkindate' AND doornumber='$doornumber'";
+        WHERE checkindate='$checkindate' AND doornumber='$doornumber' AND id = $id";
 
         $result = $conn->query($sql);
 

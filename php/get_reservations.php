@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn = connectdb();
 
-    $sql = "SELECT res.checkindate, res.doornumber, res.reservationdate, res.checkoutdate,res.numberofpersons, 
+    $sql = "SELECT res.id, res.checkindate, res.doornumber, res.reservationdate, res.checkoutdate,res.numberofpersons, 
                     res.totalprice, res.status, ro.roomtype, res.commentid, com.datetime, com.text, com.rate,
                     cus.fname, cus.lname FROM reservation res JOIN room ro ON ro.doornumber = res.doornumber
             JOIN customer cus ON res.customerid = cus.id
@@ -21,6 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($result->num_rows != 0){
         while($row = $result->fetch_assoc()) {
+            $id = $row["id"];
             $checkindate = $row["checkindate"];
             $doornumber = $row["doornumber"];
             $reservationdate = $row["reservationdate"];
@@ -45,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $cancelButton = "
                     <button class='btn-modal btn btn-primary mt-4 mt-sm-0 mb-4' data-toggle='modal' 
                     data-target='#cancelReservationModal' 
-                    data-checkindate='$checkindate' data-doornumber='$doornumber'>Cancel</button> 
+                    data-checkindate='$checkindate' data-doornumber='$doornumber' data-id='$id'>Cancel</button> 
                     ";
                 }
 
@@ -72,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <button class='btn-modalExtend btn btn-primary mt-4 mt-sm-0 mb-4' data-toggle='modal' 
                                     data-target='#extendReservationModal'
                                     data-checkindate='$checkindate' data-doornumber='$doornumber'
-                                    data-checkoutdate='$checkoutdate'>Extend</button> 
+                                    data-checkoutdate='$checkoutdate' data-id='$id'>Extend</button> 
                                 $cancelButton
                             </div> 
                         </div> 
@@ -158,12 +159,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <button class='btn-modalReview btn btn-primary' data-toggle='modal'
                                                 data-target='#editReviewModal'
                                                 data-checkindate='$checkindate' data-doornumber='$doornumber' 
-                                                data-commentid='$commentid' data-commenttext='$commenttext' data-commentrate='$commentrate'>
+                                                data-commentid='$commentid' data-commenttext='$commenttext' data-commentrate='$commentrate' data-id='$id'>
                                                 <i class='fa fa-pencil'></i></button>
                                             <button class='btn-modalReview btn btn-primary' data-toggle='modal'
                                                 data-target='#deleteReviewModal'
                                                 data-checkindate='$checkindate' data-doornumber='$doornumber' 
-                                                data-commentid='$commentid' data-commenttext='$commenttext' data-commentrate='$commentrate'>
+                                                data-commentid='$commentid' data-commenttext='$commenttext' data-commentrate='$commentrate' data-id='$id'>
                                                 <i class='fa fa-trash'></i></button>
                                         </div>
                                         <span class='review-content d-block'>
@@ -199,7 +200,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class='m-auto'>
                                     <button class='btn-modal btn btn-primary mt-4 mt-sm-0 mb-4' data-toggle='modal'
                                         data-target='#makeReviewModal' 
-                                        data-checkindate='$checkindate' data-doornumber='$doornumber'>Make a review</button>
+                                        data-checkindate='$checkindate' data-doornumber='$doornumber' data-id='$id'>Make a review</button>
                                 </div>
                             </div>    
                         </div>

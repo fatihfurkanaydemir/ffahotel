@@ -8,7 +8,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn = connectdb();
 
         $result = $conn->query("
-        SELECT res.doornumber, ro.roomtype, res.customerid, cus.fname, cus.lname, cus.status AS cusstatus,
+        SELECT res.id, res.doornumber, ro.roomtype, res.customerid, cus.fname, cus.lname, cus.status AS cusstatus,
         res.reservationdate, res.numberofpersons, res.checkindate, res.checkoutdate, res.status, 
         res.totalprice FROM reservation res 
         JOIN customer cus ON res.customerid = cus.id
@@ -20,6 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if($result->num_rows != 0) {
             while($row = $result->fetch_assoc()) {
+                $id = $row["id"];
                 $doornumber = $row["doornumber"];
                 $roomtype = $row["roomtype"];
                 $customerid = $row["customerid"];
@@ -38,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 if($status == "active") {
                     $buttons .= "
                     <button type='button' style='padding: 7px;' class='btn-edit btn btn-primary' data-toggle='modal' data-target='#editReservationModal'
-                    data-checkindate='$checkindate' data-checkoutdate='$checkoutdate' data-doornumber='$doornumber'>
+                    data-checkindate='$checkindate' data-checkoutdate='$checkoutdate' data-doornumber='$doornumber' data-id='$id'>
                         <i class='fa fa-pencil'></i>
                     </button>
                     ";
@@ -46,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     if($cusstatus == "in" && date("Y-m-d") >= $checkindate &&  date("Y-m-d") <= $checkoutdate) {
                         $buttons .= "
                         <button type='button' style='padding: 7px;' class='btn-checkout btn btn-primary'
-                        data-customerid='$customerid' data-checkindate='$checkindate' data-doornumber='$doornumber'>
+                        data-customerid='$customerid' data-checkindate='$checkindate' data-doornumber='$doornumber' data-id='$id'>
                             <i class='fa fa-sign-out'></i>
                         </button>
                         ";
@@ -54,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     else {
                         $buttons .= "
                         <button type='button' style='padding: 7px;' class='btn-cancel btn btn-primary'
-                        data-checkindate='$checkindate' data-doornumber='$doornumber' data-toggle='modal' data-target='#cancelReservationModal'>
+                        data-checkindate='$checkindate' data-doornumber='$doornumber' data-id='$id' data-toggle='modal' data-target='#cancelReservationModal'>
                             <i class='fa fa-times'></i>
                         </button>
                         ";
@@ -116,6 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $customerid = test_input($_POST["customerid"]);
         $checkindate = test_input($_POST["checkindate"]);
         $doornumber = test_input($_POST["doornumber"]);
+        $id = test_input($_POST["id"]);
 
         $conn = connectdb();
 
@@ -132,7 +134,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $conn = connectdb();
 
-        $sql = "UPDATE reservation SET status='ended' WHERE checkindate='$checkindate' AND doornumber=$doornumber";
+        $sql = "UPDATE reservation SET status='ended' WHERE checkindate='$checkindate' AND doornumber=$doornumber AND id = $id";
 
         $result = $conn->query($sql);
 
@@ -148,21 +150,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     else if(isset($_POST["cancel"])) {
         $checkindate = test_input($_POST["checkindate"]);
         $doornumber = test_input($_POST["doornumber"]);
+        $id = test_input($_POST["id"]);
 
         $conn = connectdb();
 
-        $sql = "UPDATE reservation SET status='canceled' WHERE checkindate='$checkindate' AND doornumber=$doornumber";
+        $sql = "UPDATE reservation SET status='canceled' WHERE checkindate='$checkindate' AND doornumber=$doornumber AND id = $id";
 
         $result = $conn->query($sql);
 
-        closedb($conn);
-
+        
         if($result === true) {
             echo "true";
         }
         else {
             echo "err";
+            echo $conn->error;
         }
+
+        closedb($conn);
     }
     else if(isset($_POST["checkdoornumber"])) {
         $checkinDate = test_input($_POST["checkindate"]);
@@ -222,6 +227,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $oldcheckindate = $_POST["oldcheckindate"];
         $doornumber = $_POST["doornumber"];
         $olddoornumber = $_POST["olddoornumber"];
+        $id = test_input($_POST["id"]);
 
         $conn = connectdb();
 
@@ -233,7 +239,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $totalprice = $result->fetch_assoc()["totalprice"];
 
         $sql = "UPDATE reservation SET checkindate='$checkindate', checkoutdate='$checkoutdate', totalprice='$totalprice', doornumber=$doornumber
-                WHERE checkindate='$oldcheckindate' AND doornumber='$olddoornumber'";
+                WHERE checkindate='$oldcheckindate' AND doornumber='$olddoornumber' AND id = $id";
 
         $result = $conn->query($sql);
 
@@ -309,7 +315,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $conn->query($sql);
         $totalprice = $result->fetch_assoc()["totalprice"];
 
-        $sql = "INSERT INTO reservation VALUES
+        $sql = "INSERT INTO reservation (customerid, reservationdate, checkindate, checkoutdate, numberofpersons, totalprice, commentid, doornumber, status) VALUES
         ('$customerid', DATE(NOW()), '$checkindate', '$checkoutdate', $numberofpersons, $totalprice, NULL, $doornumber, 'active')";
         
         $result = $conn->query($sql);

@@ -15,6 +15,7 @@ function getReservations() {
 function cancelReservation() {
     var params = "&checkindate=" + selectedReservation.checkindate +
                  "&doornumber=" + selectedReservation.doornumber +
+                 "&id=" + selectedReservation.id +
                  "&cancel";
 
     $.ajax({
@@ -28,7 +29,7 @@ function cancelReservation() {
                     getReservations();
                     break;
                 case "err":
-                    vt.success("An error occured", {position: "top-center", duration: 2000});
+                    vt.error("An error occured", {position: "top-center", duration: 2000});
                     getReservations();
                     break;
             }
@@ -46,8 +47,9 @@ $(document).on("click", ".btn-edit", function() {
     var data_checkindate = $(this).data("checkindate");
     var data_checkoutdate = $(this).data("checkoutdate");
     var data_doornumber = $(this).data("doornumber");
+    var data_id = $(this).data("id");
 
-    selectedReservation = {checkindate: data_checkindate, checkoutdate: data_checkoutdate, doornumber: data_doornumber};
+    selectedReservation = {checkindate: data_checkindate, checkoutdate: data_checkoutdate, doornumber: data_doornumber, id: data_id};
     
     $("#newdoornumber").prop("value", data_doornumber);
     $("#newcheckindate").prop("value", data_checkindate);
@@ -65,6 +67,7 @@ function editReservation(){
                   "&oldcheckindate=" + selectedReservation.checkindate +
                   "&olddoornumber=" + selectedReservation.doornumber +
                   "&doornumber=" + $("#newdoornumber").val() +
+                  "&id=" + selectedReservation.id +
                   "&edit";
 
     $.ajax({
@@ -72,6 +75,7 @@ function editReservation(){
         url: "php/reservation_operations.php",
         data: params,
         success: function(data, status) {  
+            console.log(data);
             switch(data) {
                 case "true":
                     vt.success("Reservation successfully updated", {position: "top-center", duration: 2000});
@@ -118,14 +122,16 @@ $(document).on("click", ".btn-checkin", function() {
 $(document).on("click", ".btn-cancel", function() {
     var data_checkindate = $(this).data("checkindate");
     var data_doornumber = $(this).data("doornumber");
+    var data_id = $(this).data("id");
 
-    selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber};
+    selectedReservation = {checkindate: data_checkindate, doornumber: data_doornumber, id: data_id};
 });
 
 $(document).on("click", ".btn-checkout", function() {
     var params = "customerid=" + $(this).data("customerid") +
                  "&checkindate=" + $(this).data("checkindate") +
                  "&doornumber=" + $(this).data("doornumber") +
+                 "&id=" + $(this).data("id") +
                  "&checkout";
 
     $.ajax({
@@ -166,6 +172,7 @@ function checkReservations() {
                   "&checkoutdate=" + $("#newcheckoutdate").val() +
                   "&oldcheckindate=" + selectedReservation.checkindate +
                   "&doornumber=" + $("#newdoornumber").val() +
+                  "&id=" + selectedReservation.id +
                   "&checkdoornumber";
 
     $.ajax({

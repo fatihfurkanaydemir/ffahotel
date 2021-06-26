@@ -1,6 +1,7 @@
 $(document).on("click", "#btn-cancelReservation", function(){
     var params="checkindate=" + selectedReservation.checkindate +
                 "&doornumber=" + selectedReservation.doornumber +
+                "&id=" + selectedReservation.id +
                 "&cancel";
 
     $.ajax({
@@ -30,6 +31,7 @@ $(document).on("click", "#btn-extendReservation", function(){
                   "&checkoutdate=" + $("#newcheckoutdate").val() +
                   "&oldcheckindate=" + selectedReservation.checkindate +
                   "&doornumber=" + selectedReservation.doornumber +
+                  "&id=" + selectedReservation.id +
                   "&extend";
 
     $.ajax({
@@ -68,6 +70,7 @@ $(document).on("click", "#btn-makeReview", function(){
                 "&doornumber=" + selectedReservation.doornumber +
                 "&commenttext=" + $("#makereview-commenttext").val().trim() +
                 "&commentrate=" + $rate +
+                "&id=" + selectedReservation.id +
                 "&makereview";
 
         $.ajax({
@@ -98,6 +101,7 @@ $(document).on("click", "#btn-deleteReview", function(){
     var params="checkindate=" + selectedReservation.checkindate +
                 "&doornumber=" + selectedReservation.doornumber +
                 "&commentid=" + selectedReservation.commentid +
+                "&id=" + selectedReservation.id +
                 "&deletereview";
 
     $.ajax({
@@ -137,6 +141,7 @@ $(document).on("click", "#btn-editReview", function(){
                 "&commentid=" + selectedReservation.commentid +
                 "&commenttext=" + $("#editreview-commenttext").val().trim() +
                 "&commentrate=" + $rate +
+                "&id=" + selectedReservation.id +
                 "&editreview";
 
         $.ajax({

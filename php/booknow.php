@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $conn = connectdb();
         
-        $sql = "INSERT INTO reservation VALUES
+        $sql = "INSERT INTO reservation (customerid, reservationdate, checkindate, checkoutdate, numberofpersons, totalprice, commentid, doornumber, status) VALUES 
                 ('$id', DATE(NOW()), '$checkindate', '$checkoutdate', $numberofpersons, $totalprice, NULL, $doornumber, 'active')";
 
         $result = $conn->query($sql);
