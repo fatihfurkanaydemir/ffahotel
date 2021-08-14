@@ -1,0 +1,99 @@
+CREATE TABLE customer 
+(id BIGINT(11) NOT NULL,
+ fname VARCHAR(50) NOT NULL,
+ lname VARCHAR(50) NOT NULL,
+ birthdate DATE NOT NULL,
+ phonenumber VARCHAR(13) NOT NULL,
+ email VARCHAR(100) NOT NULL,
+ password VARCHAR(255),
+ status VARCHAR(10) NOT NULL,
+ PRIMARY KEY(id))
+
+--
+
+CREATE TABLE roomprice 
+(roomtype VARCHAR(20) NOT NULL,
+ price INT(9) NOT NULL,
+ PRIMARY KEY(roomtype))
+
+--
+CREATE TABLE room 
+(doornumber INT(9) NOT NULL,
+ roomtype VARCHAR(20) NOT NULL,
+ floor INT(2) NOT NULL,
+ PRIMARY KEY(doornumber),
+ FOREIGN KEY(roomtype) REFERENCES roomprice(roomtype))
+
+--
+
+CREATE TABLE message 
+(id INT(9) NOT NULL AUTO_INCREMENT,
+ customerid BIGINT(11) NOT NULL,
+ datetime DATETIME NOT NULL,
+ text VARCHAR(500) NOT NULL,
+ status VARCHAR(20) NOT NULL,
+ PRIMARY KEY(id),
+ FOREIGN KEY(customerid) REFERENCES customer(id))
+
+--
+
+CREATE TABLE comment 
+(id INT(9) NOT NULL AUTO_INCREMENT,
+ datetime DATETIME NOT NULL,
+ text VARCHAR(500) NOT NULL,
+ rate INT(1) NOT NULL,
+ PRIMARY KEY(id))
+
+--
+
+CREATE TABLE expense 
+(id INT(9) NOT NULL AUTO_INCREMENT,
+ date DATE NOT NULL,
+ amount FLOAT(9) NOT NULL,
+ description VARCHAR(500) NOT NULL,
+ PRIMARY KEY(id))
+
+--
+
+CREATE TABLE report 
+(id INT(9) NOT NULL AUTO_INCREMENT,
+ reportdate DATE NOT NULL,
+ startdate DATE NOT NULL,
+ enddate DATE NOT NULL,
+ revenue FLOAT(9) NOT NULL,
+ expense FLOAT(9) NOT NULL,
+ totalcustomers INT(9) NOT NULL,
+ PRIMARY KEY(id))
+
+--
+
+CREATE TABLE manager 
+(id BIGINT(11) NOT NULL,
+ fname VARCHAR(50) NOT NULL,
+ lname VARCHAR(50) NOT NULL,
+ phonenumber VARCHAR(13) NOT NULL,
+ email VARCHAR(100) NOT NULL,
+ password VARCHAR(255) NOT NULL,
+ PRIMARY KEY(id))
+
+--
+
+CREATE TABLE reservation
+(id INT(10) NOT NULL AUTO_INCREMENT,
+customerid BIGINT(11) NOT NULL,
+reservationdate DATE NOT NULL,
+checkindate DATE NOT NULL,
+checkoutdate DATE NOT NULL,
+numberofpersons INT(1) NOT NULL,
+totalprice INT(9) NOT NULL,
+commentid INT(9),
+doornumber INT(9) NOT NULL,
+status VARCHAR(20) NOT NULL,
+PRIMARY KEY(id),
+FOREIGN KEY (customerid) REFERENCES customer(id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (doornumber) REFERENCES room(doornumber) ON DELETE RESTRICT ON UPDATE CASCADE,
+FOREIGN KEY (commentid) REFERENCES comment(id) ON DELETE SET NULL ON UPDATE CASCADE)
+
+
+
+
