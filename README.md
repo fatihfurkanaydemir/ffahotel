@@ -4,4 +4,4 @@ Fully responsive php based hotel management website for both customers and hotel
 
 # Customer Side
 
-![](gitImages/1.png)
+![](https://github.com/fatihfurkanaydemir/ffahotel/blob/master/gitImages/1.PNG)
